@@ -12,9 +12,9 @@ def version(projekt, ersatz=''):
     f=ROOT.parent/projekt/'VERSION'
     return f.read_text().strip() if f.exists() else ersatz
 
-# Karten auf der Übersichtsseite: Ordner, Name (HTML), Kurzbeschreibung DE/EN, Codeberg-Repo, Lizenz
+# Karten auf der Übersichtsseite: Ordner, Name (HTML), Kurzbeschreibung DE/EN, GitHub-Repo, Lizenz
 PROJEKTE=[
-  dict(ordner='mediadb', name='Media<em>DB</em>', version=version('mediadb'), lizenz='GPL-3.0', repo='luro61/mediadb',
+  dict(ordner='mediadb', name='Media<em>DB</em>', version=version('mediadb'), lizenz='GPL-3.0', repo='luro611/mediadb',
        de='Mediendatenbank fürs Heimnetz: CDs und Musikdateien, Filme, Serien und Bücher. Barcode scannen, Daten und Cover kommen von selbst. Läuft im Docker-Container, Bedienung im Browser.',
        en='A media database for your home network: CDs and music files, films, TV shows and books. Scan a barcode and the data and covers fill in. Runs in a Docker container, used in the browser.'),
 ]
@@ -39,7 +39,7 @@ def karte(p):
       <p class="kicker">Version{v} · {p['lizenz']}</p>
       <h3>{p['name']}</h3>
       <p><span lang="de">{p['de']}</span><span lang="en">{p['en']}</span></p>
-      <div class="actions"><a class="btn" href="{p['ordner']}/"><span lang="de">Zur Projektseite</span><span lang="en">Project page</span></a><a class="btn ghost" href="https://codeberg.org/{p['repo']}" target="_blank" rel="noopener noreferrer">Codeberg</a></div>
+      <div class="actions"><a class="btn" href="{p['ordner']}/"><span lang="de">Zur Projektseite</span><span lang="en">Project page</span></a><a class="btn ghost" href="https://github.com/{p['repo']}" target="_blank" rel="noopener noreferrer">GitHub</a></div>
     </article>''')
 soon=('    <article class="project soon"><p class="kicker"><span lang="de">Demnächst</span><span lang="en">Coming soon</span></p>'
       '<p><span lang="de">Weitere Projekte folgen.</span><span lang="en">More projects to come.</span></p></article>')
@@ -65,7 +65,7 @@ if DIST.exists(): shutil.rmtree(DIST)
 for f in (HERE/'fonts').iterdir(): shutil.copy2(f,DIST/'fonts'/f.name)
 
 home=(HERE/'home.html').read_text(encoding='utf-8').replace('<!--PROJEKTE-->','\n'.join([karte(p) for p in PROJEKTE]+[soon]))
-(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte','Private Hobbyprojekte fürs Heimnetz, freie Software auf Codeberg. Darunter MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher.',home),encoding='utf-8')
+(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub. Darunter MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher.',home),encoding='utf-8')
 
 legal=(HERE/'impressum.html').read_text(encoding='utf-8')
 legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" href="./">luro<em>home</em></a>'
