@@ -19,7 +19,7 @@ Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von M
 Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
 
 ## Neues Projekt aufnehmen
-1. In `src/build.py` bei `PROJEKTE` einen Eintrag ergänzen (Ordner, Name, Kurzbeschreibung, Codeberg-Repo, Lizenz).
+1. In `src/build.py` bei `PROJEKTE` einen Eintrag ergänzen (Ordner, Name, Kurzbeschreibung, GitHub-Repo, Lizenz).
 2. `src/<ordner>.html` anlegen (Vorlage: `src/mediadb.html`), Links zum Impressum mit `../impressum.html`, den Haftungshinweis mitnehmen.
 3. In `build.py` bei `SEITEN` eintragen, bauen, hochladen.
 
