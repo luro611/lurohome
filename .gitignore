@@ -1,0 +1,4 @@
+dist/
+*.zip
+alt-mediadb-subdomain/
+.DS_Store

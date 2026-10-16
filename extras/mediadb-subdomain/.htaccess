@@ -1,0 +1,5 @@
+# Leitet die alte Adresse mediadb.lurohome.de dauerhaft auf lurohome.de um.
+# Diese Datei in den bisherigen Ordner der Subdomain hochladen (nur nötig,
+# wenn im ALL-INKL-Menü keine Weiterleitung für die Subdomain eingestellt wird).
+RedirectMatch 301 ^/impressum\.html$ https://lurohome.de/impressum.html
+RedirectMatch 301 ^/ https://lurohome.de/mediadb/
