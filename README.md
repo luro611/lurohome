@@ -6,6 +6,7 @@ Quelle der Website [lurohome.de](https://lurohome.de): eine Übersicht meiner Ho
 - `src/home.html`: Übersichtsseite (die Projektkarten trägt `build.py` ein)
 - `src/<projekt>.html`: Projektseite, landet unter `lurohome.de/<projekt>/`, zum Beispiel `src/mediadb.html`
 - `src/vibecoding.html`: Beitrag „Vibecoding: Mein Segen, meine Zweifel und meine Sucht“ (DE/EN), landet unter `lurohome.de/vibecoding/`, verlinkt oben auf der Startseite
+- Tipps (`lurohome.de/tipps/`): Anleitungen aus dem Repo [homelab-tipps](https://github.com/luro611/homelab-tipps). `build.py` liest die Markdown-Dateien (DE/EN) aus dem Ordner `homelab-tipps`, der neben `lurohome` oder eine Ebene höher liegt, und macht daraus je eine Seite unter `tipps/<ordner>/` sowie die Karten auf der Startseite. Neuer Tipp: Ordner im Repo anlegen und in `build.py` bei `TIPPS` eintragen.
 - `src/impressum.html`: Impressum, Haftungshinweis und Datenschutz für alle Seiten
 - `src/style.css`, `src/script.js`, `src/fonts/`: Gestaltung, Sprach- und Farbumschalter, Schriften (alle Seiten teilen sie)
 - `extras/mediadb-subdomain/.htaccess`: Weiterleitung der alten Adresse mediadb.lurohome.de

@@ -156,3 +156,19 @@ footer .sp{margin-right:auto}
 .essay-body .conclusion h2{border-top:0;margin-top:22px;padding-top:0}
 .essay-end{margin-top:40px}
 @media (max-width:560px){.essay-head{padding-block:44px 28px}.essay-body{font-size:16px}.essay-body .first{font-size:17px}.essay-body .conclusion{padding:4px 18px 8px}}
+
+/* PermLens-Seite */
+.tracks.map li{grid-template-columns:44px minmax(0,1fr) auto}.tracks.map .mono{overflow-wrap:anywhere}
+.tracks .t.warn{color:var(--accent-strong);font-weight:600}
+.status{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0;color:var(--muted)}
+
+/* Tipps: Anleitungsseiten (Markdown aus homelab-tipps) und Karten */
+.project h3.tip-title{font-size:26px;line-height:1.15}
+.tips-page{padding-block:64px}.tips-page h1{font-size:clamp(40px,6vw,72px);line-height:1;margin:0 0 36px}
+.essay-head .actions{margin-top:24px}
+.guide h3{font-size:22px;margin:32px 0 10px}
+.guide ul,.guide ol{margin:0 0 18px;padding-left:22px}.guide li{margin-bottom:6px}
+.guide pre{margin:0 0 18px;font-size:12.5px;line-height:1.6}
+.guide code{font:.88em var(--f-mono);overflow-wrap:anywhere}.guide pre code{font:inherit;overflow-wrap:normal}
+.guide :not(pre)>code{background:var(--soft);padding:1px 5px;border-radius:2px}
+.guide .hint{margin:0 0 18px;padding:12px 18px;background:var(--soft);border-left:3px solid var(--accent);font-size:15px}.guide .hint p{margin:0}

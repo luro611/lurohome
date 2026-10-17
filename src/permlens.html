@@ -1,0 +1,91 @@
+<div class="shell">
+<nav aria-label="Hauptnavigation">
+  <a class="brand" href="#top">Perm<em>Lens</em></a>
+  <div class="links">
+    <a href="../">← lurohome</a>
+    <a href="#problem"><span lang="de">Das Problem</span><span lang="en">The problem</span></a>
+    <a href="#funktionen"><span lang="de">Funktionen</span><span lang="en">Features</span></a>
+    <a href="#sicherheit"><span lang="de">Sicherheit</span><span lang="en">Security</span></a>
+    <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><span lang="de">LXC · Proxmox VE · Open Source</span><span lang="en">LXC · Proxmox VE · open source</span></p>
+    <h1>Perm<em>Lens</em></h1>
+    <p class="intro"><span lang="de"><strong>Rechte im Blick.</strong> Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE.</span><span lang="en"><strong>Permissions in focus.</strong> A permission manager for LXC containers, currently built specifically for Proxmox VE.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">In Entwicklung</span><span lang="en">In development</span></span> <span lang="de">Noch nicht zum Herunterladen.</span><span lang="en">Not available for download yet.</span></p>
+  </div>
+  <div class="scan" aria-label="Beispiel: Benutzer-Nummern zwischen Container und Host">
+    <p class="step"><span><span lang="de">Container → Host</span><span lang="en">Container → host</span></span><span lang="de">Beispiel</span><span lang="en">Example</span></p>
+    <ol class="tracks map">
+      <li><span class="n">root</span><span class="mono">0</span><span class="t">→ 100000</span></li>
+      <li><span class="n">app</span><span class="mono">1000</span><span class="t">→ 101000</span></li>
+    </ol>
+    <div class="arrow"><span lang="de">Eingehängter Ordner</span><span lang="en">Mounted folder</span></div>
+    <ol class="tracks map">
+      <li><span class="n">Host</span><span class="mono">/mnt/nas/fotos</span><span class="t">1000</span></li>
+      <li><span class="n">LXC</span><span class="mono">/data/fotos</span><span class="t warn">nobody</span></li>
+    </ol>
+    <div class="tags"><span class="tag"><span lang="de">unprivilegiert</span><span lang="en">unprivileged</span></span><span class="tag">UID / GID</span><span class="tag">ACL</span></div>
+  </div>
+</header>
+
+<section id="problem">
+  <p class="eyebrow"><span lang="de">Das Problem</span><span lang="en">The problem</span></p>
+  <h2><span lang="de">Wem gehört die Datei <em>wirklich?</em></span><span lang="en">Who really <em>owns</em> that file?</span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Wer Proxmox mit LXC-Containern und einem NAS oder gemeinsamen Ordnern betreibt, kennt das: Ein Programm im Container schreibt Dateien, und danach kommt vom Mac oder PC niemand mehr heran. Oder der Container darf in seinen eigenen Ordner nicht schreiben. Schuld ist fast immer die Übersetzung der Benutzer-Nummern (UID/GID) zwischen Container und Host. Benutzer 1000 im Container ist auf dem Host plötzlich 101000, oder er erscheint als „nobody“. Viele lösen das, indem sie den Container privilegiert machen. Das funktioniert, schwächt aber die Abschottung.</span><span lang="en">Anyone running Proxmox with LXC containers and a NAS or shared folders knows this: an app in a container writes files, and afterwards nobody can open them from a Mac or PC. Or the container is not allowed to write to its own folder. The cause is almost always how user numbers (UID/GID) are translated between container and host. User 1000 in the container suddenly becomes 101000 on the host, or shows up as “nobody”. Many people solve this by making the container privileged. That works, but weakens isolation.</span></p>
+</section>
+
+<section id="funktionen">
+  <p class="eyebrow"><span lang="de">Was PermLens zeigt</span><span lang="en">What PermLens shows</span></p>
+  <h2><span lang="de">Alles an einem Ort, <em>nebeneinander</em></span><span lang="en">All in one place, <em>side by side</em></span></h2>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Übersicht</span><span lang="en">Overview</span></p><h3><span lang="de">Alle Gäste</span><span lang="en">Every guest</span></h3><p><span lang="de">Alle LXCs und VMs, ob sie laufen, ob sie privilegiert oder unprivilegiert sind und ob sie ein eigenes Mapping haben.</span><span lang="en">All LXCs and VMs, whether they are running, privileged or unprivileged, and whether they have a custom mapping.</span></p></div>
+    <div><p class="kicker"><span lang="de">Benutzer</span><span lang="en">Users</span></p><h3><span lang="de">Wer ist wer?</span><span lang="en">Who is who?</span></h3><p><span lang="de">Jeder Benutzer im Container mit UID und GID und wer er auf dem Host ist.</span><span lang="en">Every user in the container with UID and GID and who they are on the host.</span></p></div>
+    <div><p class="kicker">Mapping</p><h3><span lang="de">Aus 1000 wird …</span><span lang="en">1000 becomes …</span></h3><p><span lang="de">Welche Nummern im Container zu welchen Nummern auf dem Host werden, und welche „durchgereicht“ werden.</span><span lang="en">Which numbers inside the container become which numbers on the host, and which are passed through.</span></p></div>
+    <div><p class="kicker">Mounts</p><h3><span lang="de">Host und Container</span><span lang="en">Host and container</span></h3><p><span lang="de">Jeder eingehängte Ordner mit Besitzer und Rechten, auf dem Host und im Container nebeneinander, dazu ACLs. Warnung, wenn der Besitzer im Container als „nobody“ erscheint oder die Quelle fehlt.</span><span lang="en">Every mounted folder with owner and permissions, on the host and inside the container side by side, plus ACLs. A warning when the owner shows up as “nobody” inside the container or the source is missing.</span></p></div>
+    <div><p class="kicker"><span lang="de">Speicher</span><span lang="en">Storage</span></p><h3><span lang="de">Gemeinsame Ordner</span><span lang="en">Shared folders</span></h3><p><span lang="de">Jeder gemeinsam genutzte Ordner mit allen Containern, die ihn nutzen, und wie er von jedem aus aussieht.</span><span lang="en">Every shared folder with all containers using it and how it looks from each of them.</span></p></div>
+    <div><p class="kicker"><span lang="de">Was noch kommt</span><span lang="en">Coming next</span></p><h3><span lang="de">Diagnose und mehr</span><span lang="en">Diagnosis and more</span></h3><p><span lang="de">Eine Diagnose („Kann Benutzer X in Ordner Y schreiben? Und wenn nicht, warum?“) mit Erklärung in Klartext, danach das Ändern von Rechten mit Vorschau, Protokoll und Rückgängig-Funktion und ein Assistent für eigenes Mapping, damit privilegierte Container sicher auf unprivilegiert umsteigen können.</span><span lang="en">A diagnosis (“Can user X write to folder Y? And if not, why?”) with a plain-language explanation, then changing permissions with preview, log and undo, and an assistant for custom mapping so privileged containers can safely move to unprivileged.</span></p></div>
+  </div>
+</section>
+
+<section id="sicherheit">
+  <p class="eyebrow"><span lang="de">Sicherheit und Betrieb</span><span lang="en">Security and operation</span></p>
+  <h2><span lang="de">Liest nur, bleibt <em>zu Hause</em></span><span lang="en">Read-only, stays <em>at home</em></span></h2>
+  <div class="two">
+    <div>
+      <h3><span lang="de">Sicherheit</span><span lang="en">Security</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">PermLens spricht nur über SSH mit dem Proxmox-Host, mit einem eigenen Schlüssel, der ausschließlich ein kleines Wächter-Script aufrufen darf. Das Script lässt nur Befehle aus einer festen Liste durch und protokolliert jeden Aufruf. Bis auf Weiteres liest PermLens nur, es ändert nichts. Die Oberfläche ist immer mit Passwort geschützt und nur aus dem Heimnetz erreichbar. PermLens gehört nie ins Internet.</span><span lang="en">PermLens talks to the Proxmox host only via SSH, using its own key that may do nothing but call a small guard script. The script only lets commands from a fixed list through and logs every call. For now PermLens only reads, it changes nothing. The interface is always password-protected and only reachable from the home network. PermLens must never be exposed to the internet.</span></p>
+    </div>
+    <div>
+      <h3><span lang="de">Betrieb</span><span lang="en">Operation</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Läuft als Docker-Container in einem eigenen LXC, Bedienung im Browser. Verwaltung und Updates bequem über Dockhand (Stack → Pull → Redeploy). Oberfläche auf Deutsch und Englisch, hell und dunkel.</span><span lang="en">Runs as a Docker container in its own LXC, used in the browser. Managed and updated conveniently via Dockhand (stack → pull → redeploy). Interface in German and English, light and dark.</span></p>
+      <dl class="facts" style="margin-top:22px">
+        <dt><span lang="de">Zugriff</span><span lang="en">Access</span></dt><dd><span lang="de">Nur Heimnetz, immer mit Passwort</span><span lang="en">Home network only, always password-protected</span></dd>
+        <dt><span lang="de">Host</span><span lang="en">Host</span></dt><dd><span lang="de">SSH mit eigenem Schlüssel, nur lesend</span><span lang="en">SSH with its own key, read-only</span></dd>
+        <dt><span lang="de">Lizenz</span><span lang="en">License</span></dt><dd>GPL-3.0</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="hinweis">
+  <p class="eyebrow"><span lang="de">Der Name</span><span lang="en">The name</span></p>
+  <h2><span lang="de">Eine Lupe für <em>Rechte</em></span><span lang="en">A magnifying glass for <em>permissions</em></span></h2>
+  <p class="lead"><span lang="de"><em>Perm</em> steht für Permissions (Berechtigungen), <em>Lens</em> für die Linse einer Lupe. Zusammen eine Lupe für Rechte.</span><span lang="en"><em>Perm</em> stands for permissions, <em>Lens</em> for the lens of a magnifying glass. Together: a magnifying glass for permissions.</span></p>
+  <p class="small" style="margin:0"><span lang="de"><strong>Hinweis:</strong> Kein offizielles Proxmox-Projekt. Proxmox ist eine Marke der Proxmox Server Solutions GmbH. Freie Software unter GPL-3.0.</span><span lang="en"><strong>Note:</strong> Not an official Proxmox project. Proxmox is a trademark of Proxmox Server Solutions GmbH. Free software under GPL-3.0.</span></p>
+  <p class="small" id="haftung" style="margin:20px 0 0"><span lang="de"><strong>Haftungshinweis:</strong> PermLens ist ein privates Hobbyprojekt und wird kostenlos unter der GNU GPL-3.0 bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Nutzung erfolgt auf eigenes Risiko. Die Software ist nicht in allen Umgebungen getestet. Es besteht keine Verpflichtung zu Support, Fehlerbehebung oder Weiterentwicklung.</span><span lang="en"><strong>Disclaimer:</strong> PermLens is a private hobby project, provided free of charge under the GNU GPL-3.0. To the extent permitted by law, no warranty is given. Use at your own risk. The software has not been tested in every environment. There is no obligation to provide support, fixes or further development.</span></p>
+</section>
+
+<footer>
+  <span class="sp">PermLens · <span lang="de">In Entwicklung</span><span lang="en">In development</span> · GPL-3.0</span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>
