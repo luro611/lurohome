@@ -1,0 +1,23 @@
+# lurohome – Hobbyprojekte fürs Heimnetz
+
+> lurohome.de ist die Seite von Lutz Rothe (Heidelberg) für seine privaten Hobbyprojekte: kleine Programme fürs eigene Zuhause, die auf dem eigenen Rechner oder Homeserver laufen, dazu Anleitungen fürs Homelab und ein Beitrag über das Programmieren mit KI. Die Programme sind freie Software (GPL-3.0) mit offenem Quellcode auf GitHub, kostenlos und ohne Gewährleistung. Die Seite ist auf Deutsch und Englisch, ohne Cookies und Tracking.
+
+## Projekte
+
+<!--PROJEKTE-->
+
+## Tipps fürs Homelab
+
+<!--TIPPS-->
+
+## Beitrag
+
+- [Vibecoding: Mein Segen, meine Zweifel und meine Sucht](https://lurohome.de/vibecoding/): Warum die Programme KI-generiert sind, wem der Code gehört und weshalb er als Open Source weitergegeben wird.
+
+## Weitere Seiten
+
+- [Startseite](https://lurohome.de/)
+- [Alle Tipps](https://lurohome.de/tipps/)
+- [Impressum und Datenschutz](https://lurohome.de/impressum.html)
+- [GitHub-Profil](https://github.com/luro611)
+- [rothe.it](https://rothe.it/): persönliche Startseite von Lutz Rothe

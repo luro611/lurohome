@@ -3,9 +3,11 @@ Aufruf im Projektordner:  python3 src/build.py
 
 Neues Projekt: unten in PROJEKTE eintragen, eine Seite src/<ordner>.html anlegen
 (Vorlage: src/mediadb.html) und in SEITEN ergänzen."""
-import datetime, shutil, zipfile
+import datetime, json, shutil, zipfile
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parent; DIST=ROOT/'dist'
+SITE='https://lurohome.de/'
+HEUTE=datetime.date.today().isoformat()
 
 def version(projekt, ersatz=''):
     """Version aus dem Projektordner lesen (../mediadb/VERSION oder ../../mediadb/VERSION), sonst Ersatzwert."""
@@ -31,12 +33,42 @@ FONTS=[('Instrument','InstrumentSerif-Regular.ttf','400','normal'),('Instrument'
 style=(HERE/'style.css').read_text(encoding='utf-8')
 script='<script>\n'+(HERE/'script.js').read_text(encoding='utf-8')+'</script>'
 
-def page(title, desc, body, tiefe=0):
+# Für Suchmaschinen und KI-Suche: schema.org als JSON-LD. Jede Seite trägt sich beim Bauen in URLS ein (für sitemap.xml).
+PERSON={'@type':'Person','@id':SITE+'#person','name':'Lutz Rothe','url':'https://rothe.it/',
+        'sameAs':['https://rothe.it/','https://github.com/luro611','https://www.br-foto.com'],
+        'knowsAbout':['Homelab','Proxmox VE','LXC','Docker','Open-Source-Software','Programmieren mit KI']}
+WEBSITE={'@type':'WebSite','@id':SITE+'#website','url':SITE,'name':'lurohome','inLanguage':['de','en'],'publisher':{'@id':SITE+'#person'}}
+URLS=[]
+
+def software(p, beschreibung):
+    """Projekt aus PROJEKTE als SoftwareApplication"""
+    d={'@type':'SoftwareApplication','@id':SITE+p['ordner']+'/#software','name':p['name'].replace('<em>','').replace('</em>',''),
+       'description':beschreibung,'url':SITE+p['ordner']+'/','applicationCategory':'UtilitiesApplication','operatingSystem':'Linux',
+       'license':'https://www.gnu.org/licenses/gpl-3.0.html','isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
+       'offers':{'@type':'Offer','price':'0','priceCurrency':'EUR'}}
+    if p['version'] and not p.get('status'): d['softwareVersion']=p['version']
+    if p['repo']: d['sameAs']='https://github.com/'+p['repo']
+    return d
+
+def kopf(title, desc, pfad, extra=()):
+    url=SITE+pfad; URLS.append(url)
+    seite={'@type':'WebPage','@id':url,'url':url,'name':title,'description':desc,'inLanguage':['de','en'],
+           'isPartOf':{'@id':SITE+'#website'},'author':{'@id':SITE+'#person'},'dateModified':HEUTE}
+    ld=json.dumps({'@context':'https://schema.org','@graph':[WEBSITE,PERSON,seite,*extra]},ensure_ascii=False,separators=(',',':'))
+    pre='../'*pfad.count('/') if pfad.endswith('/') else ''
+    return (f'<link rel="canonical" href="{url}">\n<link rel="icon" href="{pre}favicon.svg" type="image/svg+xml">\n'
+            '<meta name="robots" content="index,follow">\n<meta name="author" content="Lutz Rothe">\n'
+            '<meta property="og:type" content="website">\n<meta property="og:locale" content="de_DE">\n<meta property="og:locale:alternate" content="en_GB">\n'
+            f'<meta property="og:site_name" content="lurohome">\n<meta property="og:title" content="{title}">\n<meta property="og:description" content="{desc}">\n'
+            f'<meta property="og:url" content="{url}">\n<meta name="twitter:card" content="summary">\n'
+            f'<script type="application/ld+json">{ld}</script>\n')
+
+def page(title, desc, body, tiefe=0, pfad='', extra=()):
     pre='../'*tiefe
     fonts=''.join(f"@font-face{{font-family:{a};src:url('{pre}fonts/{f}') format('truetype');font-weight:{w};font-style:{s};font-display:swap}}" for a,f,w,s in FONTS)
     return ('<!doctype html>\n<html lang="de" data-lang="de">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
-            f'<title>{title}</title>\n<meta name="description" content="{desc}">\n'
+            f'<title>{title}</title>\n<meta name="description" content="{desc}">\n{kopf(title,desc,pfad,extra)}'
             f'<style>{fonts}</style>\n<style>\n{style}</style>\n</head>\n<body>\n{body}\n{script}\n</body>\n</html>\n')
 
 def karte(p):
@@ -73,14 +105,14 @@ if DIST.exists(): shutil.rmtree(DIST)
 for f in (HERE/'fonts').iterdir(): shutil.copy2(f,DIST/'fonts'/f.name)
 
 home=(HERE/'home.html').read_text(encoding='utf-8').replace('<!--PROJEKTE-->','\n'.join([karte(p) for p in PROJEKTE]+[soon]))
-(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub. Darunter MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher.',home),encoding='utf-8')
+(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte fürs Heimnetz','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub: MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher, und PermLens für Rechte in Proxmox-LXC-Containern. Dazu Homelab-Anleitungen.',home,extra=[software(p,p['de']) for p in PROJEKTE]),encoding='utf-8')
 
 legal=(HERE/'impressum.html').read_text(encoding='utf-8')
 legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" href="./">luro<em>home</em></a>'
             '<a class="back" href="./">← Zur Startseite</a>'
             '<div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div></nav>\n'
             +legal+'\n<footer><span class="sp">lurohome.de</span><a href="./">Startseite</a><span>Keine Cookies, kein Tracking</span></footer>\n</div>')
-(DIST/'impressum.html').write_text(page('Impressum · lurohome','Impressum und Datenschutzerklärung von lurohome.de.',legal_body),encoding='utf-8')
+(DIST/'impressum.html').write_text(page('Impressum · lurohome','Impressum und Datenschutzerklärung von lurohome.de.',legal_body,pfad='impressum.html'),encoding='utf-8')
 
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
 SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, Musikdateien, Filme, Serien und Bücher. Läuft im Heimnetz, Daten bleiben bei dir.',
@@ -91,7 +123,11 @@ for ordner,(title,desc,platz) in SEITEN.items():
     body=(HERE/f'{ordner}.html').read_text(encoding='utf-8')
     for k,v in platz.items(): body=body.replace(k,v)
     (DIST/ordner).mkdir()
-    (DIST/ordner/'index.html').write_text(page(title,desc,body,tiefe=1),encoding='utf-8')
+    proj=[p for p in PROJEKTE if p['ordner']==ordner]
+    if proj: extra=[software(proj[0],desc)]
+    else: extra=[{'@type':'BlogPosting','@id':SITE+ordner+'/#beitrag','headline':title.split(' · ')[0],'description':desc,'url':SITE+ordner+'/',
+                  'inLanguage':['de','en'],'author':{'@id':SITE+'#person'},'datePublished':'2026-10-17','dateModified':HEUTE}]
+    (DIST/ordner/'index.html').write_text(page(title,desc,body,tiefe=1,pfad=ordner+'/',extra=extra),encoding='utf-8')
 
 # Tipps: Anleitungen aus dem Repo homelab-tipps (liegt neben lurohome oder eine Ebene höher), DE und EN als Markdown
 TIPPS_REPO='luro611/homelab-tipps'
@@ -179,7 +215,7 @@ if TIPPS:
         '<section class="tips-page">\n  <p class="eyebrow"><span lang="de">Tipps</span><span lang="en">Tips</span></p>\n'
         '  <h1><span lang="de">Anleitungen <em>fürs Homelab</em></span><span lang="en">Guides <em>for the homelab</em></span></h1>\n'
         '  <div class="projects">\n'+'\n'.join(tipp_karte(t,'../') for t in TIPPS).replace('href="../tipps/','href="')+'\n  </div>\n</section>\n'+fuss('../')+'</div>')
-    (DIST/'tipps'/'index.html').write_text(page('Tipps · lurohome','Anleitungen und Skripte fürs Homelab: Proxmox, LXC, Docker.',uebersicht,tiefe=1),encoding='utf-8')
+    (DIST/'tipps'/'index.html').write_text(page('Tipps · lurohome','Anleitungen und Skripte fürs Homelab: Proxmox, LXC, Docker.',uebersicht,tiefe=1,pfad='tipps/'),encoding='utf-8')
     for t in TIPPS:
         de_md,en_md,skript=t['dateien']; src=quelle/t['ordner']
         blob=f"https://github.com/{TIPPS_REPO}/blob/main/{t['ordner']}/"; raw=f"https://raw.githubusercontent.com/{TIPPS_REPO}/main/{t['ordner']}/"
@@ -200,9 +236,23 @@ if TIPPS:
 </div>''')
         seite=('<div class="shell">\n'+nav('../../',('../','Alle Tipps','All tips'))+'<article class="essay" id="top">\n'+'\n'.join(teile)+'\n</article>\n'+fuss('../../')+'</div>')
         (DIST/'tipps'/t['ordner']).mkdir()
-        (DIST/'tipps'/t['ordner']/'index.html').write_text(page(f"{t['titel'][0]} · lurohome",t['de'],seite,tiefe=2),encoding='utf-8')
+        (DIST/'tipps'/t['ordner']/'index.html').write_text(page(f"{t['titel'][0]} · lurohome",t['de'],seite,tiefe=2,pfad=f"tipps/{t['ordner']}/",
+            extra=[{'@type':'TechArticle','@id':SITE+f"tipps/{t['ordner']}/#anleitung",'headline':t['titel'][0],'alternativeHeadline':t['titel'][1],
+                    'description':t['de'],'about':t['thema'],'url':SITE+f"tipps/{t['ordner']}/",'inLanguage':['de','en'],
+                    'author':{'@id':SITE+'#person'},'dateModified':HEUTE,'sameAs':f"https://github.com/{TIPPS_REPO}/tree/main/{t['ordner']}"}]),encoding='utf-8')
     # Karten auf der Startseite (Platzhalter in home.html)
     idx=DIST/'index.html'; idx.write_text(idx.read_text(encoding='utf-8').replace('<!--TIPPS-->','\n'.join(tipp_karte(t) for t in TIPPS)),encoding='utf-8')
+
+# Für Suchmaschinen und KI-Crawler: Sitemap, robots.txt, llms.txt, Favicon
+(DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    +''.join(f'  <url><loc>{u}</loc><lastmod>{HEUTE}</lastmod></url>\n' for u in URLS)+'</urlset>\n',encoding='utf-8')
+(DIST/'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n',encoding='utf-8')
+shutil.copy2(HERE/'favicon.svg',DIST/'favicon.svg')
+llms=(HERE/'llms.txt').read_text(encoding='utf-8')
+llms=llms.replace('<!--PROJEKTE-->','\n'.join(f"- [{p['name'].replace('<em>','').replace('</em>','')}]({SITE}{p['ordner']}/): {p['de']}"
+                                               +(f" Quellcode: https://github.com/{p['repo']}" if p['repo'] else ' Noch nicht veröffentlicht.') for p in PROJEKTE))
+llms=llms.replace('<!--TIPPS-->','\n'.join(f"- [{t['titel'][0]}]({SITE}tipps/{t['ordner']}/): {t['de']}" for t in TIPPS))
+(DIST/'llms.txt').write_text(llms,encoding='utf-8')
 
 z=ROOT/f'lurohome-website-{datetime.date.today().isoformat()}.zip'
 with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED) as zf:
