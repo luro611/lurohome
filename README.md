@@ -14,7 +14,7 @@ Quelle der Website [lurohome.de](https://lurohome.de): eine Übersicht meiner Ho
 ```
 python3 src/build.py
 ```
-Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von MediaDB liest das Skript aus `../mediadb/VERSION`, wenn der Ordner daneben liegt.
+Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von MediaDB liest das Skript aus `mediadb/VERSION`. Der Ordner `mediadb` liegt daneben oder eine Ebene höher (lokal: `Projekte/Webseiten/lurohome` und `Projekte/mediadb`).
 
 ## Hochladen
 Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).

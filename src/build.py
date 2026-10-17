@@ -8,9 +8,10 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parent; DIST=ROOT/'dist'
 
 def version(projekt, ersatz=''):
-    """Version aus dem Nachbarordner lesen (z. B. ../mediadb/VERSION), sonst Ersatzwert."""
-    f=ROOT.parent/projekt/'VERSION'
-    return f.read_text().strip() if f.exists() else ersatz
+    """Version aus dem Projektordner lesen (../mediadb/VERSION oder ../../mediadb/VERSION), sonst Ersatzwert."""
+    for f in (ROOT.parent/projekt/'VERSION', ROOT.parent.parent/projekt/'VERSION'):
+        if f.exists(): return f.read_text().strip()
+    return ersatz
 
 # Karten auf der Übersichtsseite: Ordner, Name (HTML), Kurzbeschreibung DE/EN, GitHub-Repo, Lizenz
 PROJEKTE=[
