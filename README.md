@@ -5,6 +5,7 @@ Quelle der Website [lurohome.de](https://lurohome.de): eine Übersicht meiner Ho
 ## Aufbau
 - `src/home.html`: Übersichtsseite (die Projektkarten trägt `build.py` ein)
 - `src/<projekt>.html`: Projektseite, landet unter `lurohome.de/<projekt>/`, zum Beispiel `src/mediadb.html`
+- `src/vibecoding.html`: Beitrag „Vibecoding: Mein Segen, meine Zweifel und meine Sucht“ (DE/EN), landet unter `lurohome.de/vibecoding/`, verlinkt oben auf der Startseite
 - `src/impressum.html`: Impressum, Haftungshinweis und Datenschutz für alle Seiten
 - `src/style.css`, `src/script.js`, `src/fonts/`: Gestaltung, Sprach- und Farbumschalter, Schriften (alle Seiten teilen sie)
 - `extras/mediadb-subdomain/.htaccess`: Weiterleitung der alten Adresse mediadb.lurohome.de

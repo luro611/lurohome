@@ -76,7 +76,8 @@ legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" 
 
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
 SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, Musikdateien, Filme, Serien und Bücher. Läuft im Heimnetz, Daten bleiben bei dir.',
-                   {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')})}
+                   {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
+        'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():
     body=(HERE/f'{ordner}.html').read_text(encoding='utf-8')
     for k,v in platz.items(): body=body.replace(k,v)

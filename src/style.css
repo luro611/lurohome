@@ -131,3 +131,28 @@ footer .sp{margin-right:auto}
 .project .actions{margin-top:auto;padding-top:12px}
 .project.soon{background:transparent;box-shadow:none;border-style:dashed;justify-content:center}
 @media (max-width:900px){.projects{grid-template-columns:minmax(0,1fr)}}
+
+/* Hinweis auf den Vibecoding-Beitrag (Startseite) */
+.feature{display:block;margin:0 0 64px;padding:34px 32px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:2px;box-shadow:var(--shadow);color:var(--ink);text-decoration:none;transition:border-color .2s}
+.feature:hover{color:var(--ink);border-color:var(--accent)}
+.feature h2{margin:0 0 14px;max-width:820px}
+.feature p:not(.eyebrow){margin:0 0 20px;max-width:680px;color:var(--muted);font-size:16px}
+.feature .eyebrow{color:var(--accent)}
+.feature .more{font:600 11px var(--f-label);text-transform:uppercase;letter-spacing:.1em;color:var(--accent-strong)}
+.feature:hover .more{color:var(--accent)}
+@media (max-width:560px){.feature{padding:26px 20px;margin-bottom:48px}}
+
+/* Beitrag (Vibecoding) */
+.essay-head{padding-block:64px 36px;max-width:820px}
+.essay-head h1{font-size:clamp(40px,6vw,72px);line-height:1}
+.essay-head .note{margin:30px 0 0;max-width:680px;padding:16px 20px;background:var(--soft);border-left:3px solid var(--accent);font-size:14px;color:var(--muted)}
+.essay-body{max-width:680px;padding-bottom:64px;font-size:17px;line-height:1.7}
+.essay-body p{margin:0 0 18px}
+.essay-body .first{font-size:19px}
+.essay-body h2{font-size:clamp(28px,3.4vw,36px);margin:48px 0 14px;padding-top:28px;border-top:1px solid var(--line)}
+.essay-body .reasons{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:12px}
+.essay-body .reasons li{padding-left:20px;position:relative}.essay-body .reasons li:before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;background:var(--accent);border-radius:50%}
+.essay-body .conclusion{margin-top:48px;padding:6px 28px 12px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.essay-body .conclusion h2{border-top:0;margin-top:22px;padding-top:0}
+.essay-end{margin-top:40px}
+@media (max-width:560px){.essay-head{padding-block:44px 28px}.essay-body{font-size:16px}.essay-body .first{font-size:17px}.essay-body .conclusion{padding:4px 18px 8px}}

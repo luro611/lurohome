@@ -1,0 +1,130 @@
+<div class="shell">
+<nav aria-label="Navigation">
+  <a class="brand" href="../">luro<em>home</em></a>
+  <div class="links">
+    <a href="../">← <span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<!-- Der Beitrag steht zweimal da, auf Deutsch und auf Englisch; der Sprachumschalter zeigt jeweils einen. -->
+<article class="essay" id="top">
+<div lang="de">
+<header class="essay-head">
+  <p class="eyebrow">Gedanken</p>
+  <h1><em>Vibecoding:</em> Mein Segen, meine Zweifel und meine Sucht</h1>
+  <p class="note"><strong>Transparenzhinweis:</strong> Diesen Beitrag habe ich selbst geschrieben. Eine KI hat ihn lediglich auf Orthografie und Begrifflichkeit überprüft, damit keine Fehler enthalten sind. Die Inhalte und Gedanken stammen von mir.</p>
+</header>
+
+<div class="essay-body">
+  <p class="first">Seit ich mit Claude Code arbeite, entwickle ich Programme, die ich schon immer haben wollte. Es sind Lösungen für meine ganz persönlichen Probleme, für die ich nirgends passende Software gefunden habe, auch keine kommerzielle. Seit ich zum ersten Mal von Vibecoding gehört habe, und besonders jetzt, nach meinen eigenen Projekten und nachdem Codeberg seine Nutzungsbedingungen gegenüber KI-generierten Programmen geändert hat, möchte ich meine Sicht der Dinge erklären.</p>
+
+  <h2>Wem gehören diese Programme?</h2>
+  <p>Ich erhebe keinen Anspruch auf den Code. Es gibt ihn nur, weil ich ihn zu 100 % von Claude Code habe generieren lassen. Von mir stammen die Ideen und die Vorstellung davon, wie die Programme funktionieren sollen. Ist das schon meine Leistung? Die Kreativität, die die Entwicklung steuert, wahrscheinlich. Das Programmieren selbst nicht.</p>
+  <p>Rechtlich ist die Lage ohnehin unklar. In vielen Rechtsordnungen, auch in Deutschland und der EU, ist rein maschinell erzeugter Inhalt nicht automatisch urheberrechtlich geschützt, weil die „persönliche geistige Schöpfung“ eines Menschen fehlt. Je stärker man steuert, auswählt und überarbeitet, desto eher kann ein Schutz entstehen. Abschließend geklärt ist das nicht.</p>
+
+  <h2>Ist das Diebstahl an den Entwicklern?</h2>
+  <p>Mir wird gesagt, dass für das Training nur Code aus Open-Source-Quellen verwendet wurde. Ich kann mich darauf nur verlassen, überprüfen kann ich es nicht. Bin ich naiv, wenn ich das glaube, gerade angesichts von Berichten, dass KI-Systeme aus Sandboxen ausgebrochen sind und Server gehackt haben?</p>
+  <p>Dazu kommt: Auch Open-Source-Code hat Lizenzen (GPL, MIT und andere) mit Bedingungen wie Namensnennung oder Copyleft. Ob maschinelles Training darunter fällt, ist umstritten, und mehrere Gerichtsverfahren laufen dazu.</p>
+  <p>Gleichzeitig frage ich mich: Sind „normale“ Programme wirklich frei von geistigem Eigentum anderer? Jeder Programmierer nutzt vorhandene Routinen, Klassen von Entwicklungsumgebungen, Frameworks und Codeschnipsel aus unzähligen Quellen. Der Einsatz von KI wirft diese Fragen nur schärfer auf, und sie führen schnell zu großen philosophischen Debatten. Viele klügere Köpfe als ich werden sich darüber streiten, vermutlich ohne je zu einer gemeinsamen Lösung zu kommen.</p>
+
+  <h2>Warum Plattformen Regeln einführen</h2>
+  <p>Ich kann nachvollziehen, dass Plattformen wie Codeberg reagieren. Oft geht es dabei weniger um Moral als um ganz praktische Probleme: große Mengen wenig geprüften KI-Codes, Mehraufwand für Maintainer und Lizenzunsicherheit. Fairness gebietet außerdem Transparenz. Wer veröffentlicht, sollte kenntlich machen, dass die KI mitgewirkt hat.</p>
+  <p>Ein Unterschied scheint mir wichtig: Software für den Eigengebrauch berührt diese Streitfragen deutlich weniger als Programme, die kommerziell vertrieben werden.</p>
+
+  <h2>Verantwortung, Qualität, Souveränität und Abhängigkeit</h2>
+  <p>Ein ehrlicher Blick gehört auch dazu. Ohne Programmierkenntnisse erkenne ich Sicherheitslücken oder Fehler im Code nur schwer. Das ist besonders wichtig, sobald Programme persönliche Daten verarbeiten. Genau deshalb achte ich darauf, dass sensible Daten, die meine Projekte erzeugen oder verarbeiten, bei mir bleiben. Sie werden lokal auf meinen eigenen Geräten gespeichert und nirgends veröffentlicht. Veröffentlicht wird ausschließlich der Quellcode, niemals meine Daten. Das ist für mich ein großer Gewinn an Souveränität: Ich bin nicht auf kommerzielle Anbieter angewiesen, deren Software meine Daten in fremde Clouds überträgt, auswertet oder nur gegen Abo zugänglich macht. Meine Daten, meine Kontrolle.</p>
+  <p>Lokale Datenhaltung ersetzt allerdings keine Sicherheitsprüfung. Wer meine Programme einsetzt, sollte sie vor der Nutzung selbst prüfen oder prüfen lassen, besonders bevor er sie mit sensiblen Daten verwendet.</p>
+  <p>Und ich muss ehrlich sein: Ich tausche eine Abhängigkeit gegen eine andere. Zwar bin ich nicht mehr von kommerzieller Software abhängig, dafür bin ich auf KI-Dienste angewiesen, um meine Programme zu verstehen, zu reparieren und weiterzuentwickeln. Wenn etwas kaputtgeht oder sich Abhängigkeiten wie Bibliotheken oder Betriebssysteme ändern, kann ich das allein nicht lösen. Ändert ein KI-Anbieter seine Preise oder Bedingungen oder stellt den Dienst ein, trifft mich das direkt. Immerhin bleibt der Code vollständig bei mir, und kein Anbieter kann mir eine Funktion abschalten. Gute Dokumentation und Versionsverwaltung helfen zusätzlich, diese Abhängigkeit abzufedern.</p>
+
+  <h2>Warum ich meine Projekte als Open Source zur Verfügung stelle</h2>
+  <p>Ich stelle meine Programme unter einer Open-Source-Lizenz bereit, und das ist eine bewusste Entscheidung. Ich möchte diese Lösungen privaten Personen zugänglich machen, die vielleicht dieselben Fragen und Probleme haben wie ich. Wenn ich für ein Problem keine passende Software gefunden habe, geht es anderen wahrscheinlich ähnlich.</p>
+  <p>Dazu kommen für mich drei Gründe:</p>
+  <ul class="reasons">
+    <li><b>Konsequenz:</b> Ich beanspruche kein Eigentum am Code, weil ich ihn nicht selbst geschrieben habe. Ihn frei weiterzugeben ist deshalb für mich der ehrlichste Umgang damit. Zumal die KI selbst aus offenen Quellen gelernt hat, möchte ich etwas an die Allgemeinheit zurückgeben.</li>
+    <li><b>Transparenz:</b> Offener Quellcode kann von anderen eingesehen, geprüft und verbessert werden. Gerade weil ich Fehler und Sicherheitslücken selbst schwer erkenne, ist das ein Vorteil.</li>
+    <li><b>Kein Profitinteresse:</b> Mir geht es nicht ums Geld, sondern darum, dass die Programme jemandem nützen.</li>
+  </ul>
+  <p>Dabei sage ich offen dazu, dass die Programme KI-generiert sind, und sie werden ohne Gewähr und als Angebot für den privaten Gebrauch bereitgestellt. Wer sie nutzt, sollte wissen, woher sie kommen.</p>
+
+  <h2>Was es für mich bedeutet</h2>
+  <p>Für mich persönlich ist Vibecoding ein Segen. Ich kann Ideen umsetzen und Probleme lösen, zu denen ich allein nie in der Lage gewesen wäre. Ich sehe es als Werkzeug, das meinen Alltag erleichtert und mir hoffentlich Zeit verschafft, mich länger mit anderen, wichtigeren Themen zu beschäftigen. Vielleicht ist es sogar ein Einstieg, bei dem ich nebenbei etwas lerne.</p>
+
+  <h2>Die Kehrseite: Zeit</h2>
+  <p>Habe ich dadurch im Moment mehr Zeit? Leider nein, im Gegenteil. Weil ich plötzlich viele Probleme auf einmal lösen möchte, verbringe ich enorm viel Zeit mit der KI. Die neuen Möglichkeiten sind fast schon zu einer Sucht geworden. Ich hoffe, dass das vergeht, denn sonst hätte das Ganze keinen Sinn.</p>
+  <p>Dagegen will ich etwas tun: feste Zeitfenster setzen, eine Prioritätenliste führen („Welches Problem lohnt sich wirklich?“) und regelmäßig prüfen, ob ein Projekt mir tatsächlich Zeit spart. Der Rausch des Neuen flacht erfahrungsgemäß ab.</p>
+
+  <div class="conclusion">
+    <h2>Fazit</h2>
+    <p>Ich habe keine endgültigen Antworten, weder auf die Frage nach dem Urheber noch auf die nach Training und Lizenzen. Ich kann nur transparent sein: Meine Programme sind KI-generiert, ich beanspruche kein Eigentum daran, ich stelle sie als Open Source für alle bereit, die dasselbe Problem haben, und ich halte Vibecoding für ein mächtiges Werkzeug, mit dem man bewusst umgehen sollte. Auch diesen Beitrag habe ich in diesem Sinne offen gekennzeichnet: Geschrieben von mir, auf Rechtschreibung und Begriffe geprüft von einer KI.</p>
+  </div>
+
+  <p class="actions essay-end"><a class="btn" href="../#projekte">Zu den Projekten</a><a class="btn ghost" href="https://github.com/luro611" target="_blank" rel="noopener noreferrer">Alles auf GitHub</a></p>
+</div>
+</div>
+
+<div lang="en">
+<header class="essay-head">
+  <p class="eyebrow">Thoughts</p>
+  <h1><em>Vibecoding:</em> My blessing, my doubts and my addiction</h1>
+  <p class="note"><strong>Transparency note:</strong> I wrote this article myself, in German. An AI only checked it for spelling and terminology so that it contains no mistakes. This English version was translated by an AI. The content and ideas are my own.</p>
+</header>
+
+<div class="essay-body">
+  <p class="first">Since I started working with Claude Code, I have been building programs I have always wanted. They are solutions to my very personal problems, for which I never found suitable software anywhere, not even commercial software. Ever since I first heard about vibecoding, and especially now, after my own projects and after Codeberg changed its terms of use regarding AI-generated programs, I want to explain how I see things.</p>
+
+  <h2>Who owns these programs?</h2>
+  <p>I make no claim to the code. It only exists because I had Claude Code generate 100 % of it. What comes from me are the ideas and the picture of how the programs should work. Is that already my achievement? The creativity that steers the development, probably. The programming itself, no.</p>
+  <p>Legally, the situation is unclear anyway. In many jurisdictions, including Germany and the EU, purely machine-generated content is not automatically protected by copyright, because a human's “personal intellectual creation” is missing. The more you steer, select and revise, the more likely protection becomes. This has not been settled conclusively.</p>
+
+  <h2>Is this theft from developers?</h2>
+  <p>I am told that only code from open source sources was used for training. I can only rely on that; I cannot verify it. Am I naive to believe it, especially given reports that AI systems have broken out of sandboxes and hacked servers?</p>
+  <p>On top of that, open source code has licences too (GPL, MIT and others), with conditions such as attribution or copyleft. Whether machine training falls under them is disputed, and several court cases about it are ongoing.</p>
+  <p>At the same time I ask myself: are “normal” programs really free of other people's intellectual property? Every programmer uses existing routines, classes from development environments, frameworks and code snippets from countless sources. The use of AI only raises these questions more sharply, and they quickly lead to big philosophical debates. Many smarter minds than me will argue about this, probably without ever reaching a shared answer.</p>
+
+  <h2>Why platforms introduce rules</h2>
+  <p>I can understand why platforms like Codeberg are reacting. Often it is less about morals than about very practical problems: large amounts of barely reviewed AI code, extra work for maintainers and licence uncertainty. Fairness also calls for transparency. Anyone who publishes should make it clear that AI was involved.</p>
+  <p>One distinction seems important to me: software for personal use touches these disputes far less than programs that are sold commercially.</p>
+
+  <h2>Responsibility, quality, sovereignty and dependence</h2>
+  <p>An honest look is part of this too. Without programming skills, I find it hard to spot security holes or bugs in the code. That matters especially as soon as programs process personal data. That is exactly why I make sure that sensitive data my projects create or process stays with me. It is stored locally on my own devices and never published. Only the source code is published, never my data. For me that is a big gain in sovereignty: I don't depend on commercial providers whose software transfers my data to someone else's cloud, analyses it or only makes it available with a subscription. My data, my control.</p>
+  <p>Keeping data local is no substitute for a security review, though. Anyone who uses my programs should check them, or have them checked, before using them, especially before using them with sensitive data.</p>
+  <p>And I have to be honest: I am trading one dependence for another. I no longer depend on commercial software, but I do depend on AI services to understand, repair and further develop my programs. If something breaks, or if dependencies such as libraries or operating systems change, I cannot solve it on my own. If an AI provider changes its prices or terms or shuts down the service, that hits me directly. At least the code stays entirely with me, and no provider can switch off a feature on me. Good documentation and version control also help to cushion this dependence.</p>
+
+  <h2>Why I make my projects available as open source</h2>
+  <p>I release my programs under an open source licence, and that is a deliberate decision. I want to make these solutions available to private individuals who may have the same questions and problems as I do. If I couldn't find suitable software for a problem, others probably feel the same.</p>
+  <p>On top of that, I have three reasons:</p>
+  <ul class="reasons">
+    <li><b>Consistency:</b> I claim no ownership of the code, because I didn't write it myself. Passing it on freely is therefore the most honest way for me to handle it. And since the AI itself learned from open sources, I want to give something back to the community.</li>
+    <li><b>Transparency:</b> Open source code can be read, reviewed and improved by others. Precisely because I find it hard to spot bugs and security holes myself, that is an advantage.</li>
+    <li><b>No profit motive:</b> This is not about money for me, but about the programs being useful to someone.</li>
+  </ul>
+  <p>I openly state that the programs are AI-generated, and they are provided without warranty and as an offer for private use. Anyone who uses them should know where they come from.</p>
+
+  <h2>What it means to me</h2>
+  <p>For me personally, vibecoding is a blessing. I can realise ideas and solve problems that I would never have been able to tackle on my own. I see it as a tool that makes my everyday life easier and will hopefully give me more time to spend on other, more important things. Maybe it is even a way in, where I learn something along the way.</p>
+
+  <h2>The downside: time</h2>
+  <p>Do I have more time because of it right now? Unfortunately not, quite the opposite. Because I suddenly want to solve lots of problems at once, I spend an enormous amount of time with the AI. The new possibilities have almost become an addiction. I hope that passes, because otherwise the whole thing would make no sense.</p>
+  <p>I want to do something about it: set fixed time slots, keep a priority list (“Which problem is really worth it?”) and regularly check whether a project actually saves me time. In my experience, the thrill of the new wears off.</p>
+
+  <div class="conclusion">
+    <h2>Conclusion</h2>
+    <p>I have no final answers, neither on the question of authorship nor on training and licences. All I can do is be transparent: my programs are AI-generated, I claim no ownership of them, I make them available as open source for everyone who has the same problem, and I consider vibecoding a powerful tool that should be used consciously. In that spirit, I have labelled this article openly as well: written by me, checked for spelling and terminology by an AI, and translated into English by an AI.</p>
+  </div>
+
+  <p class="actions essay-end"><a class="btn" href="../#projekte">See the projects</a><a class="btn ghost" href="https://github.com/luro611" target="_blank" rel="noopener noreferrer">Everything on GitHub</a></p>
+</div>
+</div>
+</article>
+
+<footer>
+  <span class="sp">lurohome.de</span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="https://github.com/luro611" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>
