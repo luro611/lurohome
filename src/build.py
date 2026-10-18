@@ -3,11 +3,30 @@ Aufruf im Projektordner:  python3 src/build.py
 
 Neues Projekt: unten in PROJEKTE eintragen, eine Seite src/<ordner>.html anlegen
 (Vorlage: src/mediadb.html) und in SEITEN ergänzen."""
-import datetime, json, shutil, zipfile
+import datetime, json, re, shutil, subprocess, zipfile
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parent; DIST=ROOT/'dist'
 SITE='https://lurohome.de/'
 HEUTE=datetime.date.today().isoformat()
+
+# Version der Website = Datum (CalVer): 2026.10.18, bei mehreren Uploads am selben Tag 2026.10.18-2 usw.
+# Jeder Upload bekommt danach ein Git-Tag web-<Version> (Befehl steht am Ende der Ausgabe).
+def git(*args):
+    try: return subprocess.run(['git',*args],cwd=ROOT,capture_output=True,text=True,timeout=10).stdout.strip()
+    except (OSError,subprocess.TimeoutExpired): return ''
+def website_version():
+    basis=datetime.date.today().strftime('%Y.%m.%d'); head=git('rev-parse','HEAD')
+    for n in range(1,100):
+        v=basis if n==1 else f'{basis}-{n}'
+        ziel=git('rev-list','-n1',f'web-{v}')
+        if not ziel or ziel==head: return v, bool(ziel)
+    return basis, False
+VERSION, SCHON_GETAGGT = website_version()
+COMMIT = git('rev-parse','--short','HEAD') or '?'
+GEAENDERT = bool(git('status','--porcelain','--','src','logos'))  # Website-Dateien nicht committet
+_d=datetime.date.today()
+STAND=(f'<span title="Version {VERSION} · {COMMIT}{"+" if GEAENDERT else ""}"><span lang="de">Stand {_d:%d.%m.%Y}</span>'
+       f'<span lang="en">Updated {_d.day} {_d:%b %Y}</span></span>')
 
 def version(projekt, ersatz=''):
     """Version aus dem Projektordner lesen (../mediadb/VERSION oder ../../mediadb/VERSION), sonst Ersatzwert."""
@@ -65,6 +84,7 @@ def kopf(title, desc, pfad, extra=()):
 
 def page(title, desc, body, tiefe=0, pfad='', extra=()):
     pre='../'*tiefe
+    body=body.replace('</footer>',f'  {STAND}\n</footer>',1)  # Stand der Website in jeder Fußzeile
     fonts=''.join(f"@font-face{{font-family:{a};src:url('{pre}fonts/{f}') format('truetype');font-weight:{w};font-style:{s};font-display:swap}}" for a,f,w,s in FONTS)
     return ('<!doctype html>\n<html lang="de" data-lang="de">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
@@ -261,3 +281,11 @@ with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED) as zf:
     for f in sorted(DIST.rglob('*')):
         if f.is_file(): zf.write(f,f.relative_to(DIST).as_posix())
 print('fertig:',z)
+print(f'Version {VERSION} (Commit {COMMIT})')
+if GEAENDERT:
+    print('Achtung: Änderungen in src/ oder logos/ sind noch nicht committet. Erst committen, dann neu bauen und hochladen.')
+elif SCHON_GETAGGT:
+    print(f'Dieser Stand hat schon das Tag web-{VERSION}.')
+else:
+    print('Nach dem Hochladen den Stand markieren:')
+    print(f'  git tag -a web-{VERSION} -m "lurohome {VERSION}" && git push origin web-{VERSION}')

@@ -20,6 +20,9 @@ Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von M
 ## Hochladen
 Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
 
+## Versionen
+Die Website hat keine Versionsnummer, sondern das **Datum** als Version (`2026.10.18`, bei mehreren Uploads am selben Tag `2026.10.18-2`). `build.py` setzt es automatisch: In jeder Fußzeile steht „Stand 18.10.2026“, beim Darüberfahren mit der Maus Version und Commit (ein `+` heißt: nicht committete Änderungen). Am Ende der Ausgabe nennt `build.py` den Befehl für das Git-Tag `web-<Version>`. Ihn nach dem Hochladen ausführen, dann ist jede veröffentlichte Fassung im Repository wiederzufinden.
+
 ## Neues Projekt aufnehmen
 1. In `src/build.py` bei `PROJEKTE` einen Eintrag ergänzen (Ordner, Name, Kurzbeschreibung, GitHub-Repo, Lizenz).
 2. `src/<ordner>.html` anlegen (Vorlage: `src/mediadb.html`), Links zum Impressum mit `../impressum.html`, den Haftungshinweis mitnehmen.
