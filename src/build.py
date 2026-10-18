@@ -104,14 +104,16 @@ if DIST.exists(): shutil.rmtree(DIST)
 (DIST/'fonts').mkdir(parents=True)
 for f in (HERE/'fonts').iterdir(): shutil.copy2(f,DIST/'fonts'/f.name)
 
-home=(HERE/'home.html').read_text(encoding='utf-8').replace('<!--PROJEKTE-->','\n'.join([karte(p) for p in PROJEKTE]+[soon]))
+# Logo: Siegel (kompakt) aus logos/, Farben über CSS-Variablen, damit es hell und dunkel passt
+SIEGEL=(ROOT/'logos'/'svg'/'luro-siegel-kompakt-farbvariabel.svg').read_text(encoding='utf-8').strip()
+home=(HERE/'home.html').read_text(encoding='utf-8').replace('<!--PROJEKTE-->','\n'.join([karte(p) for p in PROJEKTE]+[soon])).replace('<!--SIEGEL-->',SIEGEL)
 (DIST/'index.html').write_text(page('lurohome – Hobbyprojekte fürs Heimnetz','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub: MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher, und PermLens für Rechte in Proxmox-LXC-Containern. Dazu Homelab-Anleitungen.',home,extra=[software(p,p['de']) for p in PROJEKTE]),encoding='utf-8')
 
 legal=(HERE/'impressum.html').read_text(encoding='utf-8')
 legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" href="./">luro<em>home</em></a>'
             '<a class="back" href="./">← Zur Startseite</a>'
             '<div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div></nav>\n'
-            +legal+'\n<footer><span class="sp">lurohome.de</span><a href="./">Startseite</a><span>Keine Cookies, kein Tracking</span></footer>\n</div>')
+            +legal+'\n<footer><a class="sp luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a><a href="./">Startseite</a><span>Keine Cookies, kein Tracking</span></footer>\n</div>')
 (DIST/'impressum.html').write_text(page('Impressum · lurohome','Impressum und Datenschutzerklärung von lurohome.de.',legal_body,pfad='impressum.html'),encoding='utf-8')
 
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
@@ -199,7 +201,7 @@ def nav(pre, zurueck):
             '  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>\n</nav>\n')
 
 def fuss(pre):
-    return (f'<footer>\n  <span class="sp">lurohome.de</span>\n  <a href="{pre}"><span lang="de">Startseite</span><span lang="en">Home</span></a>\n'
+    return (f'<footer>\n  <a class="sp luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>\n  <a href="{pre}"><span lang="de">Startseite</span><span lang="en">Home</span></a>\n'
             '  <a href="https://github.com/luro611" target="_blank" rel="noopener noreferrer">GitHub</a>\n'
             f'  <a href="{pre}impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>\n'
             f'  <a href="{pre}impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>\n'
