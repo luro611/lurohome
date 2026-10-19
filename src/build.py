@@ -42,8 +42,8 @@ PROJEKTE=[
   # Repo privat bis 1.0.0: kein GitHub-Knopf (repo=None), Version mit Zusatz „Vorabversion“. VERSION liegt in ../Proxmox-Permission-Manager
   dict(ordner='permlens', name='Perm<em>Lens</em>', version=version('Proxmox-Permission-Manager'), lizenz='GPL-3.0', repo=None,
        status=(f"{version('Proxmox-Permission-Manager')} · Vorabversion",f"{version('Proxmox-Permission-Manager')} · Pre-release"),
-       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf.',
-       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares.'),
+       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. Die Diagnose beantwortet „Kann wer hier schreiben?“ und erklärt jeden Schritt.',
+       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. The diagnosis answers “Who can write here?” and explains every step.'),
 ]
 
 FONTS=[('Instrument','InstrumentSerif-Regular.ttf','400','normal'),('Instrument','InstrumentSerif-Italic.ttf','400','italic'),
@@ -139,7 +139,7 @@ legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" 
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
 SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, Musikdateien, Filme, Serien und Bücher. Läuft im Heimnetz, Daten bleiben bei dir.',
                    {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
-        'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts und Freigaben. Vorabversion '+version('Proxmox-Permission-Manager')+'.',
+        'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts und Freigaben und erklärt, wer wo schreiben darf. Vorabversion '+version('Proxmox-Permission-Manager')+'.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():
