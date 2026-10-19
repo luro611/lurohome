@@ -63,6 +63,7 @@ section{padding-block:64px;border-top:1px solid var(--line)}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .grid>div{background:var(--surface);padding:26px 24px}
 .grid p{margin:0;color:var(--muted)}
+@media (min-width:901px){.grid>.wide{grid-column:1/-1}}
 .grid ul{margin:12px 0 0;padding:0 0 0 18px;color:var(--muted)}
 .kicker{font:600 10px var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:0 0 10px}
 .figure{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}.figure b{font:400 46px/1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
