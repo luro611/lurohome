@@ -175,6 +175,11 @@ footer .sp{margin-right:auto}
 .guide :not(pre)>code{background:var(--soft);padding:1px 5px;border-radius:2px}
 .guide .hint{margin:0 0 18px;padding:12px 18px;background:var(--soft);border-left:3px solid var(--accent);font-size:15px}.guide .hint p{margin:0}
 .notice{border:1px solid var(--accent);border-left-width:4px;background:var(--surface);box-shadow:var(--shadow);padding:30px 32px}.notice .eyebrow{color:var(--accent)}.notice h2{margin-top:0}
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 40px;max-width:980px}
+.checks li{position:relative;padding-left:20px;color:var(--muted)}.checks li strong{color:var(--ink)}
+.checks li:before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;background:var(--accent);border-radius:50%}
+@media (max-width:900px){.checks{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.notice{padding:24px 20px}}
 .cmd{margin:12px 0 0;padding:14px 16px;background:var(--soft);border:1px solid var(--line);border-radius:2px;font:400 12px/1.6 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere}
 code{font-family:var(--f-mono);font-size:.88em}
 .luro-siegel{display:block;height:auto}.luro-siegel .lr{stroke:var(--accent)}.luro-siegel .li{fill:var(--ink)}.luro-siegel .la{fill:var(--accent)}.luro-siegel .lm{fill:var(--muted)}
