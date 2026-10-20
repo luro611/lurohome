@@ -1,0 +1,103 @@
+<div class="shell">
+<nav aria-label="Hauptnavigation">
+  <a class="brand" href="#top">Homelab-<em>Handbuch</em></a>
+  <div class="links">
+    <a href="../">← lurohome</a>
+    <a href="#fuer-wen"><span lang="de">Für wen</span><span lang="en">Who it's for</span></a>
+    <a href="#lxc"><span lang="de">Warum LXC</span><span lang="en">Why LXC</span></a>
+    <a href="#inhalt"><span lang="de">Inhalt</span><span lang="en">Contents</span></a>
+    <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><span lang="de">Buch · Proxmox · LXC · Docker</span><span lang="en">Book · Proxmox · LXC · Docker</span></p>
+    <h1>Homelab-<em>Handbuch</em></h1>
+    <p class="intro"><span lang="de"><strong>Dein eigener Homeserver, Schritt für Schritt.</strong> Ein Buch für alle, die Proxmox einrichten und Anwendungen wie ein Dokumentenarchiv, eine Fotoverwaltung oder ein Wiki selbst betreiben möchten, ohne vorher Linux-Profi zu sein.</span><span lang="en"><strong>Your own home server, step by step.</strong> A book for anyone who wants to set up Proxmox and run applications such as a document archive, a photo library or a wiki themselves, without being a Linux expert first.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">In Arbeit</span><span lang="en">Work in progress</span></span> <span lang="de">Die Kapitel entstehen nach und nach und werden auf einem echten Homelab nachgebaut.</span><span lang="en">Chapters are being written one by one and rebuilt on a real homelab.</span></p>
+  </div>
+  <div class="scan" aria-label="Beispiel-Homelab aus dem Buch">
+    <p class="step"><span><span lang="de">Ein LXC pro Anwendung</span><span lang="en">One LXC per application</span></span><span lang="de">Beispiel</span><span lang="en">Example</span></p>
+    <ol class="tracks map">
+      <li><span class="n">pve</span><span class="mono">Proxmox VE</span><span class="t">.10</span></li>
+      <li><span class="n">dns</span><span class="mono">Pi-hole</span><span class="t">.11</span></li>
+      <li><span class="n">proxy</span><span class="mono">Nginx Proxy Manager</span><span class="t">.12</span></li>
+      <li><span class="n">pbs</span><span class="mono">Proxmox Backup Server</span><span class="t">.13</span></li>
+    </ol>
+    <div class="arrow"><span lang="de">Verwaltet von Dockhand</span><span lang="en">Managed by Dockhand</span></div>
+    <ol class="tracks map">
+      <li><span class="n">.20</span><span class="mono">dockhand</span><span class="t">LXC</span></li>
+      <li><span class="n">.21</span><span class="mono">bookstack</span><span class="t">LXC</span></li>
+      <li><span class="n">.22</span><span class="mono">paperless</span><span class="t">LXC</span></li>
+      <li><span class="n">.23</span><span class="mono">immich</span><span class="t">LXC</span></li>
+    </ol>
+    <div class="tags"><span class="tag"><span lang="de">unprivilegiert</span><span lang="en">unprivileged</span></span><span class="tag">Docker</span><span class="tag">Hawser</span></div>
+  </div>
+</header>
+
+<section id="fuer-wen">
+  <p class="eyebrow"><span lang="de">Für wen</span><span lang="en">Who it's for</span></p>
+  <h2><span lang="de">Ohne Vorwissen, aber mit <em>Neugier</em></span><span lang="en">No prior knowledge, just <em>curiosity</em></span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Viele Anleitungen setzen Wissen voraus, das Einsteiger erst noch erwerben müssen. Dieses Buch erklärt die Grundlagen dort, wo sie gebraucht werden, und begleitet dich vom leeren Rechner bis zum laufenden Homelab.</span><span lang="en">Many guides assume knowledge that beginners still have to acquire. This book explains the basics where they are needed and takes you from an empty computer to a running homelab.</span></p>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Einsteiger</span><span lang="en">Beginners</span></p><h3><span lang="de">Erster Homeserver</span><span lang="en">First home server</span></h3><p><span lang="de">Du willst deine Daten selbst verwalten und hast einen Mini-PC oder einen alten Rechner übrig. Linux, Container und Netzwerk lernst du unterwegs.</span><span lang="en">You want to manage your own data and have a mini PC or an old computer to spare. You pick up Linux, containers and networking along the way.</span></p></div>
+    <div><p class="kicker"><span lang="de">Umsteiger</span><span lang="en">Switchers</span></p><h3><span lang="de">Weg von der Cloud</span><span lang="en">Away from the cloud</span></h3><p><span lang="de">Dokumente, Fotos, Dateien und Notizen sollen nicht mehr bei großen Anbietern liegen, sondern zu Hause, mit eigenen Backups.</span><span lang="en">Documents, photos, files and notes should no longer live with big providers but at home, with your own backups.</span></p></div>
+    <div><p class="kicker"><span lang="de">Vereine und kleine Firmen</span><span lang="en">Clubs and small businesses</span></p><h3><span lang="de">Eigene Werkzeuge</span><span lang="en">Your own tools</span></h3><p><span lang="de">Ein eigenes Kapitel zeigt Projektverwaltung, Warenwirtschaft, Kundenverwaltung und Ticketsystem auf dem eigenen Server.</span><span lang="en">A dedicated chapter covers project management, ERP, CRM and a ticket system on your own server.</span></p></div>
+    <div class="wide"><p class="kicker"><span lang="de">Wenig Hardware</span><span lang="en">Modest hardware</span></p><h3><span lang="de">Ein kleiner Rechner reicht</span><span lang="en">A small computer is enough</span></h3><p><span lang="de">Kein Serverschrank nötig: Das Buch ist auf sparsame Mini-PCs mit wenigen Kernen und wenig Speicher ausgelegt, die rund um die Uhr laufen dürfen.</span><span lang="en">No server rack needed: the book is designed for energy-efficient mini PCs with few cores and little memory that can run around the clock.</span></p></div>
+  </div>
+</section>
+
+<section id="lxc">
+  <p class="eyebrow"><span lang="de">Der rote Faden</span><span lang="en">The common thread</span></p>
+  <h2><span lang="de">Alles in LXC, damit <em>wenig Hardware</em> reicht</span><span lang="en">Everything in LXC, so <em>little hardware</em> is enough</span></h2>
+  <div class="two">
+    <div>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Im Buch bekommt jede Anwendung ihren eigenen <strong>LXC-Container</strong>. Ein LXC teilt sich den Kern des Betriebssystems mit dem Proxmox-Host, statt wie eine virtuelle Maschine ein komplettes eigenes System zu starten. Dadurch braucht er deutlich weniger Arbeitsspeicher und Rechenleistung und startet in Sekunden.</span><span lang="en">In the book every application gets its own <strong>LXC container</strong>. An LXC shares the operating system kernel with the Proxmox host instead of booting a complete system of its own like a virtual machine. That means it needs far less memory and computing power and starts in seconds.</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Das macht den Unterschied, wenn der Server nur <strong>wenige Kerne und wenig Speicher</strong> hat, zum Beispiel ein sparsamer Mini-PC mit Intel N100. Darauf laufen viele Anwendungen nebeneinander, die als einzelne VMs den Rechner schnell überfordern würden. Wo eine VM wirklich besser ist, zeigt das Buch sie als Alternative.</span><span lang="en">That makes the difference when the server has only <strong>a few cores and little memory</strong>, for example an energy-efficient mini PC with an Intel N100. It can run many applications side by side that would quickly overload the machine as separate VMs. Where a VM really is the better choice, the book shows it as an alternative.</span></p>
+    </div>
+    <div>
+      <dl class="facts">
+        <dt><span lang="de">Grundlage</span><span lang="en">Foundation</span></dt><dd>Proxmox VE</dd>
+        <dt><span lang="de">Je Anwendung</span><span lang="en">Per application</span></dt><dd><span lang="de">ein unprivilegierter LXC mit Docker</span><span lang="en">one unprivileged LXC with Docker</span></dd>
+        <dt><span lang="de">Verwaltung</span><span lang="en">Management</span></dt><dd><span lang="de">Dockhand im Browser, verbunden über Hawser</span><span lang="en">Dockhand in the browser, connected via Hawser</span></dd>
+        <dt><span lang="de">Sicherung</span><span lang="en">Backup</span></dt><dd><span lang="de">Proxmox Backup Server, je LXC einzeln</span><span lang="en">Proxmox Backup Server, each LXC separately</span></dd>
+        <dt><span lang="de">Vorteil</span><span lang="en">Benefit</span></dt><dd><span lang="de">Updates, Fehler und Backups betreffen immer nur eine Anwendung</span><span lang="en">Updates, failures and backups only ever affect one application</span></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="inhalt">
+  <p class="eyebrow"><span lang="de">Inhalt</span><span lang="en">Contents</span></p>
+  <h2><span lang="de">Vom leeren Rechner zum <em>Homelab</em></span><span lang="en">From an empty computer to a <em>homelab</em></span></h2>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Teil 1</span><span lang="en">Part 1</span></p><h3><span lang="de">Planung und Grundlagen</span><span lang="en">Planning and basics</span></h3><p><span lang="de">Welche Hardware reicht, wie Linux Dateien, Rechte und Datenträger organisiert und wie Daten im Heimnetz ihren Weg finden.</span><span lang="en">Which hardware is enough, how Linux organises files, permissions and drives, and how data finds its way through your home network.</span></p></div>
+    <div><p class="kicker"><span lang="de">Teil 2</span><span lang="en">Part 2</span></p><h3><span lang="de">Proxmox, LXC und VMs</span><span lang="en">Proxmox, LXC and VMs</span></h3><p><span lang="de">Proxmox installieren, Container und virtuelle Maschinen verstehen und anlegen, Ressourcen sinnvoll verteilen.</span><span lang="en">Install Proxmox, understand and create containers and virtual machines, distribute resources sensibly.</span></p></div>
+    <div><p class="kicker"><span lang="de">Teil 3</span><span lang="en">Part 3</span></p><h3><span lang="de">Datensicherung zuerst</span><span lang="en">Backups first</span></h3><p><span lang="de">Der Proxmox Backup Server kommt vor den Anwendungen, inklusive Wiederherstellung zum Üben.</span><span lang="en">The Proxmox Backup Server comes before the applications, including a restore to practise.</span></p></div>
+    <div><p class="kicker"><span lang="de">Teil 4</span><span lang="en">Part 4</span></p><h3><span lang="de">Docker und Dockhand</span><span lang="en">Docker and Dockhand</span></h3><p><span lang="de">Ein Skript richtet Docker in jedem LXC ein, danach geht alles bequem im Browser.</span><span lang="en">A script sets up Docker in each LXC, after that everything is done comfortably in the browser.</span></p></div>
+    <div><p class="kicker"><span lang="de">Teil 5</span><span lang="en">Part 5</span></p><h3><span lang="de">Netzwerkdienste</span><span lang="en">Network services</span></h3><p><span lang="de">Werbefilter und eigene Namen mit Pi-hole, HTTPS mit einem Reverse Proxy, sicherer Zugriff von unterwegs.</span><span lang="en">Ad blocking and local names with Pi-hole, HTTPS with a reverse proxy, secure access on the go.</span></p></div>
+    <div><p class="kicker"><span lang="de">Teil 6</span><span lang="en">Part 6</span></p><h3><span lang="de">Sicherheit und Wartung</span><span lang="en">Security and maintenance</span></h3><p><span lang="de">Updates, Zugangsdaten, Firewall, Protokolle lesen und typische Fehler beheben. Dazu ein Kapitel für Proxmox auf einem gemieteten Server.</span><span lang="en">Updates, credentials, firewall, reading logs and fixing typical problems. Plus a chapter on Proxmox on a rented server.</span></p></div>
+    <div class="wide"><p class="kicker"><span lang="de">Teil 7</span><span lang="en">Part 7</span></p><h3><span lang="de">Anwendungen</span><span lang="en">Applications</span></h3><p><span lang="de">Paperless-ngx, BookStack, Immich, Nextcloud, OpenCloud, Vaultwarden, Beszel, Uptime Kuma und weitere, jede mit Grafik, Sicherung und Fehlerhilfe. Für Vereine und kleine Firmen zusätzlich OpenProject, Dolibarr, Twenty CRM und Zammad.</span><span lang="en">Paperless-ngx, BookStack, Immich, Nextcloud, OpenCloud, Vaultwarden, Beszel, Uptime Kuma and more, each with a diagram, backup and troubleshooting. For clubs and small businesses also OpenProject, Dolibarr, Twenty CRM and Zammad.</span></p></div>
+  </div>
+</section>
+
+<section id="hinweis">
+  <p class="eyebrow"><span lang="de">Hinweis</span><span lang="en">Note</span></p>
+  <h2><span lang="de">Privat und <em>kostenlos</em></span><span lang="en">Private and <em>free</em></span></h2>
+  <p class="lead"><span lang="de">Das Handbuch entsteht als Sammlung von Markdown-Dateien. Ob daraus später zusätzlich ein PDF oder ein gedrucktes Buch wird, ist noch offen. Wie alle Projekte auf dieser Seite entsteht es mit Unterstützung einer KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en">The handbook is being written as a collection of Markdown files. Whether a PDF or a printed book will follow is still open. Like every project on this site it is created with the help of an AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
+  <p class="small" style="margin:0"><span lang="de"><strong>Hinweis:</strong> Kein offizielles Projekt von Proxmox oder einem der beschriebenen Programme. Proxmox ist eine Marke der Proxmox Server Solutions GmbH.</span><span lang="en"><strong>Note:</strong> Not an official project of Proxmox or any of the programs described. Proxmox is a trademark of Proxmox Server Solutions GmbH.</span></p>
+  <p class="small" style="margin:20px 0 0"><span lang="de"><strong>Haftungshinweis:</strong> Das Handbuch ist ein privates Hobbyprojekt und wird kostenlos bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Umsetzung der Anleitungen erfolgt auf eigenes Risiko. Sichere deine Daten, bevor du etwas änderst.</span><span lang="en"><strong>Disclaimer:</strong> The handbook is a private hobby project and is provided free of charge. To the extent permitted by law, no warranty is given. Following the guides is at your own risk. Back up your data before you change anything.</span></p>
+</section>
+
+<footer>
+  <a class="luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>
+  <span class="sp">Homelab-Handbuch · <span lang="de">in Arbeit</span><span lang="en">work in progress</span></span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>

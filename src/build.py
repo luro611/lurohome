@@ -44,6 +44,11 @@ PROJEKTE=[
        status=(f"{version('Proxmox-Permission-Manager')} · Vorabversion",f"{version('Proxmox-Permission-Manager')} · Pre-release"),
        de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. Die Diagnose beantwortet „Kann wer hier schreiben?“ und erklärt jeden Schritt.',
        en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. The diagnosis answers “Who can write here?” and explains every step.'),
+  # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
+  dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
+       status=('Buch · in Arbeit','Book · work in progress'),
+       de='Ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox. Jede Anwendung läuft in einem eigenen LXC, das schont Kerne und Speicher. Verwaltet wird alles bequem mit Dockhand im Browser.',
+       en='A book for beginners: step by step to your own home server with Proxmox. Every application runs in its own LXC, which saves cores and memory. Everything is managed comfortably with Dockhand in the browser.'),
 ]
 
 FONTS=[('Instrument','InstrumentSerif-Regular.ttf','400','normal'),('Instrument','InstrumentSerif-Italic.ttf','400','italic'),
@@ -60,7 +65,11 @@ WEBSITE={'@type':'WebSite','@id':SITE+'#website','url':SITE,'name':'lurohome','i
 URLS=[]
 
 def software(p, beschreibung):
-    """Projekt aus PROJEKTE als SoftwareApplication"""
+    """Projekt aus PROJEKTE als SoftwareApplication (oder als Book bei art='buch')"""
+    if p.get('art')=='buch':
+        return {'@type':'Book','@id':SITE+p['ordner']+'/#buch','name':p['name'].replace('<em>','').replace('</em>',''),
+                'description':beschreibung,'url':SITE+p['ordner']+'/','inLanguage':'de','author':{'@id':SITE+'#person'},
+                'isAccessibleForFree':True,'creativeWorkStatus':'Draft'}
     d={'@type':'SoftwareApplication','@id':SITE+p['ordner']+'/#software','name':p['name'].replace('<em>','').replace('</em>',''),
        'description':beschreibung,'url':SITE+p['ordner']+'/','applicationCategory':'UtilitiesApplication','operatingSystem':'Linux',
        'license':'https://www.gnu.org/licenses/gpl-3.0.html','isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
@@ -127,7 +136,7 @@ for f in (HERE/'fonts').iterdir(): shutil.copy2(f,DIST/'fonts'/f.name)
 # Logo: Siegel (kompakt) aus logos/, Farben über CSS-Variablen, damit es hell und dunkel passt
 SIEGEL=(ROOT/'logos'/'svg'/'luro-siegel-kompakt-farbvariabel.svg').read_text(encoding='utf-8').strip()
 home=(HERE/'home.html').read_text(encoding='utf-8').replace('<!--PROJEKTE-->','\n'.join([karte(p) for p in PROJEKTE]+[soon])).replace('<!--SIEGEL-->',SIEGEL)
-(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte fürs Heimnetz','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub: MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher, und PermLens für Rechte in Proxmox-LXC-Containern. Dazu Homelab-Anleitungen.',home,extra=[software(p,p['de']) for p in PROJEKTE]),encoding='utf-8')
+(DIST/'index.html').write_text(page('lurohome – Hobbyprojekte fürs Heimnetz','Private Hobbyprojekte fürs Heimnetz, freie Software auf GitHub: MediaDB, eine Mediendatenbank für CDs, Filme, Serien und Bücher, und PermLens für Rechte in Proxmox-LXC-Containern. Dazu Homelab-Anleitungen und ein Homelab-Handbuch für Einsteiger.',home,extra=[software(p,p['de']) for p in PROJEKTE]),encoding='utf-8')
 
 legal=(HERE/'impressum.html').read_text(encoding='utf-8')
 legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" href="./">luro<em>home</em></a>'
@@ -141,6 +150,7 @@ SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, M
                    {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
         'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts und Freigaben und erklärt, wer wo schreiben darf. Vorabversion '+version('Proxmox-Permission-Manager')+'.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
+        'homelab-handbuch':('Homelab-Handbuch · lurohome','Homelab-Handbuch – ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox, jede Anwendung in einem eigenen LXC, verwaltet mit Dockhand. In Arbeit.',{}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():
     body=(HERE/f'{ordner}.html').read_text(encoding='utf-8')
