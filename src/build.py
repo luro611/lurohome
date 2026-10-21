@@ -42,8 +42,8 @@ PROJEKTE=[
   # Repo privat bis 1.0.0: kein GitHub-Knopf (repo=None), Version mit Zusatz „Vorabversion“. VERSION liegt in ../Proxmox-Permission-Manager
   dict(ordner='permlens', name='Perm<em>Lens</em>', version=version('Proxmox-Permission-Manager'), lizenz='GPL-3.0', repo=None,
        status=(f"{version('Proxmox-Permission-Manager')} · Vorabversion",f"{version('Proxmox-Permission-Manager')} · Pre-release"),
-       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. Die Diagnose beantwortet „Kann wer hier schreiben?“ und erklärt jeden Schritt.',
-       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. The diagnosis answers “Who can write here?” and explains every step.'),
+       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. Die Diagnose beantwortet „Kann wer hier schreiben?“ und erklärt jeden Schritt. Auf Wunsch setzt PermLens die Lösung auch selbst um, mit Vorschau und Rückgängig.',
+       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. The diagnosis answers “Who can write here?” and explains every step. If you want, PermLens also applies the fix itself, with preview and undo.'),
   # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
   dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
        status=('Buch · in Arbeit','Book · work in progress'),
