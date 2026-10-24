@@ -7,6 +7,7 @@
     <a href="#ansicht"><span lang="de">Ansehen</span><span lang="en">Screenshots</span></a>
     <a href="#funktionen"><span lang="de">Funktionen</span><span lang="en">Features</span></a>
     <a href="#aendern"><span lang="de">Ändern</span><span lang="en">Changes</span></a>
+    <a href="#installation">Installation</a>
     <a href="#sicherheit"><span lang="de">Sicherheit</span><span lang="en">Security</span></a>
     <a href="#host"><span lang="de">Host-Zugriff</span><span lang="en">Host access</span></a>
     <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
@@ -21,7 +22,7 @@
     <h1>Perm<em>Lens</em></h1>
     <p class="intro"><span lang="de"><strong>Rechte im Blick.</strong> Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE.</span><span lang="en"><strong>Permissions in focus.</strong> A permission manager for LXC containers, currently built specifically for Proxmox VE.</span></p>
     <p class="status"><span class="tag on">Version <!--VERSION--></span> <span lang="de">Die erste öffentliche Version. Frei erhältlich auf GitHub, läuft als Docker-Container in einem eigenen LXC.</span><span lang="en">The first public release. Freely available on GitHub, runs as a Docker container in its own LXC.</span></p>
-    <div class="actions" style="margin-top:24px"><a class="btn" href="https://github.com/luro611/permlens#schnellstart" target="_blank" rel="noopener noreferrer"><span lang="de">Auf GitHub einrichten</span><span lang="en">Set up from GitHub</span></a><a class="btn ghost" href="https://github.com/luro611/permlens/releases" target="_blank" rel="noopener noreferrer">Releases</a></div>
+    <div class="actions" style="margin-top:24px"><a class="btn" href="https://github.com/luro611/permlens" target="_blank" rel="noopener noreferrer"><span lang="de">Quellcode auf GitHub</span><span lang="en">Source on GitHub</span></a><a class="btn ghost" href="#installation"><span lang="de">Installation</span><span lang="en">Install</span></a></div>
   </div>
   <div class="scan" aria-label="Beispiel: Benutzer-Nummern zwischen Container und Host">
     <p class="step"><span><span lang="de">Container → Host</span><span lang="en">Container → host</span></span><span lang="de">Beispiel</span><span lang="en">Example</span></p>
@@ -104,6 +105,88 @@
         <dt><span lang="de">Änderungen</span><span lang="en">Changes</span></dt><dd><a href="https://github.com/luro611/permlens/releases" target="_blank" rel="noopener noreferrer">Releases</a></dd>
         <dt><span lang="de">Fehler, Ideen</span><span lang="en">Bugs, ideas</span></dt><dd><a href="https://github.com/luro611/permlens/issues" target="_blank" rel="noopener noreferrer">Issues</a></dd>
       </dl>
+    </div>
+  </div>
+</section>
+
+<section id="installation">
+  <p class="eyebrow">Installation</p>
+  <h2><span lang="de">In einem eigenen <em>LXC</em></span><span lang="en">In its own <em>LXC</em></span></h2>
+  <p class="lead"><span lang="de">Ein Docker-Container in einem kleinen Debian-LXC, ein Ordner für die Daten, ein Befehl auf dem Proxmox. 1 Kern, 512 MB RAM und 8 GB Speicher reichen.</span><span lang="en">One Docker container in a small Debian LXC, one folder for the data, one command on the Proxmox host. 1 core, 512 MB RAM and 8 GB of storage are enough.</span></p>
+  <div class="two">
+    <div>
+      <h3><span lang="de">Vorbereiten</span><span lang="en">Prepare</span></h3>
+      <ol class="steps">
+        <li><span><span lang="de">In Proxmox einen LXC anlegen: Debian 13, unprivilegiert, unter Optionen <code class="mono">nesting=1</code> und <code class="mono">keyctl=1</code>, mit <strong>fester IP-Adresse</strong>.</span><span lang="en">Create an LXC in Proxmox: Debian 13, unprivileged, with <code class="mono">nesting=1</code> and <code class="mono">keyctl=1</code> under Options, and a <strong>fixed IP address</strong>.</span></span></li>
+        <li><span><span lang="de">Im LXC Docker installieren (Befehle im Kasten). Mit Dockhand den LXC als Umgebung eintragen (Hawser). Docker und Hawser in einem Rutsch: <a href="../tipps/docker-hawser-lxc/">mein Tipp dazu</a>.</span><span lang="en">Install Docker in the LXC (commands in the box). With Dockhand, add the LXC as an environment (Hawser). Docker and Hawser in one go: <a href="../tipps/docker-hawser-lxc/">my guide for that</a>.</span></span></li>
+        <li><span><span lang="de">Den Datenordner anlegen. Darin liegen später Datenbank, Einstellungen und der SSH-Schlüssel von PermLens. Diesen Ordner sichern.</span><span lang="en">Create the data folder. It will hold the database, settings and PermLens’ SSH key. Back this folder up.</span></span></li>
+      </ol>
+    </div>
+    <div>
+<pre><span class="c"><span lang="de"># im PermLens-LXC als root</span><span lang="en"># in the PermLens LXC as root</span></span>
+apt-get update &amp;&amp; apt-get install -y docker.io
+mkdir -p /opt/permlens/data</pre>
+      <dl class="facts" style="margin-top:26px">
+        <dt><span lang="de">Adresse</span><span lang="en">Address</span></dt><dd><code class="mono">https://&lt;IP-des-LXC&gt;:8443</code></dd>
+        <dt><span lang="de">Zugriff</span><span lang="en">Access</span></dt><dd><span lang="de">Nur Heimnetz, immer mit Passwort</span><span lang="en">Home network only, always password-protected</span></dd>
+        <dt><span lang="de">Plattformen</span><span lang="en">Platforms</span></dt><dd>Proxmox VE · Debian-LXC</dd>
+        <dt><span lang="de">Lizenz</span><span lang="en">License</span></dt><dd>GPL-3.0-or-later</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="two" style="margin-top:48px">
+    <div>
+      <h3><span lang="de">Mit Dockhand</span><span lang="en">With Dockhand</span></h3>
+      <ol class="steps">
+        <li><span><span lang="de">In Dockhand für den LXC einen neuen Stack „permlens“ anlegen.</span><span lang="en">In Dockhand, create a new stack called “permlens” for the LXC.</span></span></li>
+        <li><span><span lang="de">Die Compose-Datei aus dem Kasten einfügen.</span><span lang="en">Paste the compose file from the box.</span></span></li>
+        <li><span><span lang="de">Bei den Variablen des Stacks <code class="mono">APP_PASSWORD</code> mit deinem Passwort anlegen (mindestens 8 Zeichen), dann <em>Deploy</em>.</span><span lang="en">Under the stack’s variables, add <code class="mono">APP_PASSWORD</code> with your password (at least 8 characters), then <em>Deploy</em>.</span></span></li>
+      </ol>
+      <h3 style="margin-top:32px"><span lang="de">Ohne Dockhand</span><span lang="en">Without Dockhand</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Im LXC die Compose-Datei holen, das Passwort in eine <code class="mono">.env</code> schreiben und starten:</span><span lang="en">In the LXC, fetch the compose file, put the password into a <code class="mono">.env</code> file and start it:</span></p>
+<pre>cd /opt/permlens
+curl -O https://raw.githubusercontent.com/luro611/permlens/main/docker-compose.homelab.yml
+echo 'APP_PASSWORD=<span lang="de">dein-passwort</span><span lang="en">your-password</span>' &gt; .env
+docker compose -f docker-compose.homelab.yml up -d</pre>
+    </div>
+    <div>
+<pre>services:
+  permlens:
+    image: ghcr.io/luro611/permlens:latest
+    container_name: permlens
+    ports:
+      <span class="c"><span lang="de"># 8000 leitet auf HTTPS um, 8443 = HTTPS</span><span lang="en"># 8000 redirects to HTTPS, 8443 = HTTPS</span></span>
+      - "8000:8000"
+      - "8443:8443"
+    environment:
+      - TZ=Europe/Berlin
+      - HTTPS_PORT=8443
+      <span class="c"><span lang="de"># Pflicht, Wert bei den Variablen des Stacks</span><span lang="en"># required, value in the stack variables</span></span>
+      - APP_PASSWORD=${APP_PASSWORD}
+      <span class="c"><span lang="de"># 0 = nur Heimnetz, nie ins Internet</span><span lang="en"># 0 = home network only, never the internet</span></span>
+      - ALLOW_PUBLIC=0
+    volumes:
+      <span class="c"><span lang="de"># Datenbank, Einstellungen, SSH-Schlüssel</span><span lang="en"># database, settings, SSH key</span></span>
+      - /opt/permlens/data:/app/data
+    restart: unless-stopped</pre>
+    </div>
+  </div>
+  <div class="two" style="margin-top:48px">
+    <div>
+      <h3><span lang="de">Mit dem Proxmox verbinden</span><span lang="en">Connect to Proxmox</span></h3>
+      <ol class="steps">
+        <li><span><span lang="de">Im Browser <code class="mono">https://&lt;IP-des-LXC&gt;:8443</code> öffnen und anmelden. Der Browser warnt beim ersten Mal, weil PermLens ein eigenes Zertifikat hat.</span><span lang="en">Open <code class="mono">https://&lt;IP-of-the-LXC&gt;:8443</code> in your browser and sign in. The browser warns the first time because PermLens uses its own certificate.</span></span></li>
+        <li><span><span lang="de">PermLens zeigt <strong>einen</strong> Befehl. Den in der Shell des Proxmox ausführen (Weboberfläche → Knoten → „&gt;_ Shell“). Was er genau tut, steht unter <a href="#host">Host-Zugriff</a>.</span><span lang="en">PermLens shows <strong>one</strong> command. Run it in the Proxmox shell (web interface → node → “&gt;_ Shell”). What exactly it does is described under <a href="#host">Host access</a>.</span></span></li>
+        <li><span><span lang="de">Fertig: PermLens liest alle Container ein. Bis hierhin <strong>liest</strong> es nur.</span><span lang="en">Done: PermLens scans all containers. Up to here it only <strong>reads</strong>.</span></span></li>
+      </ol>
+      <p class="small" style="margin-top:22px"><span lang="de">Neue Version: in Dockhand <em>Pull</em> und <em>Redeploy</em>. Welche Version läuft, steht unten auf jeder Seite, und PermLens zeigt dort auch, wenn es eine neue gibt. Alles im Detail: <a href="https://github.com/luro611/permlens/blob/main/docs/ANLEITUNG.md" target="_blank" rel="noopener noreferrer">Anleitung</a> und <a href="https://github.com/luro611/permlens/blob/main/docs/BETRIEB.md" target="_blank" rel="noopener noreferrer">Betrieb</a>.</span><span lang="en">New version: <em>Pull</em> and <em>Redeploy</em> in Dockhand. The running version is shown at the bottom of every page, and PermLens also tells you there when a new one is out. All the details: <a href="https://github.com/luro611/permlens/blob/main/docs/MANUAL.md" target="_blank" rel="noopener noreferrer">user manual</a>.</span></p>
+    </div>
+    <div>
+      <h3><span lang="de">Ändern freischalten (optional)</span><span lang="en">Allow changes (optional)</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Soll PermLens Lösungen selbst umsetzen, legst du auf dem Proxmox eine Datei mit den Containern an, in denen es ändern darf. Alle anderen bleiben nur lesbar. Datei löschen, und PermLens liest sofort wieder nur.</span><span lang="en">If PermLens should apply fixes itself, create a file on the Proxmox host listing the containers it may change. All others stay read-only. Delete the file and PermLens immediately goes back to reading only.</span></p>
+<pre><span class="c"><span lang="de"># auf dem Proxmox, z. B. Container 105 und 110 bis 112</span><span lang="en"># on the Proxmox host, e.g. containers 105 and 110 to 112</span></span>
+mkdir -p /etc/permlens
+echo '105,110-112' &gt; /etc/permlens/schreiben-erlaubt</pre>
     </div>
   </div>
 </section>
