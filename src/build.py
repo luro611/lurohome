@@ -37,12 +37,12 @@ def version(projekt, ersatz=''):
 # Karten auf der Übersichtsseite: Ordner, Name (HTML), Kurzbeschreibung DE/EN, GitHub-Repo, Lizenz
 PROJEKTE=[
   dict(ordner='mediadb', name='Media<em>DB</em>', version=version('mediadb'), lizenz='GPL-3.0', repo='luro611/mediadb',
-       de='Mediendatenbank fürs Heimnetz: CDs und Musikdateien, Filme, Serien und Bücher. Barcode scannen, Daten und Cover kommen von selbst. Läuft im Docker-Container, Bedienung im Browser.',
-       en='A media database for your home network: CDs and music files, films, TV shows and books. Scan a barcode and the data and covers fill in. Runs in a Docker container, used in the browser.'),
+       de='Mediendatenbank fürs Heimnetz: CDs und Musikdateien, Filme, Serien und Bücher. Barcode scannen, Daten und Cover kommen von selbst. Für den ganzen Haushalt, mit eigenem Profil, eigener Bewertung und „gesehen“ für jede Person. Läuft im Docker-Container, Bedienung im Browser.',
+       en='A media database for your home network: CDs and music files, films, TV shows and books. Scan a barcode and the data and covers fill in. For the whole household, with a profile, ratings and “watched” for each person. Runs in a Docker container, used in the browser.'),
   # Öffentlich seit 1.0.0 (luro611/permlens). Texte aus Proxmox-Permission-Manager/docs/homepage-text.md, VERSION liegt dort
   dict(ordner='permlens', name='Perm<em>Lens</em>', version=version('Proxmox-Permission-Manager'), lizenz='GPL-3.0', repo='luro611/permlens',
-       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. PermLens findet typische Rechte-Probleme von selbst, beantwortet „Kann X hier schreiben?“ Schritt für Schritt und setzt die Lösung auf Wunsch selbst um, mit Vorschau und Rückgängig.',
-       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. PermLens finds common permission problems on its own, answers “Can X write here?” step by step and, if you want, applies the fix itself, with preview and undo.'),
+       de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. PermLens findet typische Rechte-Probleme von selbst, beantwortet „Kann X hier schreiben?“ Schritt für Schritt, auch für Docker-Apps, und setzt die Lösung auf Wunsch selbst um, mit Vorschau und Rückgängig.',
+       en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. PermLens finds common permission problems on its own, answers “Can X write here?” step by step, for Docker apps too, and, if you want, applies the fix itself, with preview and undo.'),
   # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
   dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
        status=('Buch · in Arbeit','Book · work in progress'),
@@ -147,7 +147,7 @@ legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" 
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
 SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, Musikdateien, Filme, Serien und Bücher. Läuft im Heimnetz, Daten bleiben bei dir.',
                    {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
-        'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts und Freigaben und erklärt, wer wo schreiben darf. Version '+version('Proxmox-Permission-Manager')+', freie Software auf GitHub.',
+        'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts, Freigaben und Docker-Apps und erklärt, wer wo schreiben darf. Version '+version('Proxmox-Permission-Manager')+', freie Software auf GitHub.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
         'homelab-handbuch':('Homelab-Handbuch · lurohome','Homelab-Handbuch – ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox, jede Anwendung in einem eigenen LXC, verwaltet mit Dockhand. In Arbeit.',{}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
