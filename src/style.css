@@ -185,3 +185,12 @@ footer .sp{margin-right:auto}
 code{font-family:var(--f-mono);font-size:.88em}
 .luro-siegel{display:block;height:auto}.luro-siegel .lr{stroke:var(--accent)}.luro-siegel .li{fill:var(--ink)}.luro-siegel .la{fill:var(--accent)}.luro-siegel .lm{fill:var(--muted)}
 footer .luro{font:400 30px/1 var(--f-display);text-transform:none;letter-spacing:-.02em;color:var(--ink)}footer .luro em{color:var(--accent);font-style:italic}footer a.luro:hover{color:var(--ink)}footer a.luro:hover em{color:var(--accent-strong)}
+
+/* Bildschirmfotos (PermLens): je Sprache hell und dunkel, passend zum gewählten Farbschema */
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.shot{margin:0;min-width:0}.shot img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:2px}
+.shot img.d{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .shot img.h{display:none}:root:not([data-theme="light"]) .shot img.d{display:block}}
+:root[data-theme="dark"] .shot img.h{display:none}:root[data-theme="dark"] .shot img.d{display:block}
+.shot figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
+@media (max-width:760px){.shots{grid-template-columns:minmax(0,1fr)}}
