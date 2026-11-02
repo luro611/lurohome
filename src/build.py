@@ -130,7 +130,8 @@ def ean_svg(code='4006381333931'):
 
 if DIST.exists(): shutil.rmtree(DIST)
 (DIST/'fonts').mkdir(parents=True)
-for f in (HERE/'fonts').iterdir(): shutil.copy2(f,DIST/'fonts'/f.name)
+for f in (HERE/'fonts').iterdir():
+    if f.is_file(): shutil.copy2(f,DIST/'fonts'/f.name)
 
 # Logo: Siegel (kompakt) aus logos/, Farben über CSS-Variablen, damit es hell und dunkel passt
 SIEGEL=(ROOT/'logos'/'svg'/'luro-siegel-kompakt-farbvariabel.svg').read_text(encoding='utf-8').strip()
