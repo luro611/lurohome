@@ -18,10 +18,16 @@ python3 src/build.py
 Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von MediaDB liest das Skript aus `mediadb/VERSION`. Der Ordner `mediadb` liegt daneben oder eine Ebene höher (lokal: `Projekte/Webseiten/lurohome` und `Projekte/mediadb`).
 
 ## Hochladen
-Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
+```
+./deploy.sh          # Probelauf: baut und zeigt, was sich ändern würde
+./deploy.sh --jetzt  # hochladen, live prüfen, Tag web-<Version> setzen und pushen
+```
+Zugang in `.env` (nicht versioniert, Vorlage `.env.beispiel`): rsync über SSH (Host `lurohome-kas` in `~/.ssh/config`, Schlüssel `~/.ssh/id_ed25519_allinkl`) oder FTPS mit `lftp`. Dateien auf dem Server, die nicht aus `dist/` kommen, löscht das Skript nicht. Regeln für Uploads: [CLAUDE.md](CLAUDE.md).
+
+Ohne SSH geht es auch von Hand: Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
 
 ## Versionen
-Die Website hat keine Versionsnummer, sondern das **Datum** als Version (`2026.10.18`, bei mehreren Uploads am selben Tag `2026.10.18-2`). `build.py` setzt es automatisch: In jeder Fußzeile steht „Stand 18.10.2026“, beim Darüberfahren mit der Maus Version und Commit (ein `+` heißt: nicht committete Änderungen). Am Ende der Ausgabe nennt `build.py` den Befehl für das Git-Tag `web-<Version>`. Ihn nach dem Hochladen ausführen, dann ist jede veröffentlichte Fassung im Repository wiederzufinden.
+Die Website hat keine Versionsnummer, sondern das **Datum** als Version (`2026.10.18`, bei mehreren Uploads am selben Tag `2026.10.18-2`). `build.py` setzt es automatisch: In jeder Fußzeile steht „Stand 18.10.2026“, beim Darüberfahren mit der Maus Version und Commit (ein `+` heißt: nicht committete Änderungen). Nach dem Hochladen setzt `deploy.sh --jetzt` das Git-Tag `web-<Version>` und pusht es (ohne deploy.sh: den Befehl am Ende der Ausgabe von `build.py` ausführen). So ist jede veröffentlichte Fassung im Repository wiederzufinden.
 
 ## Neues Projekt aufnehmen
 1. In `src/build.py` bei `PROJEKTE` einen Eintrag ergänzen (Ordner, Name, Kurzbeschreibung, GitHub-Repo, Lizenz).
