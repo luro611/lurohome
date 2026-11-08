@@ -13,7 +13,7 @@ SPERRE=""
 # Ab hier ist das Skript bei allen drei Seiten gleich (rothe-it, lurohome, lenkwerk-eu).
 # Zugang (nicht im Repository): .env neben diesem Skript, Vorlage .env.beispiel.
 #   ZUGANG=ssh   rsync über SSH, Host-Eintrag in ~/.ssh/config (SSH_HOST), Zielordner ZIEL
-#   ZUGANG=ftps  lftp über FTPS, FTP_HOST und FTP_USER, Passwort in ~/.netrc (oder Eingabe)
+#   ZUGANG=ftps  lftp über FTPS, FTP_HOST und FTP_USER, Passwort im macOS-Schlüsselbund (Dienst web-ftp-<Domain>)
 # Kein Löschen auf dem Server: Dateien, die nicht aus dist/ kommen, bleiben stehen.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -59,16 +59,18 @@ case "$ZUGANG" in
   ftps)
     [[ -n "$FTP_HOST" ]] || fehler "In .env fehlt FTP_HOST (z. B. w0123456.kasserver.com)."
     command -v lftp >/dev/null || fehler "lftp fehlt (brew install lftp)."
+    [[ -n "$FTP_USER" ]] || fehler "In .env fehlt FTP_USER (FTP-Benutzer dieser Domain)."
+    # Passwort aus dem macOS-Schlüsselbund (Lutz legt es einmal an), nie in Dateien oder auf der Kommandozeile
+    DIENST="${FTP_DIENST:-web-ftp-$DOMAIN}"
+    LFTP_PASSWORD=$(security find-generic-password -a "$FTP_USER" -s "$DIENST" -w 2>/dev/null) || \
+      fehler "Kein Passwort im Schlüsselbund (Dienst $DIENST, Konto $FTP_USER). Lutz legt es an mit:
+  security add-generic-password -U -a $FTP_USER -s $DIENST -w"
+    export LFTP_PASSWORD
     # Der FTP-Benutzer der Domain sieht nur ihren Ordner, darum ist das Ziel dort "/"
-    MOPTS="--reverse --verbose --exclude-glob .DS_Store"
+    MOPTS="--reverse --overwrite --verbose --exclude-glob .DS_Store"
     (( JETZT )) || MOPTS+=" --dry-run"
-    if [[ -f ~/.netrc ]] && grep -q "machine $FTP_HOST" ~/.netrc; then
-      OPEN="open ftp://$FTP_HOST"          # Benutzer und Passwort aus ~/.netrc
-    else
-      [[ -n "$FTP_USER" ]] || fehler "In .env fehlt FTP_USER (oder ein Eintrag in ~/.netrc)."
-      OPEN="open -u $FTP_USER ftp://$FTP_HOST"   # lftp fragt nach dem Passwort
-    fi
-    lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate true; $OPEN; mirror $MOPTS dist/ ${ZIEL:-/}"
+    lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate true; set net:max-retries 2; set cmd:fail-exit true; open --user $FTP_USER --env-password ftp://$FTP_HOST; mirror $MOPTS dist/ ${ZIEL:-/}"
+    unset LFTP_PASSWORD
     ;;
   *) fehler "ZUGANG muss ssh oder ftps sein, nicht \"$ZUGANG\"." ;;
 esac

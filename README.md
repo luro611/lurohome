@@ -22,9 +22,9 @@ Das erzeugt `dist/` und `lurohome-website-<Datum>.zip`. Die Versionsnummer von M
 ./deploy.sh          # Probelauf: baut und zeigt, was sich ändern würde
 ./deploy.sh --jetzt  # hochladen, live prüfen, Tag web-<Version> setzen und pushen
 ```
-Zugang in `.env` (nicht versioniert, Vorlage `.env.beispiel`): rsync über SSH (Host `lurohome-kas` in `~/.ssh/config`, Schlüssel `~/.ssh/id_ed25519_allinkl`) oder FTPS mit `lftp`. Dateien auf dem Server, die nicht aus `dist/` kommen, löscht das Skript nicht. Regeln für Uploads: [CLAUDE.md](CLAUDE.md).
+Hochgeladen wird per FTPS mit `lftp` (`brew install lftp`), Benutzer `f01928aa` nur für den Ordner der Domain. Einstellungen in `.env` (nicht versioniert, Vorlage `.env.beispiel`), das Passwort im macOS-Schlüsselbund (Dienst `web-ftp-lurohome.de`). Dateien auf dem Server, die nicht aus `dist/` kommen, löscht das Skript nicht. Regeln für Uploads: [CLAUDE.md](CLAUDE.md).
 
-Ohne SSH geht es auch von Hand: Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
+Notfalls geht es auch von Hand: Den **Inhalt** der Zip (bzw. von `dist/`) per FTP in den Ordner der Hauptdomain lurohome.de laden. Es wird immer die ganze Seite hochgeladen; vorhandene Dateien einfach überschreiben. Schritt für Schritt: [UMZUG.md](UMZUG.md).
 
 ## Versionen
 Die Website hat keine Versionsnummer, sondern das **Datum** als Version (`2026.10.18`, bei mehreren Uploads am selben Tag `2026.10.18-2`). `build.py` setzt es automatisch: In jeder Fußzeile steht „Stand 18.10.2026“, beim Darüberfahren mit der Maus Version und Commit (ein `+` heißt: nicht committete Änderungen). Nach dem Hochladen setzt `deploy.sh --jetzt` das Git-Tag `web-<Version>` und pusht es (ohne deploy.sh: den Befehl am Ende der Ausgabe von `build.py` ausführen). So ist jede veröffentlichte Fassung im Repository wiederzufinden.

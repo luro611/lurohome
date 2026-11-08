@@ -34,7 +34,7 @@ Statische Website von Lutz (luro): Übersicht der Hobbyprojekte, je eine Projekt
 ./deploy.sh --jetzt  # erst nach Freigabe: hochladen, live prüfen (curl), Tag web-<Version> setzen und pushen
 ```
 
-- Zugang in `.env` (nicht versioniert, Vorlage `.env.beispiel`): `ZUGANG=ssh` mit dem Host `lurohome-kas` aus `~/.ssh/config` (Schlüssel `~/.ssh/id_ed25519_allinkl`) oder `ZUGANG=ftps` mit `lftp` und einem FTP-Benutzer nur für den Ordner dieser Domain (Passwort in `~/.netrc` oder Eingabe durch Lutz).
+- Zugang: FTPS mit `lftp` (ALL-INKL hat in diesem Tarif kein SSH), Server `v119013.kasserver.com`, FTP-Benutzer `f01928aa`, der nur den Ordner `/lurohome.de/` sieht (Ziel auf dem Server `/`). Einstellungen in `.env` (nicht versioniert, Vorlage `.env.beispiel`). Das Passwort liegt im macOS-Schlüsselbund (Dienst `web-ftp-lurohome.de`, Konto `f01928aa`); deploy.sh liest es mit `security find-generic-password` und gibt es über `LFTP_PASSWORD` an lftp. Neu setzen nur durch Lutz: `security add-generic-password -U -a f01928aa -s web-ftp-lurohome.de -w`. Den Hauptnutzer des KAS nie verwenden.
 - `--jetzt` bricht ab, wenn `src/` nicht committet ist. Nach dem Upload vergleicht das Skript die Version auf der Seite mit `dist/` und setzt erst dann das Tag.
 - **Version = Datum** (`2026.11.08`, am selben Tag `-2`, `-3` …), steht als `Version … · <Commit>` in jeder Seite. Online prüfen: `curl -sS https://lurohome.de/ | grep -o 'Version 20[^"]*'`.
 - Das Skript ist bei allen drei Seiten (rothe-it, lurohome, lenkwerk-eu) bis auf den Kopf gleich. Änderungen am Ablauf in allen dreien nachziehen.
