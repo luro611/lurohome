@@ -60,8 +60,7 @@ h3{font:400 26px/1.1 var(--f-display);letter-spacing:-.02em;margin:0 0 8px}
 
 /* Abschnitte */
 section{padding-block:clamp(88px,12vw,150px)}
-section>.eyebrow,section>h2,section>.lead,section>.intro{text-align:center;margin-inline:auto}
-section>.lead,section>.intro{margin-bottom:56px}section>h2{margin-bottom:56px}section>.lead+*,section>h2+.lead{margin-top:0}
+section>h2{margin-bottom:24px}section>.lead{margin-bottom:56px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 48px}
 .grid>div{min-width:0}
 .grid p{margin:0;color:var(--muted)}
