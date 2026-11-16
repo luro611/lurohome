@@ -43,6 +43,11 @@ PROJEKTE=[
   dict(ordner='permlens', name='Perm<em>Lens</em>', version=version('Proxmox-Permission-Manager'), lizenz='GPL-3.0', repo='luro611/permlens',
        de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. PermLens findet typische Rechte-Probleme von selbst, beantwortet „Kann X hier schreiben?“ Schritt für Schritt, auch für Docker-Apps, und setzt die Lösung auf Wunsch selbst um, mit Vorschau und Rückgängig.',
        en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. PermLens finds common permission problems on its own, answers “Can X write here?” step by step, for Docker apps too, and, if you want, applies the fix itself, with preview and undo.'),
+  # In Entwicklung, Repo luro611/lichtkammer privat bis 1.0.0, daher repo=None. Stand in lichtkammer/CLAUDE.md
+  dict(ordner='lichtkammer', name='Licht<em>kammer</em>', version='', lizenz='AGPL-3.0', repo=None,
+       status=('In Entwicklung','In development'),
+       de='Schlankes Foto-CMS für ausschließlich eigene Bilder: hochladen, in Galerien ordnen, Seiten aus Blöcken bauen und als fertiges HTML veröffentlichen. Läuft auf einfachem Webspace mit PHP und SQLite, für den nur FTP nötig ist, oder in Docker im Homelab.',
+       en='A lean photo CMS for your own pictures only: upload, arrange in galleries, build pages from blocks and publish as ready-made HTML. Runs on simple web hosting with PHP and SQLite that only needs FTP, or in Docker in the homelab.'),
   # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
   dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
        status=('Buch · in Arbeit','Book · work in progress'),
@@ -71,7 +76,7 @@ def software(p, beschreibung):
                 'isAccessibleForFree':True,'creativeWorkStatus':'Draft'}
     d={'@type':'SoftwareApplication','@id':SITE+p['ordner']+'/#software','name':p['name'].replace('<em>','').replace('</em>',''),
        'description':beschreibung,'url':SITE+p['ordner']+'/','applicationCategory':'UtilitiesApplication','operatingSystem':'Linux',
-       'license':'https://www.gnu.org/licenses/gpl-3.0.html','isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
+       'license':{'AGPL-3.0':'https://www.gnu.org/licenses/agpl-3.0.html'}.get(p['lizenz'],'https://www.gnu.org/licenses/gpl-3.0.html'),'isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
        'offers':{'@type':'Offer','price':'0','priceCurrency':'EUR'}}
     if p['version'] and not p.get('status'): d['softwareVersion']=p['version']
     if p['repo']: d['sameAs']='https://github.com/'+p['repo']
@@ -150,6 +155,7 @@ SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, M
                    {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
         'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts, Freigaben und Docker-Apps und erklärt, wer wo schreiben darf. Version '+version('Proxmox-Permission-Manager')+', freie Software auf GitHub.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
+        'lichtkammer':('Lichtkammer · lurohome','Lichtkammer – schlankes Foto-CMS für eigene Bilder: Galerien, Seiten aus Blöcken, Veröffentlichen als fertiges HTML. PHP und SQLite auf einfachem Webspace oder Docker im Homelab. In Entwicklung.',{}),
         'homelab-handbuch':('Homelab-Handbuch · lurohome','Homelab-Handbuch – ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox, jede Anwendung in einem eigenen LXC, verwaltet mit Dockhand. In Arbeit.',{}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():
