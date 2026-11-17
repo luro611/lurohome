@@ -43,11 +43,11 @@ PROJEKTE=[
   dict(ordner='permlens', name='Perm<em>Lens</em>', version=version('Proxmox-Permission-Manager'), lizenz='GPL-3.0', repo='luro611/permlens',
        de='Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt, welche Benutzer es in deinen Containern gibt, wer sie auf dem Host sind und wer auf welche eingehängten Ordner und NAS-Freigaben zugreifen darf. PermLens findet typische Rechte-Probleme von selbst, beantwortet „Kann X hier schreiben?“ Schritt für Schritt, auch für Docker-Apps, und setzt die Lösung auf Wunsch selbst um, mit Vorschau und Rückgängig.',
        en='A permission manager for LXC containers, currently built specifically for Proxmox VE. Shows which users exist in your containers, who they are on the host and who may access which mounted folders and NAS shares. PermLens finds common permission problems on its own, answers “Can X write here?” step by step, for Docker apps too, and, if you want, applies the fix itself, with preview and undo.'),
-  # In Entwicklung, Repo luro611/lichtkammer privat bis 1.0.0, daher repo=None. Stand in lichtkammer/CLAUDE.md
+  # Vorabversion 0.1.0-rc1, Repo luro611/lichtkammer privat bis zum öffentlichen Release, daher repo=None. Stand in lichtkammer/README.md
   dict(ordner='lichtkammer', name='Licht<em>kammer</em>', version='', lizenz='AGPL-3.0', repo=None,
-       status=('In Entwicklung','In development'),
-       de='Schlankes Foto-CMS für ausschließlich eigene Bilder: hochladen, in Galerien ordnen, Seiten aus Blöcken bauen und als fertiges HTML veröffentlichen. Läuft auf einfachem Webspace mit PHP und SQLite, für den nur FTP nötig ist, oder in Docker im Homelab.',
-       en='A lean photo CMS for your own pictures only: upload, arrange in galleries, build pages from blocks and publish as ready-made HTML. Runs on simple web hosting with PHP and SQLite that only needs FTP, or in Docker in the homelab.'),
+       status=('Vorabversion','Pre-release'),
+       de='Schlankes Open-Source-Foto-CMS für ausschließlich eigene Bilder: hochladen, automatisch verkleinern, in Galerien ordnen, Seiten aus Blöcken bauen und als fertiges HTML veröffentlichen, mit Vorschau und Rückgängig. Läuft auf einfachem Webspace mit PHP und SQLite, für den nur FTP nötig ist, oder in Docker. Verwaltung auf Deutsch, auch für Laien.',
+       en='A lean open-source photo CMS for your own pictures only: upload, resize automatically, arrange in galleries, build pages from blocks and publish as ready-made HTML, with preview and undo. Runs on simple web hosting with PHP and SQLite that only needs FTP, or in Docker. German-language admin, usable by non-experts.'),
   # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
   dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
        status=('Buch · in Arbeit','Book · work in progress'),
