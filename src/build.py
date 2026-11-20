@@ -150,17 +150,50 @@ legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" 
             +legal+'\n<footer><a class="sp luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a><a href="./">Startseite</a><span>Keine Cookies, kein Tracking</span></footer>\n</div>')
 (DIST/'impressum.html').write_text(page('Impressum · lurohome','Impressum und Datenschutzerklärung von lurohome.de.',legal_body,pfad='impressum.html'),encoding='utf-8')
 
+
+# Lichtkammer-Testpaket: liegt NICHT in git, sondern in extras/lichtkammer-download/ (Anleitung dort in README.md).
+# Befüllt wird der Ordner mit extras/lichtkammer-paket-holen.sh. Fehlt etwas, baut die Seite trotzdem:
+# ohne Zip zeigt sie "gerade nicht bereit", ohne .sig oder allowed_signers ist der Signaturabschnitt "noch nicht aktiv".
+LK_DIR=ROOT/'extras'/'lichtkammer-download'
+LK_SIG_ID='lichtkammer-release'   # Kennung in allowed_signers, gleich wie in lichtkammer/tools/signieren.sh
+def lichtkammer_paket():
+    def mb(n,de): return f'{n/1e6:.1f}'.replace('.',',' if de else '.')+' MB'
+    zips=sorted(LK_DIR.glob('lichtkammer-testpaket-*.zip'),key=lambda f:[int(x) if x.isdigit() else x for x in re.split(r'[.\-]',f.name)]) if LK_DIR.exists() else []
+    d={'@@SIG_ID@@':LK_SIG_ID,'@@LK_VERSION@@':'0.1.0-rc1'}
+    if not zips: return d, False, False
+    z=zips[-1]; sha=Path(str(z)+'.sha256'); pdf=LK_DIR/'Lichtkammer-Anleitung.pdf'
+    if not sha.exists() or not pdf.exists(): raise SystemExit(f'Lichtkammer-Paket unvollständig: {sha.name} oder Lichtkammer-Anleitung.pdf fehlt in {LK_DIR}')
+    summe=sha.read_text().split()[0]
+    import hashlib
+    if hashlib.sha256(z.read_bytes()).hexdigest()!=summe: raise SystemExit(f'{z.name}: Prüfsumme in .sha256 passt nicht zur Datei. Paket neu holen.')
+    dt=datetime.date.fromtimestamp(z.stat().st_mtime)
+    d.update({'@@LK_VERSION@@':z.name[len('lichtkammer-testpaket-'):-len('.zip')],'@@LK_ZIP@@':z.name,'@@LK_SHA@@':summe,
+              '@@LK_SIZE_DE@@':mb(z.stat().st_size,True),'@@LK_SIZE_EN@@':mb(z.stat().st_size,False),
+              '@@LK_PDF_DE@@':mb(pdf.stat().st_size,True),'@@LK_PDF_EN@@':mb(pdf.stat().st_size,False),
+              '@@LK_DATE_DE@@':f'{dt:%d.%m.%Y}','@@LK_DATE_EN@@':f'{dt.day} {dt:%b %Y}'})
+    sig=(LK_DIR/(z.name+'.sig')).exists() and (LK_DIR/'allowed_signers').exists()
+    return d, True, sig
+LK_PLATZ, LK_DA, LK_SIG = lichtkammer_paket()
+def lichtkammer_seite(body):
+    def teil(name,behalten):
+        nonlocal body
+        body=re.sub(rf'<!--{name}-->(.*?)<!--/{name}-->',(lambda m:m.group(1)) if behalten else '',body,flags=re.S)
+    teil('PAKET-DA',LK_DA); teil('PAKET-FEHLT',not LK_DA); teil('SIG-AKTIV',LK_DA and LK_SIG); teil('SIG-FEHLT',not (LK_DA and LK_SIG))
+    for k,v in LK_PLATZ.items(): body=body.replace(k,v)
+    return body
+
 # Projektseiten: Ordner -> (Titel, Beschreibung, Platzhalter)
 SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, Musikdateien, Filme, Serien und Bücher. Läuft im Heimnetz, Daten bleiben bei dir.',
                    {'<!--EAN-->':ean_svg(),'<!--VERSION-->':version('mediadb')}),
         'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts, Freigaben und Docker-Apps und erklärt, wer wo schreiben darf. Version '+version('Proxmox-Permission-Manager')+', freie Software auf GitHub.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
-        'lichtkammer':('Lichtkammer · lurohome','Lichtkammer – schlankes Foto-CMS für eigene Bilder: Galerien, Seiten aus Blöcken, Veröffentlichen als fertiges HTML. PHP und SQLite auf einfachem Webspace oder Docker im Homelab. In Entwicklung.',{}),
+        'lichtkammer':('Lichtkammer · lurohome','Lichtkammer – schlankes Foto-CMS für eigene Bilder: Galerien, Seiten aus Blöcken, Veröffentlichen als fertiges HTML. PHP und SQLite auf einfachem Webspace oder Docker im Homelab. Testversion mit Installations- und Bedienungsanleitung, Download und Echtheitsprüfung.',{}),
         'homelab-handbuch':('Homelab-Handbuch · lurohome','Homelab-Handbuch – ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox, jede Anwendung in einem eigenen LXC, verwaltet mit Dockhand. In Arbeit.',{}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():
     body=(HERE/f'{ordner}.html').read_text(encoding='utf-8')
     for k,v in platz.items(): body=body.replace(k,v)
+    if ordner=='lichtkammer': body=lichtkammer_seite(body)
     (DIST/ordner).mkdir()
     if (HERE/'bilder'/ordner).exists(): shutil.copytree(HERE/'bilder'/ordner,DIST/ordner/'bilder')  # z. B. Bildschirmfotos
     proj=[p for p in PROJEKTE if p['ordner']==ordner]
@@ -168,6 +201,14 @@ for ordner,(title,desc,platz) in SEITEN.items():
     else: extra=[{'@type':'BlogPosting','@id':SITE+ordner+'/#beitrag','headline':title.split(' · ')[0],'description':desc,'url':SITE+ordner+'/',
                   'inLanguage':['de','en'],'author':{'@id':SITE+'#person'},'datePublished':'2026-10-17','dateModified':HEUTE}]
     (DIST/ordner/'index.html').write_text(page(title,desc,body,tiefe=1,pfad=ordner+'/',extra=extra),encoding='utf-8')
+
+
+# Lichtkammer-Download: Dateien aus extras/ nach dist/lichtkammer/ (Zip, .sha256, .sig, PDF unter download/, allowed_signers daneben)
+if LK_DA:
+    (DIST/'lichtkammer'/'download').mkdir(parents=True,exist_ok=True)
+    for f in LK_DIR.iterdir():
+        if f.name=='allowed_signers': shutil.copy2(f,DIST/'lichtkammer'/f.name)
+        elif f.suffix in ('.zip','.sha256','.sig','.pdf'): shutil.copy2(f,DIST/'lichtkammer'/'download'/f.name)
 
 # Tipps: Anleitungen aus dem Repo homelab-tipps (liegt neben lurohome oder eine Ebene höher), DE und EN als Markdown
 TIPPS_REPO='luro611/homelab-tipps'
@@ -290,14 +331,14 @@ if TIPPS:
 shutil.copy2(HERE/'favicon.svg',DIST/'favicon.svg')
 llms=(HERE/'llms.txt').read_text(encoding='utf-8')
 llms=llms.replace('<!--PROJEKTE-->','\n'.join(f"- [{p['name'].replace('<em>','').replace('</em>','')}]({SITE}{p['ordner']}/): {p['de']}"
-                                               +(f" Quellcode: https://github.com/{p['repo']}" if p['repo'] else ' Noch nicht veröffentlicht.') for p in PROJEKTE))
+                                               +(f" Quellcode: https://github.com/{p['repo']}" if p['repo'] else (' Testversion mit Download, Quellcode noch nicht öffentlich.' if p['ordner']=='lichtkammer' else ' Noch nicht veröffentlicht.')) for p in PROJEKTE))
 llms=llms.replace('<!--TIPPS-->','\n'.join(f"- [{t['titel'][0]}]({SITE}tipps/{t['ordner']}/): {t['de']}" for t in TIPPS))
 (DIST/'llms.txt').write_text(llms,encoding='utf-8')
 
 z=ROOT/f'lurohome-website-{datetime.date.today().isoformat()}.zip'
 with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED) as zf:
     for f in sorted(DIST.rglob('*')):
-        if f.is_file(): zf.write(f,f.relative_to(DIST).as_posix())
+        if f.is_file() and 'lichtkammer/download/' not in f.relative_to(DIST).as_posix(): zf.write(f,f.relative_to(DIST).as_posix())  # Lichtkammer-Download nicht ins Zip (zu groß, geht per deploy.sh)
 print('fertig:',z)
 print(f'Version {VERSION} (Commit {COMMIT})')
 if GEAENDERT:

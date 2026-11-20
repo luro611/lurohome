@@ -1,0 +1,5 @@
+# Große Dateien und Prüfsummen gehören nicht in git; allowed_signers (öffentlicher Schlüssel) und diese Anleitung schon.
+*.zip
+*.sha256
+*.sig
+*.pdf

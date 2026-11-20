@@ -5,8 +5,11 @@
     <a href="../">← lurohome</a>
     <a href="#idee"><span lang="de">Die Idee</span><span lang="en">The idea</span></a>
     <a href="#funktionen"><span lang="de">Funktionen</span><span lang="en">Features</span></a>
-    <a href="#betrieb"><span lang="de">Betrieb</span><span lang="en">Hosting</span></a>
-    <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
+    <a href="#download">Download</a>
+    <a href="#installation"><span lang="de">Installation</span><span lang="en">Install</span></a>
+    <a href="#bedienung"><span lang="de">Bedienung</span><span lang="en">Using it</span></a>
+    <a href="#echtheit"><span lang="de">Echtheit</span><span lang="en">Authenticity</span></a>
+    <a href="#fahrplan"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></a>
   </div>
   <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
   <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
@@ -17,7 +20,7 @@
     <p class="eyebrow"><span lang="de">Foto-CMS · PHP · SQLite · Open Source</span><span lang="en">Photo CMS · PHP · SQLite · open source</span></p>
     <h1>Licht<em>kammer</em></h1>
     <p class="intro"><span lang="de"><strong>Deine Fotos, deine Website.</strong> Ein schlankes Foto-CMS für ausschließlich eigene Bilder. Läuft auf einfachem Webspace, für den nur FTP nötig ist, oder in Docker. Die Verwaltung ist deutsch und auch für Laien gemacht.</span><span lang="en"><strong>Your photos, your website.</strong> A lean photo CMS for your own pictures only. Runs on simple web hosting that only needs FTP, or in Docker. The admin is in German and made for non-experts too.</span></p>
-    <p class="status"><span class="tag on"><span lang="de">Vorabversion 0.1.0-rc1</span><span lang="en">Pre-release 0.1.0-rc1</span></span> <span lang="de">Der Release-Ablauf (Zip für Webspace, Docker-Image) wird gerade geprobt. Die öffentliche Veröffentlichung folgt; gezählt wird 0.x bis dahin, danach ab 1.0.0.</span><span lang="en">The release process (zip for web hosting, Docker image) is being rehearsed. Public release will follow; versions are counted 0.x until then, 1.0.0 afterwards.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">Testversion @@LK_VERSION@@</span><span lang="en">Test version @@LK_VERSION@@</span></span> <span lang="de">Zum Ausprobieren für Tester, nicht für den Echtbetrieb. Das Testpaket gibt es unten zum <a href="#download">Download</a>; gezählt wird 0.x bis zum Livegang, danach ab 1.0.0.</span><span lang="en">For testers to try out, not for production use. The test package is available for <a href="#download">download</a> below; versions are counted 0.x until launch, 1.0.0 afterwards.</span></p>
   </div>
   <div class="scan" aria-label="Beispiel: vom Original zur fertigen Seite">
     <p class="step"><span><span lang="de">1 · Hochladen</span><span lang="en">1 · Upload</span></span><span lang="de">Beispiel</span><span lang="en">Example</span></p>
@@ -55,21 +58,143 @@
   </div>
 </section>
 
+<section id="download">
+  <p class="eyebrow">Download</p>
+  <h2><span lang="de">Das <em>Testpaket</em></span><span lang="en">The <em>test package</em></span></h2>
+  <!--PAKET-DA-->
+  <p class="lead" style="max-width:760px"><span lang="de">Für Tester: ein Zip mit der Software, der ausführlichen Anleitung als PDF (über 50 Seiten, mit Bildern), einer Kurzanleitung und der Lizenz. Bitte nur mit Testfotos und Testdaten ausprobieren, nicht für den Echtbetrieb.</span><span lang="en">For testers: one zip with the software, the detailed manual as a PDF (over 50 pages, with pictures), a short guide and the licence. Please try it with test photos and test data only, not for production use.</span></p>
+  <div class="two">
+    <div>
+      <p class="actions" style="margin-top:0"><a class="btn" href="download/@@LK_ZIP@@" download><span lang="de">Testpaket laden (@@LK_SIZE_DE@@)</span><span lang="en">Download test package (@@LK_SIZE_EN@@)</span></a><a class="btn ghost" href="download/Lichtkammer-Anleitung.pdf"><span lang="de">Nur die Anleitung (PDF, @@LK_PDF_DE@@)</span><span lang="en">Manual only (PDF, @@LK_PDF_EN@@)</span></a></p>
+      <h3 style="margin-top:28px"><span lang="de">Wo liegt die Datei, und was mache ich damit?</span><span lang="en">Where does the file end up, and what do I do with it?</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Dein Browser legt die Datei meist im Ordner <strong>Downloads</strong> ab. Ein Doppelklick entpackt das Zip; darin liegen <span class="mono">Lichtkammer-Anleitung.pdf</span>, <span class="mono">LIESMICH-Tester.txt</span> (Start hier, mit Testliste), <span class="mono">INSTALL.txt</span> (Kurzfassung) und das eigentliche Programm als zweites Zip. Bevor du etwas hochlädst, prüfe bitte kurz, ob die Datei echt ist: <a href="#echtheit">so geht es</a>.</span><span lang="en">Your browser usually saves the file in the <strong>Downloads</strong> folder. Double-click to unpack the zip; inside you will find <span class="mono">Lichtkammer-Anleitung.pdf</span>, <span class="mono">LIESMICH-Tester.txt</span> (start here, with a test checklist), <span class="mono">INSTALL.txt</span> (short version) and the program itself as a second zip. Before you upload anything, please check that the file is genuine: <a href="#echtheit">here is how</a>.</span></p>
+    </div>
+    <div>
+      <dl class="facts">
+        <dt>Version</dt><dd>@@LK_VERSION@@</dd>
+        <dt><span lang="de">Datei</span><span lang="en">File</span></dt><dd><a class="mono" href="download/@@LK_ZIP@@">@@LK_ZIP@@</a></dd>
+        <dt><span lang="de">Größe</span><span lang="en">Size</span></dt><dd><span lang="de">@@LK_SIZE_DE@@</span><span lang="en">@@LK_SIZE_EN@@</span></dd>
+        <dt><span lang="de">Stand</span><span lang="en">Date</span></dt><dd><span lang="de">@@LK_DATE_DE@@</span><span lang="en">@@LK_DATE_EN@@</span></dd>
+        <dt>SHA-256</dt><dd><span class="mono" style="overflow-wrap:anywhere">@@LK_SHA@@</span></dd>
+        <dt><span lang="de">Signatur</span><span lang="en">Signature</span></dt><dd><!--SIG-AKTIV--><a class="mono" href="download/@@LK_ZIP@@.sig">@@LK_ZIP@@.sig</a><!--/SIG-AKTIV--><!--SIG-FEHLT--><span lang="de">folgt (siehe <a href="#echtheit">Echtheit</a>)</span><span lang="en">to follow (see <a href="#echtheit">Authenticity</a>)</span><!--/SIG-FEHLT--></dd>
+        <dt><span lang="de">Prüfsummen-Datei</span><span lang="en">Checksum file</span></dt><dd><a class="mono" href="download/@@LK_ZIP@@.sha256">.sha256</a></dd>
+      </dl>
+    </div>
+  </div>
+  <!--/PAKET-DA-->
+  <!--PAKET-FEHLT--><p class="lead" style="max-width:760px"><span lang="de">Das Testpaket wird gerade neu gebaut und ist im Moment nicht zum Download bereit. Bitte später noch einmal nachsehen.</span><span lang="en">The test package is being rebuilt and is not available right now. Please check back later.</span></p><!--/PAKET-FEHLT-->
+</section>
+
+<section id="installation">
+  <p class="eyebrow"><span lang="de">Installationsanleitung</span><span lang="en">Installation guide</span></p>
+  <h2><span lang="de">Auf Webspace oder <em>in Docker</em></span><span lang="en">On web hosting or <em>in Docker</em></span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Das hier ist die Kurzfassung. Die <strong>ausführliche Anleitung</strong> mit Bildern zu jedem Schritt und mit Hilfe bei Problemen ist die PDF-Datei im Paket (Kapitel 2 für Webspace, Kapitel 3 für Docker, Kapitel 4 für Aktualisieren, Sicherung und Wiederherstellung), <a href="download/Lichtkammer-Anleitung.pdf">auch einzeln zum Download</a>.</span><span lang="en">This is the short version. The <strong>detailed manual</strong>, with pictures for every step and help with problems, is the PDF in the package (chapter 2 for web hosting, chapter 3 for Docker, chapter 4 for updating, backup and restore), <a href="download/Lichtkammer-Anleitung.pdf">also available on its own</a>. The manual is written in German.</span></p>
+
+  <h3 style="margin-top:36px"><span lang="de">Was du brauchst</span><span lang="en">What you need</span></h3>
+  <ul class="checks">
+    <li><strong><span lang="de">Webspace mit PHP 8.3 oder neuer,</span><span lang="en">Web hosting with PHP 8.3 or newer,</span></strong> <span lang="de">Apache (.htaccess) und HTTPS, oder ein Rechner mit Docker. Erweiterungen: sodium, pdo_sqlite, intl, gd oder imagick, exif. Die Systemprüfung im Admin zeigt, ob alles da ist.</span><span lang="en">Apache (.htaccess) and HTTPS, or a computer with Docker. Extensions: sodium, pdo_sqlite, intl, gd or imagick, exif. The system check in the admin shows whether everything is there.</span></li>
+    <li><strong><span lang="de">Ein FTP-Programm</span><span lang="en">An FTP program</span></strong> <span lang="de">mit verschlüsselter Verbindung (FTPS oder SFTP), zum Beispiel FileZilla oder Cyberduck. Kein SSH, keine Datenbank, kein Composer nötig.</span><span lang="en">with an encrypted connection (FTPS or SFTP), for example FileZilla or Cyberduck. No SSH, no database, no Composer needed.</span></li>
+    <li><strong><span lang="de">Einen Ordner über dem Webroot</span><span lang="en">A folder above the web root</span></strong> <span lang="de">für Datenbank und Originalfotos. Er muss für PHP beschreibbar und aus dem Internet nicht erreichbar sein (bei all-inkl der Ordner neben dem Domain-Ordner).</span><span lang="en">for the database and original photos. It must be writable for PHP and not reachable from the internet (at all-inkl: the folder next to the domain folder).</span></li>
+    <li><strong><span lang="de">Authenticator-App und Passwort-Manager</span><span lang="en">Authenticator app and password manager</span></strong> <span lang="de">für den Anmeldecode, den geheimen Schlüssel und die Wiederherstellungscodes.</span><span lang="en">for the sign-in code, the secret key and the recovery codes.</span></li>
+  </ul>
+
+  <div class="two" style="margin-top:48px">
+    <div>
+      <h3><span lang="de">Webspace (zum Beispiel all-inkl, nur FTPS)</span><span lang="en">Web hosting (e.g. all-inkl, FTPS only)</span></h3>
+      <ol class="steps">
+        <li><span><span lang="de">Das Testpaket <a href="#echtheit">prüfen</a> und entpacken, dann das darin liegende Programm-Zip (<span class="mono">lichtkammer-&lt;Version&gt;.zip</span>) ebenfalls entpacken.</span><span lang="en">Check the test package (<a href="#echtheit">how</a>) and unpack it, then unpack the program zip inside it (<span class="mono">lichtkammer-&lt;version&gt;.zip</span>) as well.</span></span></li>
+        <li><span><span lang="de">Per FTPS hochladen: den Inhalt von <span class="mono">public</span> in den Webroot deiner Domain, den Ordner <span class="mono">app</span> daneben.</span><span lang="en">Upload via FTPS: the contents of <span class="mono">public</span> into your domain’s web root, the <span class="mono">app</span> folder next to it.</span></span></li>
+        <li><span><span lang="de">Zwei Ordner über dem Webroot festlegen (Daten und Originale) und in <span class="mono">app/.env</span> eintragen: <span class="mono">LK_BASE_URL</span>, <span class="mono">LK_SITE_NAME</span>, <span class="mono">LK_DATA_DIR</span>, <span class="mono">LK_ORIGINALS_DIR</span>. Vorlage: <span class="mono">.env.example</span> im Zip.</span><span lang="en">Choose two folders above the web root (data and originals) and enter them in <span class="mono">app/.env</span>: <span class="mono">LK_BASE_URL</span>, <span class="mono">LK_SITE_NAME</span>, <span class="mono">LK_DATA_DIR</span>, <span class="mono">LK_ORIGINALS_DIR</span>. Template: <span class="mono">.env.example</span> in the zip.</span></span></li>
+        <li><span><span lang="de"><span class="mono">https://deine-domain/admin</span> aufrufen. Die Seite zeigt zwei fertige Zeilen für <span class="mono">LK_APP_KEY</span> und <span class="mono">LK_SETUP_TOKEN</span>; in die <span class="mono">.env</span> eintragen und hochladen.</span><span lang="en">Open <span class="mono">https://your-domain/admin</span>. The page shows two ready-made lines for <span class="mono">LK_APP_KEY</span> and <span class="mono">LK_SETUP_TOKEN</span>; put them into the <span class="mono">.env</span> and upload it.</span></span></li>
+        <li><span><span lang="de"><span class="mono">/admin/setup</span>: Konto anlegen, Authenticator-App koppeln, Wiederherstellungscodes sichern.</span><span lang="en"><span class="mono">/admin/setup</span>: create the account, pair the authenticator app, store the recovery codes.</span></span></li>
+        <li><span><span lang="de">Die Zeile <span class="mono">LK_SETUP_TOKEN</span> aus der <span class="mono">.env</span> löschen, dann in der Verwaltung die <em>Systemprüfung</em> ansehen.</span><span lang="en">Delete the <span class="mono">LK_SETUP_TOKEN</span> line from the <span class="mono">.env</span>, then look at the <em>system check</em> in the admin.</span></span></li>
+      </ol>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Vor dem ersten Veröffentlichen zeigt die öffentliche Startseite „Diese Seite ist noch nicht veröffentlicht“. Das ist normal.</span><span lang="en">Before the first publication, the public home page says the site is not published yet. That is normal.</span></p>
+    </div>
+    <div>
+      <h3>Docker</h3>
+      <ol class="steps">
+        <li><span><span lang="de">Das Programm-Zip entpacken und im entpackten Ordner eine <span class="mono">.env</span> anlegen (Vorlage <span class="mono">.env.example</span>: <span class="mono">LK_BASE_URL</span>, <span class="mono">LK_SITE_NAME</span>, <span class="mono">LK_APP_KEY</span>, <span class="mono">LK_SETUP_TOKEN</span>).</span><span lang="en">Unpack the program zip and create a <span class="mono">.env</span> in the unpacked folder (template <span class="mono">.env.example</span>: <span class="mono">LK_BASE_URL</span>, <span class="mono">LK_SITE_NAME</span>, <span class="mono">LK_APP_KEY</span>, <span class="mono">LK_SETUP_TOKEN</span>).</span></span></li>
+        <li><span><span lang="de">Bauen und starten (das Image baust du im Testpaket selbst, nötig ist nur Docker):</span><span lang="en">Build and start (in the test package you build the image yourself, only Docker is needed):</span></span></li>
+      </ol>
+<pre>docker compose up -d --build</pre>
+      <ol class="steps" style="margin-top:14px">
+        <li><span><span lang="de">Zum Ausprobieren auf dem eigenen Rechner <span class="mono">LK_BASE_URL=http://localhost:8080</span> setzen, dann <span class="mono">/health</span> und <span class="mono">/admin/setup</span> aufrufen. Auf einem echten Server kommt ein Reverse Proxy mit HTTPS davor.</span><span lang="en">To try it on your own computer set <span class="mono">LK_BASE_URL=http://localhost:8080</span>, then open <span class="mono">/health</span> and <span class="mono">/admin/setup</span>. On a real server, put a reverse proxy with HTTPS in front.</span></span></li>
+      </ol>
+      <h3 style="margin-top:32px"><span lang="de">Aktualisieren und Wiederherstellen</span><span lang="en">Updating and restoring</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de"><strong>Aktualisieren:</strong> Auf dem Webspace das neue Zip über die alte Installation hochladen (<span class="mono">.env</span>, Daten und Fotos sind nicht im Zip, die Datenbank aktualisiert sich selbst). In Docker das neue Zip über denselben Ordner entpacken und noch einmal <span class="mono">docker compose up -d --build</span>. Vorher eine Sicherung ziehen. <strong>Wiederherstellen</strong> (neuer Server nach einem Totalverlust): dieselbe Version installieren, die <span class="mono">.env</span> mit dem <em>alten</em> <span class="mono">LK_APP_KEY</span> anlegen, die Sicherung bereitstellen und unter <span class="mono">/admin/setup</span> „Stattdessen eine Sicherung einspielen“ wählen; die Schritte stehen in der PDF-Anleitung, Kapitel 4.</span><span lang="en"><strong>Updating:</strong> on web hosting, upload the new zip over the old installation (<span class="mono">.env</span>, data and photos are not in the zip; the database updates itself). With Docker, unpack the new zip over the same folder and run <span class="mono">docker compose up -d --build</span> again. Take a backup first. <strong>Restoring</strong> (a new server after total loss): install the same version, create the <span class="mono">.env</span> with the <em>old</em> <span class="mono">LK_APP_KEY</span>, put the backup in place and choose “restore a backup instead” at <span class="mono">/admin/setup</span>; the steps are in the PDF manual, chapter 4.</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="bedienung">
+  <p class="eyebrow"><span lang="de">Bedienungsanleitung</span><span lang="en">User guide</span></p>
+  <h2><span lang="de">Im Alltag, <em>in Kürze</em></span><span lang="en">Day to day, <em>in brief</em></span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Alles läuft im Browser unter <span class="mono">/admin</span>, auf Deutsch. Der Überblick hier ersetzt nicht die <a href="download/Lichtkammer-Anleitung.pdf">PDF-Anleitung</a>: Sie erklärt jede Seite des Admins mit Bildern (Kapitel 5 bis 9) und hilft bei Problemen.</span><span lang="en">Everything happens in the browser at <span class="mono">/admin</span>, in German. This overview does not replace the <a href="download/Lichtkammer-Anleitung.pdf">PDF manual</a>: it explains every page of the admin with pictures (chapters 5 to 9) and helps with problems. The manual is in German.</span></p>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">1 · Anmelden</span><span lang="en">1 · Sign in</span></p><h3><span lang="de">Passwort und Code</span><span lang="en">Password and code</span></h3><p><span lang="de">Anmelden mit Passwort und dem Code aus der Authenticator-App. Ein Gerät lässt sich 24 Stunden als vertraut merken. Gehen Handy und Passwort verloren, hilft ein Wiederherstellungscode.</span><span lang="en">Sign in with a password and the code from the authenticator app. A device can be trusted for 24 hours. If phone and password are lost, a recovery code helps.</span></p></div>
+    <div><p class="kicker"><span lang="de">2 · Medien</span><span lang="en">2 · Media</span></p><h3><span lang="de">Hochladen und ordnen</span><span lang="en">Upload and organise</span></h3><p><span lang="de">Fotos einzeln oder als ganzen Ordner hochladen, in Ordnern wie im Finder ordnen, umbenennen, verschieben. Zu jedem Foto gehört ein Alt-Text; mehrere Fotos lassen sich auf einmal beschriften. Gelöschtes landet im Papierkorb. Auch PDFs und Logos liegen hier.</span><span lang="en">Upload photos one by one or as a whole folder, organise them in folders like in the Finder, rename and move them. Every photo needs alt text; several photos can be labelled at once. Deleted items go to the trash. PDFs and logos live here too.</span></p></div>
+    <div><p class="kicker"><span lang="de">3 · Seiten und Blöcke</span><span lang="en">3 · Pages and blocks</span></p><h3><span lang="de">Bausteine ziehen</span><span lang="en">Drag blocks</span></h3><p><span lang="de">Eine Seite entsteht aus Blöcken: Text, Foto, Raster, Zitat, Knopf, Spalten, Bild und Text, Karussell, Titelbild, Dateien. Im Editor ziehst du sie in die gewünschte Reihenfolge, wählst den Bildausschnitt und nimmst Schritte mit „Rückgängig“ zurück. Die Startseite, das Menü und die Fußzeile pflegst du genauso.</span><span lang="en">A page is made of blocks: text, photo, grid, quote, button, columns, image and text, carousel, cover image, files. In the editor you drag them into order, choose the image crop and undo steps. The home page, menu and footer are managed the same way.</span></p></div>
+    <div><p class="kicker"><span lang="de">4 · Veröffentlichen</span><span lang="en">4 · Publishing</span></p><h3><span lang="de">Vorschau, dann live</span><span lang="en">Preview, then live</span></h3><p><span lang="de">Änderungen sind erst nach „Speichern und veröffentlichen“ öffentlich. „Nur speichern“ lässt die Seite unverändert, die Vorschau zeigt, wie Besucher sie sehen. Frühere Fassungen holst du zurück; ändert sich die Adresse einer Seite, leitet die alte weiter.</span><span lang="en">Changes only go public after “Save and publish”. “Save only” leaves the site as it is, the preview shows what visitors will see. Earlier versions can be brought back; if a page’s address changes, the old one redirects.</span></p></div>
+    <div><p class="kicker"><span lang="de">5 · Einstellungen</span><span lang="en">5 · Settings</span></p><h3><span lang="de">Sechs Designs</span><span lang="en">Six designs</span></h3><p><span lang="de">Das Aussehen der öffentlichen Seite wählst du unter Einstellungen (Warm, Klar, Studio, Blau, Rot, Grün), die Verwaltung gibt es hell und dunkel. Weitere Personen lädst du per Einladung ein; das Protokoll zeigt jeden Schritt.</span><span lang="en">You choose the look of the public site under Settings (Warm, Clear, Studio, Blue, Red, Green), the admin comes in light and dark. Further people join by invitation; the log shows every step.</span></p></div>
+    <div><p class="kicker"><span lang="de">6 · Sicherung</span><span lang="en">6 · Backup</span></p><h3><span lang="de">Regelmäßig herunterladen</span><span lang="en">Download regularly</span></h3><p><span lang="de">Unter Verwaltung → Sicherung (nach erneuter Bestätigung mit Passwort und Code) lädst du das Paket mit der Datenbank und die Originale in Teilen herunter. Lege sie auf einem verschlüsselten Datenträger ab und den Schlüssel <span class="mono">LK_APP_KEY</span> getrennt im Passwort-Manager.</span><span lang="en">Under Admin → Backup (after confirming again with password and code) you download the package with the database and the originals in parts. Keep them on an encrypted drive and the key <span class="mono">LK_APP_KEY</span> separately in the password manager.</span></p></div>
+  </div>
+  <p class="small" style="margin-top:24px"><span lang="de"><strong>Fehler gefunden oder etwas unklar?</strong> Schreib an <span class="mono">info(at)lurohome.de</span> mit Version, Anbieter oder Docker, PHP-Version (laut Systemprüfung), was du tun wolltest und der Meldung im Wortlaut. Schicke nie die <span class="mono">.env</span>, Schlüssel, Codes, Passwörter oder eine Sicherung.</span><span lang="en"><strong>Found a bug or something unclear?</strong> Write to <span class="mono">info(at)lurohome.de</span> with the version, host or Docker, PHP version (from the system check), what you wanted to do and the message word for word. Never send the <span class="mono">.env</span>, keys, codes, passwords or a backup.</span></p>
+</section>
+
+<section id="echtheit">
+  <p class="eyebrow"><span lang="de">Echtheit</span><span lang="en">Authenticity</span></p>
+  <h2><span lang="de">Ist das Paket wirklich <em>von luro</em>?</span><span lang="en">Is the package really <em>from luro</em>?</span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Du lädst ein Programm aus dem Internet und spielst es auf deinen Server. Deshalb kannst du prüfen, dass die Datei unverändert und von mir ist. Es gibt zwei Wege, der erste ist schnell, der zweite ist der stärkere.</span><span lang="en">You download a program from the internet and put it on your server. So you can check that the file is unchanged and from me. There are two ways: the first is quick, the second is the stronger one.</span></p>
+
+  <div class="two">
+    <div>
+      <h3><span lang="de">Weg 1: Prüfsumme (SHA-256) vergleichen</span><span lang="en">Way 1: compare the checksum (SHA-256)</span></h3>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Die Prüfsumme ist ein Fingerabdruck der Datei: Ändert sich auch nur ein Zeichen, kommt etwas ganz anderes heraus. Rechne ihn auf deinem Rechner aus und vergleiche ihn mit dem Wert, der hier auf der Seite (HTTPS, Domain lurohome.de) steht:</span><span lang="en">The checksum is a fingerprint of the file: change a single character and something completely different comes out. Calculate it on your computer and compare it with the value shown here on this page (HTTPS, domain lurohome.de):</span></p>
+<pre><span class="c"># Mac</span>
+shasum -a 256 @@LK_ZIP@@
+<span class="c"># Linux</span>
+sha256sum @@LK_ZIP@@
+<span class="c"># Windows (PowerShell)</span>
+Get-FileHash .\@@LK_ZIP@@ -Algorithm SHA256</pre>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Soll-Wert:</span><span lang="en">Expected value:</span> <span class="mono" style="overflow-wrap:anywhere;color:var(--ink)">@@LK_SHA@@</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Stimmen beide überein, ist die Datei beim Laden nicht beschädigt oder verändert worden. Das schützt vor Übertragungsfehlern, aber nicht davor, dass jemand Datei <em>und</em> Seite austauscht. Dafür gibt es Weg 2.</span><span lang="en">If they match, the file was not damaged or changed while downloading. That guards against transfer errors, but not against someone replacing the file <em>and</em> this page. Way 2 covers that.</span></p>
+    </div>
+    <div>
+      <h3><span lang="de">Weg 2: Signatur prüfen (ssh-keygen)</span><span lang="en">Way 2: verify the signature (ssh-keygen)</span></h3>
+      <!--SIG-AKTIV-->
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Ich habe das Zip mit meinem Schlüssel signiert. Dafür brauchst du nur <span class="mono">ssh-keygen</span> (auf Mac, Linux und Windows 10/11 dabei). Lege diese drei Dateien in einen Ordner und öffne dort ein Terminal: das Zip, die Signatur <a class="mono" href="download/@@LK_ZIP@@.sig">@@LK_ZIP@@.sig</a> und die Liste meiner Schlüssel <a class="mono" href="allowed_signers">allowed_signers</a>.</span><span lang="en">I signed the zip with my key. All you need is <span class="mono">ssh-keygen</span> (included on Mac, Linux and Windows 10/11). Put these three files in one folder and open a terminal there: the zip, the signature <a class="mono" href="download/@@LK_ZIP@@.sig">@@LK_ZIP@@.sig</a> and the list of my keys <a class="mono" href="allowed_signers">allowed_signers</a>.</span></p>
+<pre><span class="c"># Mac / Linux</span>
+ssh-keygen -Y verify -f allowed_signers -I @@SIG_ID@@ -n lichtkammer \
+  -s @@LK_ZIP@@.sig &lt; @@LK_ZIP@@
+
+<span class="c"># Windows (PowerShell)</span>
+cmd /c "ssh-keygen -Y verify -f allowed_signers -I @@SIG_ID@@ -n lichtkammer -s @@LK_ZIP@@.sig &lt; @@LK_ZIP@@"</pre>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Erwartet wird eine Zeile, die mit <span class="mono">Good "lichtkammer" signature for @@SIG_ID@@</span> beginnt. Jede andere Meldung (zum Beispiel „Could not verify signature“) heißt: Nicht benutzen und mir schreiben. Dieselbe Prüfung bündelt das Skript <span class="mono">tools/pruefen-signatur.sh</span> aus dem Quellcode.</span><span lang="en">You should see a line starting with <span class="mono">Good "lichtkammer" signature for @@SIG_ID@@</span>. Any other message (for example “Could not verify signature”) means: do not use it, and write to me. The script <span class="mono">tools/pruefen-signatur.sh</span> in the source code does the same check.</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de"><strong>Wichtig:</strong> <span class="mono">allowed_signers</span> kommt von derselben Seite wie das Paket. Der Schlüssel schützt also dort am besten, wo du ihn dir einmal über einen zweiten Weg bestätigen lässt (frag mich nach dem Fingerabdruck) und die Datei danach aufbewahrst.</span><span lang="en"><strong>Important:</strong> <span class="mono">allowed_signers</span> comes from the same site as the package. The key protects best if you confirm it once through a second channel (ask me for the fingerprint) and then keep the file.</span></p>
+      <!--/SIG-AKTIV-->
+      <!--SIG-FEHLT-->
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de"><strong>Noch nicht aktiv.</strong> Die Signatur kommt mit dem nächsten Testpaket. Dann liegen hier die Datei <span class="mono">.sig</span> und die Schlüsselliste <span class="mono">allowed_signers</span>, und an dieser Stelle steht die Prüfung Schritt für Schritt (Mac, Linux, Windows). Bis dahin gilt Weg 1.</span><span lang="en"><strong>Not active yet.</strong> The signature will come with the next test package. Then the <span class="mono">.sig</span> file and the key list <span class="mono">allowed_signers</span> will be here, with the check step by step (Mac, Linux, Windows). Until then, use way 1.</span></p>
+      <!--/SIG-FEHLT-->
+    </div>
+  </div>
+</section>
+
 <section id="betrieb">
   <p class="eyebrow"><span lang="de">Betrieb</span><span lang="en">Hosting</span></p>
   <h2><span lang="de">Ein Code, zwei <em>Zuhause</em></span><span lang="en">One codebase, two <em>homes</em></span></h2>
   <div class="two">
     <div>
       <h3><span lang="de">Webspace mit FTP</span><span lang="en">Web hosting with FTP</span></h3>
-      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Lichtkammer braucht nur PHP und SQLite. Keine eigene Datenbank, kein SSH, kein Composer und kein Cron auf dem Server. Du lädst ein Zip herunter, entpackst es, spielst es per FTPS hoch, füllst eine kleine Konfigurationsdatei aus und legst im Browser den Administrator an. Eine Anleitung liegt dem Zip bei. Aktualisieren geht durch Überspielen: Konfiguration, Daten und Fotos sind nicht im Zip und bleiben unberührt, die Datenbank aktualisiert sich selbst.</span><span lang="en">Lichtkammer only needs PHP and SQLite. No separate database, no SSH, no Composer and no cron on the server. You download a zip, unpack it, upload it via FTPS, fill in a small configuration file and create the administrator in the browser. Instructions come with the zip. Updating works by uploading over the old installation: configuration, data and photos are not in the zip and stay untouched, and the database updates itself.</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Lichtkammer braucht nur PHP und SQLite. Keine eigene Datenbank, kein SSH, kein Composer und kein Cron auf dem Server. Du lädst ein Zip herunter, entpackst es, spielst es per FTPS hoch, füllst eine kleine Konfigurationsdatei aus und legst im Browser den Administrator an. Die Anleitung liegt dem Zip bei. Aktualisieren geht durch Überspielen: Konfiguration, Daten und Fotos sind nicht im Zip und bleiben unberührt, die Datenbank aktualisiert sich selbst.</span><span lang="en">Lichtkammer only needs PHP and SQLite. No separate database, no SSH, no Composer and no cron on the server. You download a zip, unpack it, upload it via FTPS, fill in a small configuration file and create the administrator in the browser. Instructions come with the zip. Updating works by uploading over the old installation: configuration, data and photos are not in the zip and stay untouched, and the database updates itself.</span></p>
       <h3 style="margin-top:28px"><span lang="de">Docker</span><span lang="en">Docker</span></h3>
-      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Dasselbe Programm als fertiges Image (<span class="mono">ghcr.io/luro611/lichtkammer</span>) mit einer Compose-Datei, zum Beispiel im eigenen LXC hinter einem Reverse Proxy für HTTPS. Aktualisieren: <span class="mono">docker compose pull</span> und neu starten. Unterschiede stehen nur in der Konfiguration, nie im Code.</span><span lang="en">The same program as a ready-made image (<span class="mono">ghcr.io/luro611/lichtkammer</span>) with a Compose file, for example in your own LXC behind a reverse proxy for HTTPS. Updating: <span class="mono">docker compose pull</span> and restart. Differences live only in the configuration, never in the code.</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Dasselbe Programm in einem Container mit einer Compose-Datei, zum Beispiel im eigenen LXC hinter einem Reverse Proxy für HTTPS. Im Testpaket baust du das Image selbst; ein fertiges Image folgt mit der öffentlichen Veröffentlichung. Unterschiede stehen nur in der Konfiguration, nie im Code.</span><span lang="en">The same program in a container with a Compose file, for example in your own LXC behind a reverse proxy for HTTPS. In the test package you build the image yourself; a ready-made image will follow with the public release. Differences live only in the configuration, never in the code.</span></p>
       <h3 style="margin-top:28px"><span lang="de">Anleitung</span><span lang="en">Manual</span></h3>
-      <p class="small" style="font-size:15px;max-width:none"><!--PLATZ-ANLEITUNG--><span lang="de">Eine ausführliche Anleitung als PDF folgt zusammen mit der öffentlichen Veröffentlichung.</span><span lang="en">A detailed manual as a PDF will follow with the public release.</span></p>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Die ausführliche Anleitung als PDF (Installation, Bedienung, Fehlersuche) liegt im Testpaket und steht auch <a href="download/Lichtkammer-Anleitung.pdf">einzeln zum Download</a>. Kurzfassungen siehe <a href="#installation">Installation</a> und <a href="#bedienung">Bedienung</a>.</span><span lang="en">The detailed manual as a PDF (installation, usage, troubleshooting) is in the test package and also <a href="download/Lichtkammer-Anleitung.pdf">available on its own</a>. Short versions: <a href="#installation">installation</a> and <a href="#bedienung">usage</a>.</span></p>
     </div>
     <div>
       <dl class="facts">
-        <dt><span lang="de">Stand</span><span lang="en">Status</span></dt><dd><span lang="de">Vorabversion 0.1.0-rc1</span><span lang="en">Pre-release 0.1.0-rc1</span></dd>
+        <dt><span lang="de">Stand</span><span lang="en">Status</span></dt><dd><span lang="de">Testversion @@LK_VERSION@@</span><span lang="en">Test version @@LK_VERSION@@</span></dd>
         <dt><span lang="de">Technik</span><span lang="en">Stack</span></dt><dd><span lang="de">PHP 8.3 oder neuer, SQLite, ohne Framework</span><span lang="en">PHP 8.3 or newer, SQLite, no framework</span></dd>
         <dt><span lang="de">Bilder</span><span lang="en">Images</span></dt><dd><span lang="de">Imagick, sonst GD</span><span lang="en">Imagick, otherwise GD</span></dd>
         <dt><span lang="de">Besucher</span><span lang="en">Visitors</span></dt><dd><span lang="de">fertiges HTML, keine Cookies</span><span lang="en">static HTML, no cookies</span></dd>
@@ -80,17 +205,28 @@
   </div>
 </section>
 
+<section id="fahrplan">
+  <p class="eyebrow"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></p>
+  <h2><span lang="de">Vom Testpaket zum <em>Livegang</em></span><span lang="en">From test package to <em>launch</em></span></h2>
+  <div class="road">
+    <div class="done"><p class="v"><span lang="de">Fundament</span><span lang="en">Foundation</span></p><h3><span lang="de">Anmeldung, Bilder, Seiten, Sicherung</span><span lang="en">Sign-in, images, pages, backup</span></h3><span class="tag on s"><span lang="de">fertig</span><span lang="en">done</span></span></div>
+    <div class="done"><p class="v">0.1.0-rc1</p><h3><span lang="de">Testpaket für Tester</span><span lang="en">Test package for testers</span></h3><span class="tag on s"><span lang="de">jetzt</span><span lang="en">now</span></span></div>
+    <div><p class="v">1.0.0</p><h3><span lang="de">Umzug von WordPress, Härtung, Livegang</span><span lang="en">Move from WordPress, hardening, launch</span></h3><span class="tag s"><span lang="de">geplant</span><span lang="en">planned</span></span></div>
+    <div><p class="v"><span lang="de">danach</span><span lang="en">after that</span></p><h3><span lang="de">Passkey, Ausstellungen, Schlagworte</span><span lang="en">Passkey, exhibitions, tags</span></h3><span class="tag s"><span lang="de">nach Wunsch</span><span lang="en">if wanted</span></span></div>
+  </div>
+</section>
+
 <section id="hinweis">
   <p class="eyebrow"><span lang="de">Der Name</span><span lang="en">The name</span></p>
   <h2><span lang="de">Eine Kammer für das <em>Licht</em></span><span lang="en">A chamber for <em>light</em></span></h2>
   <p class="lead"><span lang="de">Jede Kamera ist eine Lichtkammer: Licht fällt durch das Objektiv in einen dunklen Raum und wird dort zum Bild. Lichtkammer ist der Raum, in dem deine Bilder danach wohnen.</span><span lang="en">Every camera is a chamber of light: light falls through the lens into a dark space and becomes a picture there. Lichtkammer is the room where your pictures live afterwards.</span></p>
-  <p class="small" style="margin:0"><span lang="de"><strong>Hinweis:</strong> Lichtkammer ist eine Vorabversion und noch nicht öffentlich erhältlich, die Veröffentlichung folgt. Freie Software unter AGPL-3.0-or-later. Gebaut mit Hilfe von KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en"><strong>Note:</strong> Lichtkammer is a pre-release and not yet publicly available; the public release will follow. Free software under AGPL-3.0-or-later. Built with the help of AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
+  <p class="small" style="margin:0"><span lang="de"><strong>Hinweis:</strong> Lichtkammer ist eine Testversion. Das Testpaket steht oben zum Download, der Quellcode wird mit der öffentlichen Veröffentlichung freigegeben. Freie Software unter AGPL-3.0-or-later. Gebaut mit Hilfe von KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en"><strong>Note:</strong> Lichtkammer is a test version. The test package is available above; the source code will be released with the public release. Free software under AGPL-3.0-or-later. Built with the help of AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
   <p class="small" id="haftung" style="margin:20px 0 0"><span lang="de"><strong>Haftungshinweis:</strong> Lichtkammer ist ein privates Hobbyprojekt und wird kostenlos bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Nutzung erfolgt auf eigenes Risiko. Es besteht keine Verpflichtung zu Support, Fehlerbehebung oder Weiterentwicklung.</span><span lang="en"><strong>Disclaimer:</strong> Lichtkammer is a private hobby project, provided free of charge. To the extent permitted by law, no warranty is given. Use at your own risk. There is no obligation to provide support, fixes or further development.</span></p>
 </section>
 
 <footer>
   <a class="luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>
-  <span class="sp">Lichtkammer · <span lang="de">Vorabversion</span><span lang="en">pre-release</span> · AGPL-3.0</span>
+  <span class="sp">Lichtkammer · <span lang="de">Testversion</span><span lang="en">test version</span> · AGPL-3.0</span>
   <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
   <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
   <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>

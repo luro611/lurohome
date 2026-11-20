@@ -52,7 +52,7 @@ case "$ZUGANG" in
     [[ -n "$SSH_HOST" ]] || fehler "In .env fehlt SSH_HOST (Name aus ~/.ssh/config)."
     [[ -n "$ZIEL" ]] || fehler "In .env fehlt ZIEL (Ordner der Domain auf dem Server, z. B. ${DOMAIN}/)."
     command -v rsync >/dev/null || fehler "rsync fehlt (brew install rsync)."
-    OPTS=(-rlvz --checksum --itemize-changes --chmod=D755,F644 --exclude=.DS_Store --exclude="*.zip")
+    OPTS=(-rlvz --checksum --itemize-changes --chmod=D755,F644 --exclude=.DS_Store --exclude="*-website-*.zip")
     (( JETZT )) || OPTS+=(--dry-run)
     rsync "${OPTS[@]}" dist/ "$SSH_HOST:$ZIEL"
     ;;
@@ -67,7 +67,7 @@ case "$ZUGANG" in
   security add-generic-password -U -a $FTP_USER -s $DIENST -w"
     export LFTP_PASSWORD
     # Der FTP-Benutzer der Domain sieht nur ihren Ordner, darum ist das Ziel dort "/"
-    MOPTS="--reverse --overwrite --verbose --exclude-glob .DS_Store --exclude-glob *.zip"
+    MOPTS="--reverse --overwrite --verbose --exclude-glob .DS_Store --exclude-glob *-website-*.zip"
     (( JETZT )) || MOPTS+=" --dry-run"
     lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate true; set net:max-retries 2; set cmd:fail-exit true; open --user $FTP_USER --env-password ftp://$FTP_HOST; mirror $MOPTS dist/ ${ZIEL:-/}"
     unset LFTP_PASSWORD
