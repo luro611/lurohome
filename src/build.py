@@ -155,7 +155,7 @@ legal_body=('<div class="shell">\n<nav aria-label="Navigation"><a class="brand" 
 # Befüllt wird der Ordner mit extras/lichtkammer-paket-holen.sh. Fehlt etwas, baut die Seite trotzdem:
 # ohne Zip zeigt sie "gerade nicht bereit", ohne .sig oder allowed_signers ist der Signaturabschnitt "noch nicht aktiv".
 LK_DIR=ROOT/'extras'/'lichtkammer-download'
-LK_SIG_ID='lichtkammer-release'   # Kennung in allowed_signers, gleich wie in lichtkammer/tools/signieren.sh
+LK_SIG_ID='luro@lurohome.de'   # Kennung in allowed_signers, gleich wie in der Anleitung im Paket (lichtkammer/docs/betrieb/allowed_signers)
 def lichtkammer_paket():
     def mb(n,de): return f'{n/1e6:.1f}'.replace('.',',' if de else '.')+' MB'
     zips=sorted(LK_DIR.glob('lichtkammer-testpaket-*.zip'),key=lambda f:[int(x) if x.isdigit() else x for x in re.split(r'[.\-]',f.name)]) if LK_DIR.exists() else []

@@ -25,5 +25,5 @@ Die Seite liest alles aus den Dateien hier: Version aus dem Dateinamen, SHA-256 
 Der Signaturabschnitt der Seite ist nur dann „aktiv“, wenn **beide** da sind: `….zip.sig` und `allowed_signers`. Sonst steht dort „noch nicht aktiv“, und die Prüfsumme bleibt der Weg 1.
 
 - Signieren (Lichtkammer-Ordner): `tools/signieren.sh dist/lichtkammer-testpaket-<Version>.zip`, die Schlüsselanleitung steht in `lichtkammer/docs/betrieb/Signatur-Schluessel.md`.
-- Die Zeile für `allowed_signers` gibt `signieren.sh` am Ende aus (Kennung `lichtkammer-release`, Namespace `lichtkammer`); die Datei hier ablegen und committen. Die Kennung steht in `build.py` als `LK_SIG_ID`.
+- Die Zeile für `allowed_signers` gibt `signieren.sh` am Ende aus (Kennung `luro@lurohome.de`, Namespace `lichtkammer`); die Datei hier ablegen und committen. Die Kennung steht in `build.py` als `LK_SIG_ID`.
 - Das Skript `extras/lichtkammer-paket-holen.sh` kopiert die `.sig` mit, wenn sie neben der Zip in `dist/` liegt.
