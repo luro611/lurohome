@@ -1,0 +1,96 @@
+<div class="shell">
+<nav aria-label="Hauptnavigation">
+  <a class="brand" href="#top">IPTC</a>
+  <div class="links">
+    <a href="../">← lurohome</a>
+    <a href="#idee"><span lang="de">Die Idee</span><span lang="en">The idea</span></a>
+    <a href="#funktionen"><span lang="de">Funktionen</span><span lang="en">Features</span></a>
+    <a href="#betrieb"><span lang="de">Betrieb</span><span lang="en">Hosting</span></a>
+    <a href="#fahrplan"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><span lang="de">Metadaten · ExifTool · Heimnetz</span><span lang="en">Metadata · ExifTool · home network</span></p>
+    <h1>IPT<em>C</em></h1>
+    <p class="intro"><span lang="de"><strong>Alles, was in einem Bild steckt.</strong> Eine lokale Web-Anwendung, die EXIF, IPTC, XMP, Hersteller-Tags und Container-Metadaten ausliest und übersichtlich zeigt. Bild in den Browser ziehen, fertig. Läuft im eigenen Container im Heimnetz, ohne Cloud und ohne Telemetrie.</span><span lang="en"><strong>Everything hidden inside a picture.</strong> A local web app that reads EXIF, IPTC, XMP, maker tags and container metadata and shows them clearly. Drop an image into the browser, done. Runs in its own container on your home network, without cloud and without telemetry.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">In Entwicklung · 0.1.0-dev</span><span lang="en">In development · 0.1.0-dev</span></span> <span lang="de">Die Abnahme auf dem Testserver läuft. Noch nicht zum Download; die Veröffentlichung folgt.</span><span lang="en">Acceptance testing on a test server is under way. Not yet available for download; the release will follow.</span></p>
+  </div>
+  <div class="scan" aria-label="Beispiel: ein Bild, alle Metadaten">
+    <p class="step"><span><span lang="de">1 · Bild hineinziehen</span><span lang="en">1 · Drop in an image</span></span><span><span lang="de">Beispiel</span><span lang="en">Example</span></span></p>
+    <ol class="tracks map">
+      <li><span class="n">EXIF</span><span class="mono"><span lang="de">Kamera · Objektiv · Belichtung</span><span lang="en">Camera · lens · exposure</span></span><span class="t">✓</span></li>
+      <li><span class="n">IPTC</span><span class="mono"><span lang="de">Titel · Urheber · Stichwörter</span><span lang="en">Title · author · keywords</span></span><span class="t">✓</span></li>
+      <li><span class="n">XMP</span><span class="mono"><span lang="de">Bewertung · Bearbeitung</span><span lang="en">Rating · editing</span></span><span class="t">✓</span></li>
+      <li><span class="n">GPS</span><span class="mono"><span lang="de">Standort</span><span lang="en">Location</span></span><span class="t warn">!</span></li>
+    </ol>
+    <div class="arrow"><span><span lang="de">2 · gruppiert, durchsuchbar, markiert</span><span lang="en">2 · grouped, searchable, flagged</span></span></div>
+    <div class="tags"><span class="tag">JSON</span><span class="tag">CSV</span><span class="tag"><span lang="de">Text</span><span lang="en">Text</span></span></div>
+  </div>
+</header>
+
+<section id="idee">
+  <p class="eyebrow"><span lang="de">Die Idee</span><span lang="en">The idea</span></p>
+  <h2><span lang="de">Nur <em>lesen</em>, nichts speichern</span><span lang="en">Only <em>read</em>, store nothing</span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Fotos tragen viel mehr mit sich herum, als man sieht: Kamera und Objektiv, Aufnahmezeit, Urheber, Stichwörter, Bearbeitungsschritte und oft auch den Aufnahmeort. IPTC macht das sichtbar, bevor ein Bild weitergegeben wird. Die Originale werden nie verändert, und hochgeladene Dateien werden nicht gespeichert: Sie liegen nur im Arbeitsspeicher des Containers und sind nach der Antwort weg.</span><span lang="en">Photos carry far more than you see: camera and lens, time of capture, author, keywords, editing steps and often the place where it was taken. IPTC makes that visible before a picture is passed on. Originals are never changed, and uploaded files are not stored: they only live in the container’s memory and are gone after the answer.</span></p>
+</section>
+
+<section id="funktionen">
+  <p class="eyebrow"><span lang="de">Was IPTC kann</span><span lang="en">What IPTC does</span></p>
+  <h2><span lang="de">Übersichtlich, <em>durchsuchbar</em>, exportierbar</span><span lang="en">Clear, <em>searchable</em>, exportable</span></h2>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Formate</span><span lang="en">Formats</span></p><h3><span lang="de">Von JPEG bis RAW</span><span lang="en">From JPEG to RAW</span></h3><p><span lang="de">JPEG, PNG, TIFF, WebP, HEIC/HEIF, AVIF und RAW (Canon CR2/CR3, Nikon NEF, Sony ARW, DNG), bis 200 MB je Datei. Ausgelesen wird mit ExifTool.</span><span lang="en">JPEG, PNG, TIFF, WebP, HEIC/HEIF, AVIF and RAW (Canon CR2/CR3, Nikon NEF, Sony ARW, DNG), up to 200 MB per file. Reading is done with ExifTool.</span></p></div>
+    <div><p class="kicker"><span lang="de">Ansicht</span><span lang="en">View</span></p><h3><span lang="de">Gruppen, Suche, Konflikte</span><span lang="en">Groups, search, conflicts</span></h3><p><span lang="de">Alle Werte nach Gruppen und Reitern, mit Suche und eingebetteter Vorschau. Widersprüchliche Werte, etwa zwischen EXIF und XMP, werden sichtbar gemacht.</span><span lang="en">All values by group and tab, with search and the embedded preview. Conflicting values, for example between EXIF and XMP, are made visible.</span></p></div>
+    <div><p class="kicker"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></p><h3><span lang="de">Heikles markiert</span><span lang="en">Sensitive data flagged</span></h3><p><span lang="de">Standort und Seriennummern werden markiert, damit du vor dem Weitergeben siehst, was mitwandert.</span><span lang="en">Location and serial numbers are flagged so you see what travels along before passing a picture on.</span></p></div>
+    <div><p class="kicker"><span lang="de">Export</span><span lang="en">Export</span></p><h3><span lang="de">JSON, CSV und Text</span><span lang="en">JSON, CSV and text</span></h3><p><span lang="de">Das Ergebnis lässt sich exportieren. Die Oberfläche gibt es auf Deutsch und Englisch, hell und dunkel.</span><span lang="en">The result can be exported. The interface comes in German and English, light and dark.</span></p></div>
+    <div><p class="kicker"><span lang="de">Anmeldung</span><span lang="en">Sign-in</span></p><h3><span lang="de">Ein Passwort, nur Heimnetz</span><span lang="en">One password, home network only</span></h3><p><span lang="de">Anmeldung mit einem Passwort, wachsende Sperre nach Fehlversuchen je Client-Adresse, nur aus dem Heimnetz erreichbar.</span><span lang="en">Sign-in with one password, a growing lockout after failed attempts per client address, reachable from the home network only.</span></p></div>
+    <div><p class="kicker"><span lang="de">Container</span><span lang="en">Container</span></p><h3><span lang="de">Gehärtet</span><span lang="en">Hardened</span></h3><p><span lang="de">Läuft ohne Root-Rechte und schreibgeschützt, braucht keine ausgehenden Verbindungen und hat keinen Ordner, der gesichert werden müsste.</span><span lang="en">Runs without root privileges and read-only, needs no outgoing connections and has no folder that would need a backup.</span></p></div>
+  </div>
+</section>
+
+<section id="betrieb">
+  <p class="eyebrow"><span lang="de">Betrieb</span><span lang="en">Hosting</span></p>
+  <h2><span lang="de">Ein Container im <em>eigenen LXC</em></span><span lang="en">One container in <em>its own LXC</em></span></h2>
+  <div class="two">
+    <div>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">IPTC läuft als ein Docker-Container, zum Beispiel in einem kleinen Debian-LXC auf Proxmox (2 Kerne, 2 GB RAM, 8 GB Platte), verwaltet mit Dockhand oder <span class="mono">docker compose</span>. Für HTTPS steht der Nginx Proxy Manager davor. Eine Anleitung dafür gehört zum Projekt. Aktualisieren: neues Image holen und den Stack neu starten.</span><span lang="en">IPTC runs as one Docker container, for example in a small Debian LXC on Proxmox (2 cores, 2 GB RAM, 8 GB disk), managed with Dockhand or <span class="mono">docker compose</span>. Nginx Proxy Manager sits in front for HTTPS. A guide for this is part of the project. Updating: pull the new image and restart the stack.</span></p>
+    </div>
+    <div>
+      <dl class="facts">
+  <dt><span lang="de">Stand</span><span lang="en">Status</span></dt><dd><span lang="de">0.1.0-dev, in Abnahme</span><span lang="en">0.1.0-dev, in acceptance</span></dd>
+  <dt><span lang="de">Technik</span><span lang="en">Stack</span></dt><dd>Python, FastAPI, ExifTool</dd>
+  <dt><span lang="de">Betrieb</span><span lang="en">Run</span></dt><dd>Docker · LXC</dd>
+  <dt><span lang="de">Zugriff</span><span lang="en">Access</span></dt><dd><span lang="de">Nur Heimnetz, mit Passwort</span><span lang="en">Home network only, with password</span></dd>
+  <dt><span lang="de">Lizenz</span><span lang="en">License</span></dt><dd>GPL-3.0-or-later</dd>
+</dl>
+    </div>
+  </div>
+</section>
+
+<section id="fahrplan">
+  <p class="eyebrow"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></p>
+  <h2><span lang="de">Vom Auslesen zur <em>Ordneransicht</em></span><span lang="en">From reading to the <em>folder view</em></span></h2>
+  <div class="road">
+    <div class="done"><p class="v">0.1</p><h3><span lang="de">Bild auslesen, Export, Anmeldung</span><span lang="en">Read an image, export, sign-in</span></h3><span class="tag on s"><span lang="de">in Abnahme</span><span lang="en">in acceptance</span></span></div>
+    <div><p class="v">0.2</p><h3><span lang="de">Ordneransicht auf eingebundenen Medien, Einstellungen</span><span lang="en">Folder view on mounted media, settings</span></h3><span class="tag s"><span lang="de">geplant</span><span lang="en">planned</span></span></div>
+  </div>
+</section>
+
+<section id="hinweis">
+  <p class="eyebrow"><span lang="de">Hinweis</span><span lang="en">Note</span></p>
+  <h2><span lang="de">Freie <em>Software</em></span><span lang="en">Free <em>software</em></span></h2>
+  <p class="small" style="margin:0"><span lang="de"><strong>Haftungshinweis:</strong> IPTC ist ein privates Hobbyprojekt und wird kostenlos bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Nutzung erfolgt auf eigenes Risiko. Es besteht keine Verpflichtung zu Support, Fehlerbehebung oder Weiterentwicklung. IPTC ist noch nicht veröffentlicht. Gebaut mit Hilfe von KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en"><strong>Disclaimer:</strong> IPTC is a private hobby project, provided free of charge. To the extent permitted by law, no warranty is given. Use at your own risk. There is no obligation to provide support, fixes or further development. IPTC is not released yet. Built with the help of AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
+</section>
+
+<footer>
+  <a class="luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>
+  <span class="sp">IPTC · <span lang="de">in Entwicklung</span><span lang="en">in development</span> · GPL-3.0</span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>

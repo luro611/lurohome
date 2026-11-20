@@ -1,0 +1,67 @@
+<div class="shell">
+<nav aria-label="Hauptnavigation">
+  <a class="brand" href="#top">paperless-ngx <em>Backup</em></a>
+  <div class="links">
+    <a href="../">← lurohome</a>
+    <a href="#idee"><span lang="de">Die Idee</span><span lang="en">The idea</span></a>
+    <a href="#plan"><span lang="de">Geplant</span><span lang="en">Planned</span></a>
+    <a href="#fahrplan"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></a>
+    <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><span lang="de">Backup · Restore · paperless-ngx</span><span lang="en">Backup · restore · paperless-ngx</span></p>
+    <h1>paperless-ngx <em>Backup</em></h1>
+    <p class="intro"><span lang="de"><strong>Dokumente sicher, Wiederherstellung geprobt.</strong> Backup und Wiederherstellung für paperless-ngx mit grafischer Oberfläche: Datenbank, Dokumente und Konfiguration konsistent, verschlüsselt und prüfbar sichern und auf einem neuen LXC oder einer VM wiederherstellen.</span><span lang="en"><strong>Documents safe, restore rehearsed.</strong> Backup and restore for paperless-ngx with a graphical interface: back up database, documents and configuration consistently, encrypted and verifiable, and restore them on a new LXC or VM.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">Bald</span><span lang="en">Coming soon</span></span> <span lang="de">Das Projekt ist in Planung, es gibt noch keine Software zum Herunterladen.</span><span lang="en">The project is in the planning stage; there is no software to download yet.</span></p>
+  </div>
+  
+</header>
+
+<section id="idee">
+  <p class="eyebrow"><span lang="de">Die Idee</span><span lang="en">The idea</span></p>
+  <h2><span lang="de">Ein Export ist <em>noch kein Backup</em></span><span lang="en">An export is <em>not yet a backup</em></span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Der Export von paperless-ngx ist kein vollständiges System-Backup. Datenbank, Dokumente, Konfiguration und Geheimnisse gehören zusammen und müssen zusammen gesichert werden, sonst lässt sich im Ernstfall nichts sicher wiederherstellen. Dieses Werkzeug soll genau das übernehmen und die Wiederherstellung auf einem neuen, leeren Ziel einfach und prüfbar machen. Es ist kein offizielles paperless-ngx-Projekt.</span><span lang="en">The paperless-ngx export is not a complete system backup. Database, documents, configuration and secrets belong together and must be backed up together, otherwise nothing can be restored reliably in an emergency. This tool is meant to do exactly that and to make restoring onto a new, empty target simple and verifiable. It is not an official paperless-ngx project.</span></p>
+</section>
+
+<section id="plan">
+  <p class="eyebrow"><span lang="de">Geplant</span><span lang="en">Planned</span></p>
+  <h2><span lang="de">Was es <em>können soll</em></span><span lang="en">What it is <em>meant to do</em></span></h2>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Sichern</span><span lang="en">Back up</span></p><h3><span lang="de">Alles zusammen</span><span lang="en">Everything together</span></h3><p><span lang="de">Datenbank, Dokumente und Konfiguration einer paperless-ngx-Installation (Docker Compose) konsistent sichern, auf NAS per NFS/SMB oder auf eine lokale Platte.</span><span lang="en">Back up the database, documents and configuration of a paperless-ngx installation (Docker Compose) consistently, to a NAS over NFS/SMB or to a local disk.</span></p></div>
+    <div><p class="kicker"><span lang="de">Verschlüsseln</span><span lang="en">Encrypt</span></p><h3><span lang="de">Mit age</span><span lang="en">With age</span></h3><p><span lang="de">Backups werden verschlüsselt; der private Schlüssel bleibt allein bei dir.</span><span lang="en">Backups are encrypted; the private key stays with you alone.</span></p></div>
+    <div><p class="kicker"><span lang="de">Wiederherstellen</span><span lang="en">Restore</span></p><h3><span lang="de">Auf ein neues, leeres Ziel</span><span lang="en">Onto a new, empty target</span></h3><p><span lang="de">Zuerst nur auf ein neues Ziel (LXC oder VM), nie blind über Vorhandenes. Optional mit einem PostgreSQL-Versionssprung als eigener, sichtbarer Weg.</span><span lang="en">At first only onto a new target (LXC or VM), never blindly over existing data. Optionally with a PostgreSQL major upgrade as a separate, visible path.</span></p></div>
+    <div><p class="kicker"><span lang="de">Sicher</span><span lang="en">Safe</span></p><h3><span lang="de">Kleiner Zugang, erst lesen</span><span lang="en">Small access, read first</span></h3><p><span lang="de">Der Zugang zum paperless-LXC läuft über SSH mit eigenem Schlüssel und einer kleinen Erlaubnisliste, ohne API-Token. Erst wird nur gelesen, dann geschrieben.</span><span lang="en">Access to the paperless LXC uses SSH with its own key and a small allow-list, no API token. It reads first and only then writes.</span></p></div>
+  </div>
+</section>
+
+<section id="fahrplan">
+  <p class="eyebrow"><span lang="de">Fahrplan</span><span lang="en">Roadmap</span></p>
+  <h2><span lang="de">Noch ganz <em>am Anfang</em></span><span lang="en">Still at the <em>very start</em></span></h2>
+  <div class="road">
+    <div class="done"><p class="v"><span lang="de">Planung</span><span lang="en">Planning</span></p><h3><span lang="de">Konzept und Entscheidungen</span><span lang="en">Concept and decisions</span></h3><span class="tag on s"><span lang="de">jetzt</span><span lang="en">now</span></span></div>
+    <div><p class="v"><span lang="de">Konzept-Phase 0</span><span lang="en">Concept phase 0</span></p><h3><span lang="de">Bestandsaufnahme und Sicherheitsdesign</span><span lang="en">Discovery and security design</span></h3><span class="tag s"><span lang="de">geplant</span><span lang="en">planned</span></span></div>
+    <div><p class="v">0.x</p><h3><span lang="de">Erste Version zum Testen</span><span lang="en">First version to test</span></h3><span class="tag s"><span lang="de">geplant</span><span lang="en">planned</span></span></div>
+    <div><p class="v">1.0.0</p><h3><span lang="de">Öffentliche Veröffentlichung</span><span lang="en">Public release</span></h3><span class="tag s"><span lang="de">geplant</span><span lang="en">planned</span></span></div>
+  </div>
+</section>
+
+<section id="hinweis">
+  <p class="eyebrow"><span lang="de">Hinweis</span><span lang="en">Note</span></p>
+  <h2><span lang="de">Freie <em>Software</em></span><span lang="en">Free <em>software</em></span></h2>
+  <p class="small" style="margin:0"><span lang="de"><strong>Haftungshinweis:</strong> paperless-ngx Backup ist ein privates Hobbyprojekt und wird kostenlos bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Nutzung erfolgt auf eigenes Risiko. Es besteht keine Verpflichtung zu Support, Fehlerbehebung oder Weiterentwicklung. Das Projekt ist in Planung; die Angaben auf dieser Seite können sich ändern. Gebaut mit Hilfe von KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en"><strong>Disclaimer:</strong> paperless-ngx Backup is a private hobby project, provided free of charge. To the extent permitted by law, no warranty is given. Use at your own risk. There is no obligation to provide support, fixes or further development. The project is in planning; the details on this page may change. Built with the help of AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
+</section>
+
+<footer>
+  <a class="luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>
+  <span class="sp">paperless-ngx Backup · <span lang="de">in Planung</span><span lang="en">in planning</span> · GPL-3.0</span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>

@@ -48,6 +48,16 @@ PROJEKTE=[
        status=('Vorabversion','Pre-release'),
        de='Schlankes Open-Source-Foto-CMS für ausschließlich eigene Bilder: hochladen, automatisch verkleinern, in Galerien ordnen, Seiten aus Blöcken bauen und als fertiges HTML veröffentlichen, mit Vorschau und Rückgängig. Läuft auf einfachem Webspace mit PHP und SQLite, für den nur FTP nötig ist, oder in Docker. Verwaltung auf Deutsch, auch für Laien.',
        en='A lean open-source photo CMS for your own pictures only: upload, resize automatically, arrange in galleries, build pages from blocks and publish as ready-made HTML, with preview and undo. Runs on simple web hosting with PHP and SQLite that only needs FTP, or in Docker. German-language admin, usable by non-experts.'),
+  # In Entwicklung: IPTC 0.1.0-dev (Repo luro611/iptc privat), Rotorwacht 0.6.0 (luro611/rotorwacht privat), paperless-ngx Backup in Planung ("bald")
+  dict(ordner='iptc', name='IPT<em>C</em>', version='', lizenz='GPL-3.0', repo=None, status=('In Entwicklung','In development'),
+       de='Zeigt alle Metadaten eines Bildes (EXIF, IPTC, XMP, Hersteller-Tags) übersichtlich, durchsuchbar und exportierbar. Bild in den Browser ziehen, fertig. Läuft im eigenen Container im Heimnetz, speichert nichts und verändert keine Originale.',
+       en='Shows all metadata of a picture (EXIF, IPTC, XMP, maker tags) clearly, searchable and exportable. Drop an image into the browser, done. Runs in its own container on your home network, stores nothing and never changes originals.'),
+  dict(ordner='rotorwacht', name='Rotor<em>wacht</em>', version='', lizenz='MIT', repo=None, status=('In Entwicklung · Spiel','In development · game'), os='macOS', kategorie='GameApplication',
+       de='Hubschrauber-Rettungsspiel für den Mac: Nach Naturkatastrophen Menschen von Dächern und Anhöhen holen und ins Lager bringen. Sechs Einsätze, drei Stufen, Controller, Bestenliste und ein Übungsmodus. Selbst gebaut mit Swift und SpriteKit.',
+       en='A helicopter rescue game for the Mac: after natural disasters, pick people up from rooftops and hilltops and bring them to the camp. Six missions, three levels, controller support, high scores and a practice mode. Built in-house with Swift and SpriteKit.'),
+  dict(ordner='paperless-ngx-backup', name='paperless-ngx <em>Backup</em>', version='', lizenz='GPL-3.0', repo=None, status=('Bald','Coming soon'),
+       de='Backup und Wiederherstellung für paperless-ngx mit grafischer Oberfläche: Datenbank, Dokumente und Konfiguration konsistent, verschlüsselt und prüfbar sichern und auf einem neuen LXC oder einer VM wiederherstellen. In Planung, kein offizielles paperless-ngx-Projekt.',
+       en='Backup and restore for paperless-ngx with a graphical interface: back up database, documents and configuration consistently, encrypted and verifiable, and restore them on a new LXC or VM. In planning, not an official paperless-ngx project.'),
   # Buch, kein Programm (art='buch'): Repo luro611/homelab-handbuch privat bis zum Release, daher repo=None
   dict(ordner='homelab-handbuch', name='Homelab-<em>Handbuch</em>', version='', lizenz='GPL-3.0', repo=None, art='buch',
        status=('Buch · in Arbeit','Book · work in progress'),
@@ -75,8 +85,8 @@ def software(p, beschreibung):
                 'description':beschreibung,'url':SITE+p['ordner']+'/','inLanguage':'de','author':{'@id':SITE+'#person'},
                 'isAccessibleForFree':True,'creativeWorkStatus':'Draft'}
     d={'@type':'SoftwareApplication','@id':SITE+p['ordner']+'/#software','name':p['name'].replace('<em>','').replace('</em>',''),
-       'description':beschreibung,'url':SITE+p['ordner']+'/','applicationCategory':'UtilitiesApplication','operatingSystem':'Linux',
-       'license':{'AGPL-3.0':'https://www.gnu.org/licenses/agpl-3.0.html'}.get(p['lizenz'],'https://www.gnu.org/licenses/gpl-3.0.html'),'isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
+       'description':beschreibung,'url':SITE+p['ordner']+'/','applicationCategory':p.get('kategorie','UtilitiesApplication'),'operatingSystem':p.get('os','Linux'),
+       'license':{'AGPL-3.0':'https://www.gnu.org/licenses/agpl-3.0.html','MIT':'https://opensource.org/licenses/MIT'}.get(p['lizenz'],'https://www.gnu.org/licenses/gpl-3.0.html'),'isAccessibleForFree':True,'author':{'@id':SITE+'#person'},
        'offers':{'@type':'Offer','price':'0','priceCurrency':'EUR'}}
     if p['version'] and not p.get('status'): d['softwareVersion']=p['version']
     if p['repo']: d['sameAs']='https://github.com/'+p['repo']
@@ -188,6 +198,9 @@ SEITEN={'mediadb':('MediaDB','MediaDB – selbst gehostete Datenbank für CDs, M
         'permlens':('PermLens','PermLens – Rechte-Manager für LXC-Container, derzeit speziell für Proxmox VE. Zeigt Benutzer, UID-Mapping, Mounts, Freigaben und Docker-Apps und erklärt, wer wo schreiben darf. Version '+version('Proxmox-Permission-Manager')+', freie Software auf GitHub.',
                    {'<!--VERSION-->':version('Proxmox-Permission-Manager')}),
         'lichtkammer':('Lichtkammer · lurohome','Lichtkammer – schlankes Foto-CMS für eigene Bilder: Galerien, Seiten aus Blöcken, Veröffentlichen als fertiges HTML. PHP und SQLite auf einfachem Webspace oder Docker im Homelab. Testversion mit Installations- und Bedienungsanleitung, Download und Echtheitsprüfung.',{}),
+        'iptc':('IPTC · lurohome','IPTC – lokale Web-Anwendung, die alle Metadaten eines Bildes (EXIF, IPTC, XMP) ausliest und übersichtlich zeigt. Läuft im Heimnetz, speichert nichts. In Entwicklung.',{}),
+        'rotorwacht':('Rotorwacht · lurohome','Rotorwacht – Hubschrauber-Rettungsspiel für den Mac mit sechs Einsätzen, drei Stufen, Controller und Bestenliste. In Entwicklung.',{}),
+        'paperless-ngx-backup':('paperless-ngx Backup · lurohome','paperless-ngx Backup – Backup und Wiederherstellung für paperless-ngx mit grafischer Oberfläche. Bald, in Planung.',{}),
         'homelab-handbuch':('Homelab-Handbuch · lurohome','Homelab-Handbuch – ein Buch für Einsteiger: Schritt für Schritt zum eigenen Homeserver mit Proxmox, jede Anwendung in einem eigenen LXC, verwaltet mit Dockhand. In Arbeit.',{}),
         'vibecoding':('Vibecoding: Mein Segen, meine Zweifel und meine Sucht · lurohome','Warum meine Programme KI-generiert sind, wem der Code gehört und weshalb ich ihn als Open Source weitergebe.',{})}
 for ordner,(title,desc,platz) in SEITEN.items():

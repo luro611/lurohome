@@ -1,0 +1,95 @@
+<div class="shell">
+<nav aria-label="Hauptnavigation">
+  <a class="brand" href="#top">Rotor<em>wacht</em></a>
+  <div class="links">
+    <a href="../">← lurohome</a>
+    <a href="#spiel"><span lang="de">Das Spiel</span><span lang="en">The game</span></a>
+    <a href="#einsaetze"><span lang="de">Einsätze</span><span lang="en">Missions</span></a>
+    <a href="#bilder"><span lang="de">Bilder</span><span lang="en">Pictures</span></a>
+    <a href="#starten"><span lang="de">Starten</span><span lang="en">Run it</span></a>
+    <a href="#hinweis"><span lang="de">Hinweis</span><span lang="en">Note</span></a>
+  </div>
+  <div class="pill" role="group" aria-label="Sprache / Language"><button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button><button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="pill"><button type="button" id="theme" aria-label="Farbschema wechseln">◐ Theme</button></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><span lang="de">Spiel · Mac · Swift · SpriteKit</span><span lang="en">Game · Mac · Swift · SpriteKit</span></p>
+    <h1>Rotor<em>wacht</em></h1>
+    <p class="intro"><span lang="de"><strong>Menschen vom Dach holen.</strong> Ein eigenes Hubschrauber-Rettungsspiel für den Mac: Nach Naturkatastrophen Menschen von Dächern und Anhöhen holen und ins Lager bringen, bevor Wetter, Wasser oder Treibstoff dir einen Strich durch die Rechnung machen.</span><span lang="en"><strong>Get people off the roof.</strong> A helicopter rescue game of my own for the Mac: after natural disasters, pick people up from rooftops and hilltops and bring them to the camp before weather, water or fuel get in your way.</span></p>
+    <p class="status"><span class="tag on"><span lang="de">In Entwicklung · 0.6.0</span><span lang="en">In development · 0.6.0</span></span> <span lang="de">Sechs Einsätze, drei Stufen, Controller, Musik und Bestenliste sind fertig. Noch nicht zum Download.</span><span lang="en">Six missions, three difficulty levels, controller support, music and a high-score list are done. Not available for download yet.</span></p>
+  </div>
+  <div class="shots" style="display:block"><figure class="shot"><img src="bilder/start.jpg" width="1400" height="787" alt="Startbildschirm mit sechs Einsätzen"><figcaption><span lang="de">Startbildschirm mit sechs Einsätzen, Stufen und Sperren.</span><span lang="en">Start screen with six missions, levels and locks.</span></figcaption></figure></div>
+</header>
+
+<section id="spiel">
+  <p class="eyebrow"><span lang="de">Das Spiel</span><span lang="en">The game</span></p>
+  <h2><span lang="de">Landen, laden, <em>zurück ins Lager</em></span><span lang="en">Land, load, <em>back to camp</em></span></h2>
+  <p class="lead" style="max-width:760px"><span lang="de">Du fliegst mit Pfeiltasten oder Controller, setzt sanft auf, lässt Menschen einsteigen und bringst sie ins Lager am Rand. Dort steigen sie aus, der Hubschrauber tankt und wird langsam repariert. Gefahren wie Hochwasser, Feuer, Blitze, Trümmer, Lava und Lawinen machen jeden Einsatz anders. Rotorwacht ist komplett selbst gebaut, die Grafik stammt aus gerenderten 3D-Modellen.</span><span lang="en">You fly with the arrow keys or a controller, touch down gently, let people climb aboard and bring them to the camp at the edge. There they get out, and the helicopter refuels and is slowly repaired. Hazards such as floods, fire, lightning, debris, lava and avalanches make every mission different. Rotorwacht is built entirely in-house, the graphics come from rendered 3D models.</span></p>
+  <div class="grid">
+    <div><p class="kicker"><span lang="de">Stufen</span><span lang="en">Levels</span></p><h3><span lang="de">Leicht, Mittel, Schwer</span><span lang="en">Easy, Medium, Hard</span></h3><p><span lang="de">Der erste Einsatz ist offen, jeder weitere, sobald der vorige mit mindestens einem Stern geschafft ist. Sterne und Bestwerte bleiben gespeichert.</span><span lang="en">The first mission is open, each further one once the previous one is done with at least one star. Stars and best scores are saved.</span></p></div>
+    <div><p class="kicker"><span lang="de">Spannung</span><span lang="en">Tension</span></p><h3><span lang="de">Durchfahrten mit Shuttern</span><span lang="en">Passages with shutters</span></h3><p><span lang="de">Unterführungen und Tunnel mit Shuttern, die nach festem Takt auf- und zugehen: Ampel und Klacken warnen vor, über das Bauwerk kannst du nicht fliegen.</span><span lang="en">Underpasses and tunnels with shutters that open and close on a fixed beat: lights and a clack warn you, and you cannot fly over the structure.</span></p></div>
+    <div><p class="kicker"><span lang="de">Bestenliste</span><span lang="en">High scores</span></p><h3><span lang="de">Die zehn Besten je Stufe</span><span lang="en">Top ten per level</span></h3><p><span lang="de">Je Einsatz und Stufe gibt es eine lokale Bestenliste mit Name, Punkten, Sternen und Datum.</span><span lang="en">Every mission and level has a local high-score list with name, points, stars and date.</span></p></div>
+    <div><p class="kicker"><span lang="de">Üben</span><span lang="en">Practice</span></p><h3><span lang="de">Neun Übungsstrecken</span><span lang="en">Nine practice tracks</span></h3><p><span lang="de">Im Übungsmodus gibt es unbegrenzt Hubschrauber, keinen Zeitdruck und keine Wertung, auf Wunsch mit langsameren Gefahren.</span><span lang="en">Practice mode has unlimited helicopters, no time limit and no scoring, with slower hazards if you like.</span></p></div>
+    <div><p class="kicker"><span lang="de">Controller</span><span lang="en">Controller</span></p><h3><span lang="de">Xbox, PlayStation, MFi</span><span lang="en">Xbox, PlayStation, MFi</span></h3><p><span lang="de">Per Bluetooth oder Kabel, der Stick dosiert Fahrt und Steigen weich. Die Tastatur geht weiter.</span><span lang="en">Over Bluetooth or cable; the stick gives smooth control. The keyboard still works.</span></p></div>
+    <div><p class="kicker"><span lang="de">Technik</span><span lang="en">Under the hood</span></p><h3><span lang="de">Getestet</span><span lang="en">Tested</span></h3><p><span lang="de">154 automatische Tests für Flugphysik, Landen, Gefahren und Fortschritt, dazu ein Autopilot, der jeden Einsatz auf jeder Stufe durchspielt.</span><span lang="en">154 automated tests for flight physics, landing, hazards and progress, plus an autopilot that plays every mission on every level.</span></p></div>
+  </div>
+</section>
+
+<section id="einsaetze">
+  <p class="eyebrow"><span lang="de">Einsätze</span><span lang="en">Missions</span></p>
+  <h2><span lang="de">Sechs <em>Katastrophen</em></span><span lang="en">Six <em>disasters</em></span></h2>
+  <div class="road">
+    <div class="done"><p class="v">1</p><h3><span lang="de">Hochwasser: Rettung vom Dach</span><span lang="en">Flood: rescue from the roof</span></h3></div>
+    <div class="done"><p class="v">2</p><h3><span lang="de">Waldbrand: Löschflug</span><span lang="en">Wildfire: water-bombing run</span></h3></div>
+    <div class="done"><p class="v">3</p><h3><span lang="de">Sturmnacht mit Blitzen</span><span lang="en">Storm night with lightning</span></h3></div>
+    <div class="done"><p class="v">4</p><h3><span lang="de">Altstadt: enge Gassen, Trümmer</span><span lang="en">Old town: narrow alleys, debris</span></h3></div>
+    <div class="done"><p class="v">5</p><h3><span lang="de">Vulkan: Lavabrocken und Lavaströme</span><span lang="en">Volcano: lava bombs and lava flows</span></h3></div>
+    <div class="done"><p class="v">6</p><h3><span lang="de">Hochgebirge: Lawinen und Seilwinde</span><span lang="en">High mountains: avalanches and winch</span></h3></div>
+  </div>
+</section>
+
+<section id="bilder">
+  <p class="eyebrow"><span lang="de">Bilder</span><span lang="en">Pictures</span></p>
+  <h2><span lang="de">So sieht es <em>aus</em></span><span lang="en">What it <em>looks like</em></span></h2>
+  <div class="shots">
+    <figure class="shot"><img src="bilder/hochwasser.jpg" width="1400" height="787" loading="lazy" alt="Hochwasser mit Hubschrauber und Landeplätzen."><figcaption><span lang="de">Hochwasser mit Hubschrauber und Landeplätzen.</span><span lang="en">Flood with helicopter and landing spots.</span></figcaption></figure>
+    <figure class="shot"><img src="bilder/tunnel.jpg" width="1400" height="787" loading="lazy" alt="Tunnel mit Shuttern im Vulkan-Einsatz."><figcaption><span lang="de">Tunnel mit Shuttern im Vulkan-Einsatz.</span><span lang="en">Tunnel with shutters in the volcano mission.</span></figcaption></figure>
+    <figure class="shot"><img src="bilder/wertung-bestenliste.jpg" width="1400" height="787" loading="lazy" alt="Wertungskarte mit Bestenliste."><figcaption><span lang="de">Wertungskarte mit Bestenliste.</span><span lang="en">Score card with high-score list.</span></figcaption></figure>
+  </div>
+</section>
+
+<section id="starten">
+  <p class="eyebrow"><span lang="de">Starten</span><span lang="en">Run it</span></p>
+  <h2><span lang="de">Für den <em>eigenen Mac</em></span><span lang="en">For your <em>own Mac</em></span></h2>
+  <div class="two">
+    <div>
+      <p class="small" style="font-size:15px;max-width:none"><span lang="de">Rotorwacht ist ein Spiel für den eigenen Gebrauch und wird nicht notarisiert (ich habe kein Apple-Entwicklerkonto). Es läuft auf einem Apple-Silicon-Mac mit macOS 14 oder neuer und wird mit den Command Line Tools gebaut, Xcode ist nicht nötig. Eine fertige App zum Herunterladen gibt es noch nicht; die Veröffentlichung folgt. Beim ersten Start einer solchen App: Rechtsklick, „Öffnen“.</span><span lang="en">Rotorwacht is a game for personal use and is not notarised (I do not have an Apple developer account). It runs on an Apple silicon Mac with macOS 14 or newer and is built with the Command Line Tools; Xcode is not needed. A ready-made app to download does not exist yet; the release will follow. When you first start such an app: right-click, “Open”.</span></p>
+    </div>
+    <div>
+      <dl class="facts">
+  <dt><span lang="de">Stand</span><span lang="en">Status</span></dt><dd><span lang="de">0.6.0, in Entwicklung</span><span lang="en">0.6.0, in development</span></dd>
+  <dt><span lang="de">Plattform</span><span lang="en">Platform</span></dt><dd>macOS 14+ · Apple Silicon</dd>
+  <dt><span lang="de">Technik</span><span lang="en">Stack</span></dt><dd>Swift, SpriteKit, SwiftUI</dd>
+  <dt><span lang="de">Lizenz</span><span lang="en">License</span></dt><dd><span lang="de">MIT (Code), CC BY 4.0 (Grafik, Ton)</span><span lang="en">MIT (code), CC BY 4.0 (art, sound)</span></dd>
+</dl>
+    </div>
+  </div>
+</section>
+
+<section id="hinweis">
+  <p class="eyebrow"><span lang="de">Hinweis</span><span lang="en">Note</span></p>
+  <h2><span lang="de">Freie <em>Software</em></span><span lang="en">Free <em>software</em></span></h2>
+  <p class="small" style="margin:0"><span lang="de"><strong>Haftungshinweis:</strong> Rotorwacht ist ein privates Hobbyprojekt und wird kostenlos bereitgestellt. Eine Gewährleistung wird nicht übernommen, soweit das gesetzlich zulässig ist. Die Nutzung erfolgt auf eigenes Risiko. Es besteht keine Verpflichtung zu Support, Fehlerbehebung oder Weiterentwicklung. Rotorwacht ist noch nicht veröffentlicht. Gebaut mit Hilfe von KI, mehr dazu im Beitrag <a href="../vibecoding/">Vibecoding</a>.</span><span lang="en"><strong>Disclaimer:</strong> Rotorwacht is a private hobby project, provided free of charge. To the extent permitted by law, no warranty is given. Use at your own risk. There is no obligation to provide support, fixes or further development. Rotorwacht is not released yet. Built with the help of AI, more on that in the article <a href="../vibecoding/">Vibecoding</a>.</span></p>
+</section>
+
+<footer>
+  <a class="luro" href="https://lurohome.de/" aria-label="luro · lurohome.de">lu<em>ro</em></a>
+  <span class="sp">Rotorwacht · <span lang="de">in Entwicklung</span><span lang="en">in development</span> · MIT</span>
+  <a href="../"><span lang="de">Alle Projekte</span><span lang="en">All projects</span></a>
+  <a href="../impressum.html"><span lang="de">Impressum</span><span lang="en">Legal notice</span></a>
+  <a href="../impressum.html#datenschutz"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a>
+  <span><span lang="de">Keine Cookies, kein Tracking</span><span lang="en">No cookies, no tracking</span></span>
+</footer>
+</div>
